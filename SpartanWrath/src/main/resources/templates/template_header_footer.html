@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="es" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>About Us</title>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge">
+    <meta name="description" content="">
+    <meta name="keywords" content="">
+    <meta name="team" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <!-- MAIN CSS -->
+    <link rel="icon" type="image/x-icon" href="../images/spartan-logo.png">
+    <link rel="stylesheet" th:href="@{../css/aboutus.css}">
+</head>
+<body>
+<!-- Sección Inicio -->
+<div th:fragment="header">
+    <header>
+        <a href="/" class="logo">Spartan Wrath</a>
+        <ul>
+            <li> <a href="/" >Inicio</a> </li>
+            <li> <a href="/api/Market">Tienda</a> </li>
+            <li> <a href="/AboutUs">About Us</a> </li>
+            <li> <a href="/login">Login</a> </li>
+            <!--<li><a href="/private">Perfil</a></li>-->
+        </ul>
+    </header>
+</div>
+<div th:fragment = "image_top">
+    <section class="top">
+        <img src="../images/sky.png" id="sky">
+        <img src="../images/cloud.png" id="cloud">
+        <img src="../images/hill_03.png" id="mountains_behind">
+        <img src="../images/hill_02.png" id="mountains_02">
+        <img src="../images/hill_01.png" id="mountains_03">
+        <img src="../images/tree.png" id="tree">
+        <h2 id="texto">About Us</h2>
+        <a href="#sec" id="boton">Grupo L</a>
+        <img src="../images/city.png" id="city">
+    </section>
+</div>
+
+<!--Pie de página-->
+<div th:fragment = "footer">
+    <footer class="pie">
+        <div class="pie2">
+            <img class="footer-logo" src="../images/spartan-logo.png" alt="logo de SW">
+            <p class="footer-texto">This is<br> SPARTA!</p>
+        </div>
+        <div class="derechos-de-autor">Creado por Grupo L ©</div>
+    </footer>
+</div>
+
+
+<!-- Scripts -->
+<div th:fragment = "script_home">
+    <script th:src="@{../js/AboutUs.js}" defer></script>
+</div>
+
+</body>
+</html>

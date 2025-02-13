@@ -1,0 +1,73 @@
+{
+	"info": {
+		"_postman_id": "39fd4297-35ba-4a63-9843-c20c55f9eabf",
+		"name": "User",
+		"schema": "https://schema.getpostman.com/json/collection/v2.0.0/collection.json",
+		"_exporter_id": "33504904"
+	},
+	"item": [
+		{
+			"name": "GetAllUsers",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": "http://localhost:8080/api/User"
+			},
+			"response": []
+		},
+		{
+			"name": "PostUser",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"name\": \"Juan\",\r\n    \"username\": \"Juanito\",\r\n    \"email\": \"juan_juanito@hotmail.com\",\r\n    \"address\": \"C/Lepanto\",\r\n    \"phone\": 123123123,\r\n    \"password\": \"pass\",\r\n    \"dni\": \"41441441F\",\r\n    \"payment\": \"pago2\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": "http://localhost:8080/api/User/new"
+			},
+			"response": []
+		},
+		{
+			"name": "GetbyUsername",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": "http://localhost:8080/api/User/Juanito"
+			},
+			"response": []
+		},
+		{
+			"name": "UpdateUser",
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"id\":2,\r\n    \"name\": \"Juan\",\r\n    \"username\": \"Juanito\",\r\n    \"email\": \"juan_juanito@hotmail.com\",\r\n    \"address\": \"C/Tortosa\",\r\n    \"phone\": 123123123,\r\n    \"password\": \"pass\",\r\n    \"dni\": \"41441441F\",\r\n    \"payment\": \"pago2\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": "http://localhost:8080/api/User/update/Juanito"
+			},
+			"response": []
+		},
+		{
+			"name": "DeleteUser",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": "http://localhost:8080/api/User/delete/Juanito"
+			},
+			"response": []
+		}
+	]
+}

@@ -1,0 +1,55 @@
+{
+	"info": {
+		"_postman_id": "bb1ca419-87ea-4adc-9a6e-ab8fdbef51e1",
+		"name": "Membership",
+		"schema": "https://schema.getpostman.com/json/collection/v2.0.0/collection.json",
+		"_exporter_id": "33504904"
+	},
+	"item": [
+		{
+			"name": "GetAllMem",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": "http://localhost:8080/api/Membership"
+			},
+			"response": []
+		},
+		{
+			"name": "CreateMem",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"nombre\": \"3 meses\",\r\n    \"descripcion\": \"Acceso a todas las clases durante 3 meses\",\r\n    \"precio\": 150.0,\r\n    \"fechaalta\": \"\",\r\n    \"fechafin\": \"\",\r\n    \"active\": true\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": "http://localhost:8080/api/Membership/new"
+			},
+			"response": []
+		},
+		{
+			"name": "GetMemById",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": "http://localhost:8080/api/Membership/3"
+			},
+			"response": []
+		},
+		{
+			"name": "DeleteMemById",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": "http://localhost:8080/api/Membership/delete/3"
+			},
+			"response": []
+		}
+	]
+}

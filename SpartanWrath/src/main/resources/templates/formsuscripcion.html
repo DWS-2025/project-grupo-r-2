@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Nueva Suscripcion</title>
+  <!--<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+  <link rel="stylesheet" href="../css/market.css">-->
+  <link rel="icon" type="image/x-icon" href="../images/spartan-logo.png">
+  <link rel="stylesheet" href="../css/aboutus.css">
+</head>
+<body>
+<header>
+  <a href="/" class="logo">Spartan Wrath</a>
+  <ul>
+    <li> <a href="/" >Inicio</a> </li>
+    <li> <a href="/Market">Tienda</a> </li>
+    <li> <a href="/AboutUs">About Us</a> </li>
+    <li> <a href="/login">Login</a> </li>
+    <!--<li><a href="/private">Perfil</a></li>-->
+  </ul>
+</header>
+<section class="top">
+  <img src="../images/sky.png" id="sky">
+  <img src="../images/cloud.png" id="cloud">
+  <img src="../images/hill_03.png" id="mountains_behind">
+  <img src="../images/hill_02.png" id="mountains_02">
+  <img src="../images/hill_01.png" id="mountains_03">
+  <img src="../images/tree.png" id="tree">
+  <h2 id="texto">Memberships</h2>
+  <img src="../images/city.png" id="city">
+</section>
+<div class="sec" id="sec">
+  <form action="/nuevasuscripcion" method="post" class="input-group" enctype="multipart/form-data">
+    <h2>Nueva Suscripcion</h2>
+    <div>
+      <label>Nombre: </label>
+      <input name="nombre" placeholder="nombre"/>
+    </div>
+    <div>
+      <label>Descripcion: </label>
+      <textarea name="descripcion" placeholder="descripcion"></textarea>
+    </div>
+    <div>
+      <label>Precio: </label>
+      <input name="precio" type="number"/>
+    </div>
+
+
+    <p>
+      <button onclick="location.href='/'; return false;">Cancel</button>
+      <input type="submit" value="Save"/>
+    </p>
+  </form>
+</div>
+
+<footer class="pie">
+  <div class="pie2">
+    <img class="footer-logo" src="../images/spartan-logo.png" alt="logo de SW">
+    <p class="footer-texto">This is<br> SPARTA!</p>
+  </div>
+  <div class="derechos-de-autor">Creado por Grupo L ©</div>
+</footer>
+
+<script src="../js/aboutus.js"></script>
+</body>
+</html>

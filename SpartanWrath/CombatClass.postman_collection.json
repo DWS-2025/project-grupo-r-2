@@ -1,0 +1,55 @@
+{
+	"info": {
+		"_postman_id": "7135a4e0-6f40-4bee-a856-3124ef1b16d3",
+		"name": "CombatClass",
+		"schema": "https://schema.getpostman.com/json/collection/v2.0.0/collection.json",
+		"_exporter_id": "33504904"
+	},
+	"item": [
+		{
+			"name": "GetAllCombat",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": "http://localhost:8080/api/combatclasses"
+			},
+			"response": []
+		},
+		{
+			"name": "PostCombat",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"name\": \"valetudo\",\r\n    \"description\": \"Clase de valetudo para principiantes\",\r\n    \"turn\": \"Miercoles por la mañana\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": "http://localhost:8080/api/combatclasses/new"
+			},
+			"response": []
+		},
+		{
+			"name": "GetCombatByid",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": "http://localhost:8080/api/combatclasses/4"
+			},
+			"response": []
+		},
+		{
+			"name": "DeleteCombat",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": "http://localhost:8080/api/combatclasses/delete/4"
+			},
+			"response": []
+		}
+	]
+}
