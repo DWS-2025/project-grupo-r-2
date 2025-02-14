@@ -80,7 +80,7 @@ public class MarketController {
     public String newProducto(Product product, @RequestParam(required = false) MultipartFile imageFile, Model model) throws IOException {
         if (product.getNombre() == null || !product.getNombre().matches(".*[a-zA-Z].*")) {
             model.addAttribute("errorMessage", "El nombre debe contener al menos una letra.");
-            return "formularioProducto"; // Retorna la misma vista del formulario
+            return "formproducto"; // Retorna la misma vista del formulario
         }
         if (imageFile != null && !imageFile.isEmpty()) {
             product.setImagen("../../images/" + imageFile.getOriginalFilename());
