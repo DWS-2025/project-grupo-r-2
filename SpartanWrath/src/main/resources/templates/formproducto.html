@@ -36,9 +36,10 @@
 
     <form action="/nuevoproducto" method="post" class="input-group" enctype="multipart/form-data">
         <h2>Nuevo Producto</h2>
-        <div th:if="${errorMessage}" style="color: red; font-size: 20px;">
-            <p th:text="${errorMessage}"></p>
+        <div id="error-message" style="color: red; font-size: 20px; display: none;">
+            <p id="error-text"></p>
         </div>
+
         <div>
             <label style="color: white">Nombre: </label>
             <input name="nombre" placeholder="nombre"/>
@@ -81,6 +82,14 @@
     <div class="derechos-de-autor">Creado por Grupo L ©</div>
 </footer>
 
+<script>
+    var errorMessage = new URLSearchParams(window.location.search).get("error");
+
+    if (errorMessage) {
+        document.getElementById("error-text").textContent = decodeURIComponent(errorMessage);
+        document.getElementById("error-message").style.display = "block";
+    }
+</script>
 <script src="../../js/aboutus.js"></script>
 </body>
 </html>

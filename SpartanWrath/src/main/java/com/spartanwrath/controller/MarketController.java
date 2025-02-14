@@ -77,20 +77,22 @@ public class MarketController {
 
 
     @PostMapping("/nuevoproducto")
-    public String newProducto(Product product, @RequestParam(required = false) MultipartFile imageFile, Model model) throws IOException {
+    public String newProducto(Product product, @RequestParam(required = false) MultipartFile imageFile) throws IOException {
         if (product.getNombre() == null || !product.getNombre().matches(".*[a-zA-Z].*")) {
-            model.addAttribute("errorMessage", "El nombre debe contener al menos una letra.");
-            return "formproducto"; // Retorna la misma vista del formulario
+            return "redirect:/Market/products/formproducto?error=El+nombre+debe+contener+al+menos+una+letra";
         }
+
         if (imageFile != null && !imageFile.isEmpty()) {
             product.setImagen("../../images/" + imageFile.getOriginalFilename());
             imageServ.saveImage(product.getImagen(), imageFile);
         } else {
             product.setImagen("../../images/DefaultProduct.jpg");
         }
+
         Product newProduct = productService.createProduct(product);
         return "redirect:/Market/products/" + newProduct.getId();
     }
+
     @PostMapping("/Market/products/{id}")
     public String updateProduct(@PathVariable("id") Long id, Product product, @RequestParam(required = false) MultipartFile imageFile) throws IOException {
         Optional<Product> productData = productService.getProductById(id);
