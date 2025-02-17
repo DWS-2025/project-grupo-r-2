@@ -1,5 +1,5 @@
 <h1 align="center">Hola 👋, Somos Spartan's Wrath</h1>
-<h3 align="center">Grupo L de Desarrollo Web Seguro</h3>
+<h3 align="center">Grupo R-2 de Desarrollo Web Seguro</h3>
 
 <div align="center">
   <img height="200" src="InfinitumWardens/src/main/resources/static/images/infinitumwardens.png" alt="Spartan" />
@@ -11,5 +11,4 @@
 <div align="center">
 👨‍🎓 Daniel Vallejo Pasamón
 👨‍🎓 Cesar Martín Baños
-👨‍🎓 Juan Antonio Suárez Suárez
 </div>
