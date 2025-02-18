@@ -7,16 +7,12 @@ function addToCart(productName, price, productId) {
     const existingItem = cartItems.find(item => item.name === productName);
 
     if (existingItem) {
-        // Si el producto ya está en el carrito, incrementar el contador de unidades
         existingItem.quantity++;
     } else {
-        // Si el producto no está en el carrito, agregarlo con una unidad
         cartItems.push({ name: productName, price: price, quantity: 1, productId: productId });
     }
 
-    // Actualizar la cantidad de productos en el carrito
     updateCartCount();
-    // Actualizar la visualización del carrito
     showCart();
 }
 
@@ -30,7 +26,7 @@ function updateCartCount() {
 function showCart() {
     const cart = document.getElementById('cart');
     const cartItemsList = document.getElementById('cart-items');
-    cartItemsList.innerHTML = ''; // Limpiar la lista antes de agregar los elementos
+    cartItemsList.innerHTML = '';// Clear the list before adding elements
 
     if (cartItems.length === 0) {
         const emptyCartMsg = document.createElement('p');
@@ -51,12 +47,12 @@ function showCart() {
             addButton.textContent = '+';
             removeButton.textContent = '-';
 
-            // Icono del círculo relleno con color naranja
+            // Circle icon filled with orange color
             const circleIcon = document.createElement('i');
             circleIcon.classList.add('bi', 'bi-circle-fill');
             circleIcon.style.color = '#FFA500';
 
-            // Añadir espacio entre el precio y los botones
+            // Add space between price and buttons
             const space = document.createElement('span');
             space.textContent = ' ';
 
@@ -72,7 +68,7 @@ function showCart() {
                     item.quantity--;
                     quantitySpan.textContent = `${item.quantity} x `;
                 } else {
-                    // Si solo hay una unidad y se hace clic en "-", eliminar el producto del carrito
+                    //If there is only one unit and "-" is clicked, remove the product from the cart
                     const index = cartItems.indexOf(item);
                     if (index !== -1) {
                         cartItems.splice(index, 1);
@@ -83,10 +79,10 @@ function showCart() {
             });
 
             li.appendChild(quantitySpan);
-            li.appendChild(circleIcon); // Agregar el icono del círculo relleno
+            li.appendChild(circleIcon);
             li.appendChild(nameSpan);
             li.appendChild(priceSpan);
-            li.appendChild(space); // Agregar espacio
+            li.appendChild(space);
             li.appendChild(addButton);
             li.appendChild(removeButton);
 
