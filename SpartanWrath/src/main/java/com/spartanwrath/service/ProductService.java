@@ -20,17 +20,17 @@ public class ProductService {
         this.productRepository = productRepository;
     }
 
-    // Método para crear un nuevo producto
+
     public Product createProduct(Product product) {
         return productRepository.save(product);
     }
 
-    // Método para obtener todos los productos
+
     public List<Product> getAllProducts() {
         return productRepository.findAll();
     }
 
-    // Método para obtener un producto por su ID
+
     public Optional<Product> getProductById(Long id) {
         return productRepository.findById(id);
     }
@@ -38,12 +38,12 @@ public class ProductService {
     public List<Product> getProductsByCategory(String category) {
         return productRepository.findByCategory(category);
     }
-    // Método para actualizar un producto
+
     public void updateProduct(Product product) {
         productRepository.save(product);
     }
 
-    // Método para eliminar un producto por su ID
+
     public void deleteProduct(Long id) {
         productRepository.deleteById(id);
     }

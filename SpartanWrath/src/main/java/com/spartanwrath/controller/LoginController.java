@@ -14,26 +14,32 @@ public class LoginController {
     UserService userService;
     @GetMapping("/login")
     public String loginPage() {
+
         return "login";
     }
     @PostMapping("/register")
     public String registerUser(User user) throws UserAlreadyRegister, InvalidUser {
+
         userService.add(user);
         return "redirect:/login";
     }
 
+
     @GetMapping("/admin")
     public String adminPage() {
+
         return "admin/admin";
     }
 
     @GetMapping("/register")
     public String registerPage() {
+
         return "login";
     }
 
     @GetMapping("/private")
     public String privatePage() {
+
         return "private";
     }
 

@@ -191,7 +191,7 @@ public class ProductRestController {
                     product.setCantidad(availableQuantity - quantity);
                     productServ.updateProduct(product);
 
-                    // Agregar el producto a la lista del usuario
+
                     user.getProducts().add(product);
                 } else {
                     return ResponseEntity.badRequest().body("El producto con ID " + productId + " no se encuentra");

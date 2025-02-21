@@ -166,6 +166,7 @@ public class MarketController {
                     product.setCantidad(availableQuantity - quantity);
                     productService.updateProduct(product);
 
+                    // Agregar el producto a la lista del usuario
                     user.getProducts().add(product);
                 } else {
                     model.addAttribute("error", "El producto con ID " + productId + " no se encuentra");

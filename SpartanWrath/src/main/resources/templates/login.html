@@ -29,7 +29,7 @@
             <div class="button-box">
                 <div id="btn"></div>
                 <button type="button" class="toggle-btn" onclick="login()">Log In</button>
-                <button type="button" class="toggle-btn" onclick="registro()">Registro</button>
+                <button type="button" class="toggle-btn" onclick="Register()">Register</button>
 
             </div>
         <form id="login1" class="input-group" action="/login" method="post">
@@ -38,21 +38,21 @@
             <input type="hidden" name="_csrf" value="{{token}}"/>
             <input type="submit" class="submit-btn" value="Sign in">
         </form>
-        <form id="registro" class="input-group" action="/register" method="post">
+        <form id="Register" class="input-group" action="/register" method="post">
             <input type="text" class="input-campo" name="username" placeholder="NickName" required>
             <input type="email" class="input-campo" name="email" placeholder="Email" required>
             <input type="password" class="input-campo" name="password" placeholder="Contraseña" required>
             <input type="checkbox" class="check"><span>Acepto los terminos</span>
-            <button type="submit" class="submit-btn">Registro</button>
+            <button type="submit" class="submit-btn">Register</button>
         </form>
     </div>
     </div>
 <script>
     var x = document.getElementById("login1");
-    var y = document.getElementById("registro");
+    var y = document.getElementById("Register");
     var z = document.getElementById("btn");
 
-    function registro(){
+    function Register(){
         x.style.left = "-400px";
         y.style.left = "50px";
         z.style.left = "110px";
