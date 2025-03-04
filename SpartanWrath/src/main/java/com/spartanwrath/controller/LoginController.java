@@ -19,7 +19,11 @@ public class LoginController {
     }
     @PostMapping("/register")
     public String registerUser(User user) throws UserAlreadyRegister, InvalidUser {
+<<<<<<< Updated upstream
 
+=======
+        // add user to usermanager
+>>>>>>> Stashed changes
         userService.add(user);
         return "redirect:/login";
     }
