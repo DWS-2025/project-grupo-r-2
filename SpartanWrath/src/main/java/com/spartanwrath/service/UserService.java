@@ -20,7 +20,6 @@ public class UserService {
     @Autowired
     private UserRepository UserRepo ;
 
-
    private ConcurrentHashMap<Long, User> usuarios = new ConcurrentHashMap<>();
 
 
