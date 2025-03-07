@@ -1,35 +1,48 @@
 package com.spartanwrath.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonView;
 import jakarta.persistence.*;
 
 import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
 @Entity
 @Table(name = "membership")
 public class Membership {
 
+    public interface Basico {}
+    public interface CombatClasses {}
+    public interface Users {}
+
+    @JsonView(Basico.class)
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
+    @JsonView(Basico.class)
     @Column(name = "nombre")
         private String nombre;
+    @JsonView(Basico.class)
     @Column(name = "descripcion")
         private String descripcion;
+    @JsonView(Basico.class)
     @Column(name = "precio")
         private double precio;
+    @JsonView(Basico.class)
     @Column(name = "fechaalta")
         private LocalDate fechaalta;
+    @JsonView(Basico.class)
     @Column(name = "fechafin")
         private LocalDate fechafin;
-
+    @JsonView(Basico.class)
     @Column(name = "active")
         private boolean active;
-
-    @ManyToOne
-    @JoinColumn(name = "user_id")
-    private User user;
-
+    @JsonView(Users.class)
+    @OneToMany(mappedBy = "membership", cascade = {CascadeType.PERSIST, CascadeType.MERGE}, fetch = FetchType.LAZY)
+    private List<User> users = new ArrayList<>();
+    @JsonView(CombatClasses.class)
     @ManyToOne
     @JoinColumn(name = "combatclass_id")
     private CombatClass combatClass;
@@ -38,7 +51,7 @@ public class Membership {
 
         }
 
-    public Membership( String nombre, String descripcion, double precio, LocalDate fechaalta, LocalDate fechafin, boolean active, User user) {
+    public Membership( String nombre, String descripcion, double precio, LocalDate fechaalta, LocalDate fechafin, boolean active) {
 
         super();
         this.nombre = nombre;
@@ -47,7 +60,6 @@ public class Membership {
         this.fechaalta = fechaalta;
         this.fechafin = fechafin;
         this.active = active;
-        this.user = user;
     }
 
     public Long getId() {
@@ -106,12 +118,12 @@ public class Membership {
         this.active = active;
     }
 
-    public User getUser() {
-        return user;
+    public List<User> getUser() {
+        return users;
     }
 
-    public void setUser(User user) {
-        this.user = user;
+    public void setUser(List<User> users) {
+        this.users = users;
     }
 
     public CombatClass getCombatClass() {
@@ -132,7 +144,6 @@ public class Membership {
                 ", fechaalta=" + fechaalta +
                 ", fechafin=" + fechafin +
                 ", active=" + active +
-                ", user=" + user +
                 '}';
     }
 }

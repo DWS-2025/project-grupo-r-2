@@ -6,73 +6,104 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Spartan Market</title>
     <!--<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">-->
-    <link rel="stylesheet" href="../../css/products.css">
-    <link rel="icon" type="image/x-icon" href="../../images/spartan-logo.png">
+    <link rel="stylesheet" href="/css/products.css">
+    <link rel="icon" type="image/x-icon" href="/images/spartan-logo.png">
 </head>
 <body>
 <header>
     <a href="/" class="logo">Spartan Wrath</a>
     <ul>
-        <li> <a href="/" >Home</a> </li>
-        <li> <a href="/Market" class="active">Tienda</a> </li>
-        <li> <a href="/AboutUs" >About Us</a> </li>
-        <!--<li> <a href="/login">Login</a> </li>-->
-        <li> <a href="/Admin">Admin</a> </li>
-        <li> <a href="/Membership">Memberships</a> </li>
-        <!--<li><a href="/private">Perfil</a></li>-->
-        <div id="cart-icon" onclick="showCart()"><i class="bi bi-cart4"></i></div>
+        <li><a href="/">Home</a></li>
+        <li><a href="/Market" >Tienda</a></li>
+        <li><a href="/AboutUs" class="active">About Us</a></li>
+        <li><a href="/login">Login</a></li>
+        {{#logged}}
+        {{#isAdmin}}
+        <li><a href="/Admin">Admin</a></li>
+        {{/isAdmin}}
+        {{#isUser}}
+        <li><a href="/Membership">Memberships</a></li>
+        <li><a href="/private">Perfil</a></li>
+        {{/isUser}}
+        {{/logged}}
+        <div id="cart-icon"><i class="bi bi-cart4"></i></div>
         <div id="cart" class="hide">
             <ul id="cart-items"></ul>
         </div>
     </ul>
 </header>
 <section class="top">
-    <img src="../../images/sky.png" id="sky">
-    <img src="../../images/cloud.png" id="cloud">
-    <img src="../../images/hill_03.png" id="mountains_behind">
-    <img src="../../images/hill_02.png" id="mountains_02">
-    <img src="../../images/hill_01.png" id="mountains_03">
-    <img src="../../images/tree.png" id="tree">
+    <img src="/images/sky.png" id="sky">
+    <img src="/images/cloud.png" id="cloud">
+    <img src="/images/hill_03.png" id="mountains_behind">
+    <img src="/images/hill_02.png" id="mountains_02">
+    <img src="/images/hill_01.png" id="mountains_03">
+    <img src="/images/tree.png" id="tree">
     <h2 id="texto">Spartan Market</h2>
-    <img src="../../images/city.png" id="city">
+    <img src="/images/city.png" id="city">
 </section>
 <div class="sec" id="sec">
     <h2>Spartan Products</h2>
 </div>
+<div class="consulta">
+    <!-- Formulario para filtrar productos -->
+    <form action="/Market/products" method="get">
+        <label for="category">Categoría:</label>
+        <select id="category" name="category">
+            <option value="">Todas</option>
+            <option value="Accesorios">Accesorios</option>
+            <option value="Cascos">Cascos</option>
+            <option value="Espinilleras">Espinilleras</option>
+            <option value="Guantes">Guantes</option>
+            <option value="Suplementos">Suplementos</option>
+        </select>
+
+        <label for="priceFrom">Precio desde:</label>
+        <input type="number" id="priceFrom" name="from" min="0">
+
+        <label for="priceTo">Precio hasta:</label>
+        <input type="number" id="priceTo" name="to" min="0">
+
+        <button type="submit">Filtrar</button>
+    </form>
+</div>
 <!-- Seccion Cards -->
 <section class="producto">
+
     <div class="container">
         {{#products}}
         <div class="card">
-            <img class="img" src="{{imagen}}" alt="Producto" />
+            <img class="img" src="data:image/jpeg;base64, {{base64Image}}" alt="Producto" />
 
             <div class="contenido">
                 <h2>{{nombre}}</h2>
                 <p>Precio: ${{precio}}</p>
                 <p>Categoría: {{category}}</p>
                 <a href="/Market/products/{{id}}">Más información</a>
-                <a href="#" data-productName="{{nombre}}" data-price="{{precio}}" data-productId="{{id}}" onclick="addToCart(this.getAttribute('data-productName'), this.getAttribute('data-price'), this.getAttribute('data-productId'))"><i class="bi bi-cart4"></i></a>
+                <a href="#" class="addToCartButton" data-productName="{{nombre}}" data-price="{{precio}}" data-productId="{{id}}"><i class="bi bi-cart4"></i></a>
+                <!--<a href="#" data-productName="{{nombre}}" data-price="{{precio}}" data-productId="{{id}}" onclick="addToCart(this.getAttribute('data-productName'), this.getAttribute('data-price'), this.getAttribute('data-productId'))"><i class="bi bi-cart4"></i></a>-->
             </div>
         </div>
         {{/products}}
-
+        <meta name="_csrf" value="{{token}}">
+        {{#admin}}
         <a id="boton" href="/Market/products/formproducto" >Nuevo Producto</a>
+        {{/admin}}
     </div>
     <!--<span id="cart-count" class="hide">0</span>-->
 </section>
 
-<!--Footer-->
+<!--Pie de página-->
 <footer class="pie">
     <div class="pie2">
-        <img class="footer-logo" src="../../images/spartan-logo.png" alt="logo de SW">
+        <img class="footer-logo" src="/images/spartan-logo.png" alt="logo de SW">
         <p class="footer-texto">Respice post te!<br> Hominem te esse memento.</p>
     </div>
     <div class="derechos-de-autor">Creado por Grupo L ©</div>
-    <!--<a href="register.html">Register</a>-->
 </footer>
 <!-- Scripts -->
-<script src="../../js/market.js"></script>
-<script type="text/javascript" src="../../js/vanilla-tilt.js"></script>
+<script src="/js/market.js"></script>
+<script type="text/javascript" src="/js/vanilla-tilt.js"></script>
 <script>
     VanillaTilt.init(document.querySelectorAll(".card"), {
         max: 25,

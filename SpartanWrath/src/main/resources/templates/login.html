@@ -9,27 +9,34 @@
     <meta name="team" content="">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
     <!-- MAIN CSS -->
-    <link rel="icon" type="image/x-icon" href="../images/spartan-logo.png">
-    <link rel="stylesheet" href="../css/Form.css">
+    <link rel="icon" type="image/x-icon" href="/images/spartan-logo.png">
+    <link rel="stylesheet" type="text/css" href="/css/Form.css">
 </head>
 <body>
 <header>
     <a href="#" class="logo">Spartan Wrath</a>
     <ul>
-        <li> <a href="/">Home</a> </li>
-        <li> <a href="/api/Market">Tienda</a> </li>
-        <li> <a href="/AboutUs">About Us</a> </li>
-        <li> <a href="/private">Private</a> </li>
-        <li> <a href="/Admin">Admin</a> </li>
-        <li> <a href="/Mymemberships">My memberships</a> </li>
+        <li><a href="/">Home</a></li>
+        <li><a href="/Market" >Tienda</a></li>
+        <li><a href="/AboutUs" >About Us</a></li>
+        <li><a href="/login" class="active">Login</a></li>
+        {{#logged}}
+        {{#isAdmin}}
+        <li><a href="/Admin">Admin</a></li>
+        {{/isAdmin}}
+        {{#isUser}}
+        <li><a href="/Membership">Memberships</a></li>
+        <li><a href="/private">Perfil</a></li>
+        {{/isUser}}
+        {{/logged}}
     </ul>
 </header>
     <div class="formulario">
         <div class="form-box">
             <div class="button-box">
                 <div id="btn"></div>
-                <button type="button" class="toggle-btn" onclick="login()">Log In</button>
-                <button type="button" class="toggle-btn" onclick="Register()">Register</button>
+                <button type="button" class="toggle-btn" id="login" >Log In</button>
+                <button type="button" class="toggle-btn" id="register">Registro</button>
 
             </div>
         <form id="login1" class="input-group" action="/login" method="post">
@@ -38,30 +45,30 @@
             <input type="hidden" name="_csrf" value="{{token}}"/>
             <input type="submit" class="submit-btn" value="Sign in">
         </form>
-        <form id="Register" class="input-group" action="/register" method="post">
+        <form id="registro" class="input-group" style="left: 450px" action="/register" method="post">
+            <div class="row">
+                <input type="text" class="input-campo" name="name" placeholder="Name" required>
+                <input type="text" class="input-campo" name="dni" placeholder="DNI" required>
+            </div>
+            <div class="row">
+                <input type="text" class="input-campo" name="address" placeholder="Dirección" required>
+                <input type="tel" class="input-campo" name="phone" placeholder="Teléfono" pattern="[0-9]{9}" required>
+            </div>
+            <div class="row">
             <input type="text" class="input-campo" name="username" placeholder="NickName" required>
+            <input type="date" class="input-campo" name="birthday" placeholder="F. Nacimiento" required>
+            </div>
+            <div class="row">
+            <input type="text" class="input-campo" name="payment" placeholder="Tipo de pago" required>
             <input type="email" class="input-campo" name="email" placeholder="Email" required>
+            </div>
             <input type="password" class="input-campo" name="password" placeholder="Contraseña" required>
             <input type="checkbox" class="check"><span>Acepto los terminos</span>
-            <button type="submit" class="submit-btn">Register</button>
+            <input type="hidden" name="_csrf" value="{{token}}"/>
+            <button type="submit" class="submit-btn">Registro</button>
         </form>
     </div>
     </div>
-<script>
-    var x = document.getElementById("login1");
-    var y = document.getElementById("Register");
-    var z = document.getElementById("btn");
-
-    function Register(){
-        x.style.left = "-400px";
-        y.style.left = "50px";
-        z.style.left = "110px";
-    }
-    function login(){
-        x.style.left = "50px";
-        y.style.left = "450px";
-        z.style.left = "0";
-    }
-</script>
+<script type="text/javascript" src="/js/login.js"></script>
 </body>
 </html>

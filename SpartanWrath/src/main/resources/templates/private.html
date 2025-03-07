@@ -9,34 +9,39 @@
     <meta name="team" content="">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
     <!-- MAIN CSS -->
-    <link rel="icon" type="image/x-icon" href="../images/spartan-logo.png">
-    <link rel="stylesheet" href="../css/private.css">
-    <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css" integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p" crossorigin="anonymous" />
+    <link rel="icon" type="image/x-icon" href="/images/spartan-logo.png">
+    <link rel="stylesheet" href="/css/private.css">
 </head>
 <body>
 <header>
     <a href="/" class="logo">Spartan Wrath</a>
     <ul>
-        <li> <a href="/">Home</a> </li>
-        <li> <a href="/Market">Tienda</a> </li>
-        <li> <a href="/AboutUs">About Us</a> </li>
-        <li> <a href="/login">Login</a> </li>
-        <li> <a href="/Admin">Admin</a> </li>
-        <li> <a href="/Mymemberships">Login</a> </li>
-        <!--<li><a href="/private">Perfil</a></li>-->
+        <li><a href="/">Home</a></li>
+        <li><a href="/Market" >Tienda</a></li>
+        <li><a href="/AboutUs" class="active">About Us</a></li>
+        <li><a href="/login">Login</a></li>
+        {{#logged}}
+        {{#isAdmin}}
+        <li><a href="/Admin">Admin</a></li>
+        {{/isAdmin}}
+        {{#isUser}}
+        <li><a href="/Membership">Memberships</a></li>
+        <li><a href="/private">Perfil</a></li>
+        {{/isUser}}
+        {{/logged}}
     </ul>
 </header>
 <section class="seccion-perfil-usuario">
     <div class="perfil-usuario-header">
         <div class="perfil-usuario-portada">
             <div class="perfil-usuario-avatar">
-                <img src="../images/undertakerelpro.png" alt="img-avatar">
+                <img src="/images/undertakerelpro.png" alt="img-avatar">
                 <button type="button" class="boton-avatar">
                     <i class="far fa-image"></i>
                 </button>
             </div>
             <form action="/logout" method="post" >
-                <input type="hidden" name="_csrf" value=""/>
+                <input type="hidden" name="_csrf" value="{{token}}"/>
                 <input class="submit-btn" type="submit" value="Sign Out"/>
             </form>
         </div>
@@ -44,20 +49,105 @@
     <div class="perfil-usuario-body">
         <div class="perfil-usuario-bio">
             <h2 class="titulo">Hola, {{username}}</h2>
-            <!--<div class="logout">
-                <a href="/admin">Admin page</a>
-            </div>-->
+            <h3>{{username}}´s info:</h3>
+            {{#user}}
+            <p>nombre: {{name}}</p>
+            <p>email: {{email}}</p>
+            <p>dirección: {{address}}</p>
+            <p>teléfono: {{phone}}</p>
+            <p>F.nacimiento: {{birthday}}</p>
+            <p>DNI: {{dni}}</p>
+            <p>Pago: {{payment}}</p>
+            {{#user.products}}
+            <div class="accordion" id="accordionExample">
+                <div class="card">
+                    <div class="card-header" id="headingOne">
+                        <h5 class="mb-0">
+                            <button class="btn btn-link" type="button" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                               Productos comprados
+                            </button>
+                        </h5>
+                    </div>
+
+                    <div id="collapseOne" class="collapse show" aria-labelledby="headingOne" data-parent="#accordionExample">
+                        <div class="card-body">
+                            <li>Nombre: {{nombre}}</li>
+                            <li>descripcion: {{descripcion}}</li>
+                            <li>precio: {{precio}}</li>
+                        </div>
+                    </div>
+                </div>
+                </div>
+            {{/user.products}}
+            {{#user.membership}}
+            <div class="accordion" >
+                <div class="card">
+                    <div class="card-header" >
+                        <h5 class="mb-0">
+                            <button class="btn btn-link" type="button" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                                Membresia
+                            </button>
+                        </h5>
+                    </div>
+
+                    <div  class="collapse show" aria-labelledby="headingOne" data-parent="#accordionExample">
+                        <div class="card-body">
+                            <li>Nombre: {{nombre}}</li>
+                            <li>descripcion: {{descripcion}}</li>
+                            <li>precio: {{precio}}</li>
+                            <li>F.Alta: {{fechaalta}}</li>
+                            <li>F.Fin: {{fechafin}}</li>
+                            <li>condición: {{active}}</li>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            {{/user.membership}}
+            <a href="/private/delete/{{id}}">Borrar Usuario</a>
+            <a href="/private/{{id}}">Modificar</a>
+            {{/user}}
+            {{#admin}}
+            <a href="/Admin">Admin page</a>
+            {{/admin}}
+            <!--</div>-->
         </div>
     </div>
 </section>
-<!--Footer-->
+<!-- Seccion Cards -->
+{{#admin}}
+<section class="producto">
+    <div class="container">
+        {{#users}}
+        <div class="card">
+            <div class="contenido">
+                <h2>{{name}}</h2>
+                <p>Username: {{username}}</p>
+
+
+                <a href="/private/delete/{{id}}">Borrar</a>
+
+            </div>
+        </div>
+        {{/users}}
+        {{/admin}}
+    </div>
+</section>
+<!--Pie de página-->
 <footer class="pie">
     <div class="pie2">
-        <img class="footer-logo" src="../../images/spartan-logo.png" alt="logo de SW">
+        <img class="footer-logo" src="/images/spartan-logo.png" alt="logo de SW">
         <p class="footer-texto">Respice post te!<br> Hominem te esse memento.</p>
     </div>
     <div class="derechos-de-autor">Creado por Grupo L ©</div>
-    <!--<a href="register.html">Register</a>-->
 </footer>
+<script type="text/javascript" src="/js/vanilla-tilt.js"></script>
+<script>
+    VanillaTilt.init(document.querySelectorAll(".card"), {
+        max: 25,
+        speed: 400,
+        glare: true,
+        "max-glare": 1,
+    });
+</script>
 </body>
 </html>

@@ -112,6 +112,12 @@ header ul li a.active{
     background: transparent;
     color: #f1f1f2;
 }
+.row{
+    display: flex;
+}
+#registro.input-group{
+    top: 100px;
+}
 .submit-btn{
     width: 85%;
     padding: 10px 30px;
@@ -135,11 +141,11 @@ span{
 
 }
 #login{
-    left: 50px;
+    left: 9px;
 
 }
-#registro{
-    left: 450px;
+#register{
+    left: 5px;
 }
 /*Footer*/
 

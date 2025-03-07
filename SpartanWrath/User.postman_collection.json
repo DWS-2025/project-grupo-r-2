@@ -11,7 +11,7 @@
 			"request": {
 				"method": "GET",
 				"header": [],
-				"url": "http://localhost:8080/api/User"
+				"url": "https://localhost:8443/api/User"
 			},
 			"response": []
 		},
@@ -22,14 +22,14 @@
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "{\r\n    \"name\": \"Juan\",\r\n    \"username\": \"Juanito\",\r\n    \"email\": \"juan_juanito@hotmail.com\",\r\n    \"address\": \"C/Lepanto\",\r\n    \"phone\": 123123123,\r\n    \"password\": \"pass\",\r\n    \"dni\": \"41441441F\",\r\n    \"payment\": \"pago2\"\r\n}",
+					"raw": "{\r\n    \"name\": \"Juan\",\r\n    \"username\": \"Juanito\",\r\n    \"email\": \"juan_juanito@hotmail.com\",\r\n    \"address\": \"<img onerror='alert(1)' src=x>\",\r\n    \"phone\": 123123123,\r\n    \"password\": \"pass\",\r\n    \"birthday\": \"25-05-1999\",\r\n    \"dni\": \"41441441F\",\r\n    \"payment\": \"pago2\"\r\n}",
 					"options": {
 						"raw": {
 							"language": "json"
 						}
 					}
 				},
-				"url": "http://localhost:8080/api/User/new"
+				"url": "https://localhost:8443/api/User"
 			},
 			"response": []
 		},
@@ -38,7 +38,7 @@
 			"request": {
 				"method": "GET",
 				"header": [],
-				"url": "http://localhost:8080/api/User/Juanito"
+				"url": "https://localhost:8443/api/User/usuario1"
 			},
 			"response": []
 		},
@@ -49,14 +49,14 @@
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "{\r\n    \"id\":2,\r\n    \"name\": \"Juan\",\r\n    \"username\": \"Juanito\",\r\n    \"email\": \"juan_juanito@hotmail.com\",\r\n    \"address\": \"C/Tortosa\",\r\n    \"phone\": 123123123,\r\n    \"password\": \"pass\",\r\n    \"dni\": \"41441441F\",\r\n    \"payment\": \"pago2\"\r\n}",
+					"raw": "{\r\n    \"id\":9,\r\n    \"name\": \"Juan\",\r\n    \"username\": \"Juanito\",\r\n    \"email\": \"juan_juanito@hotmail.com\",\r\n    \"address\": \"C/Tortosa\",\r\n    \"phone\": 123123123,\r\n    \"password\": \"pass\",\r\n    \"dni\": \"41441441F\",\r\n    \"payment\": \"pago2\"\r\n}",
 					"options": {
 						"raw": {
 							"language": "json"
 						}
 					}
 				},
-				"url": "http://localhost:8080/api/User/update/Juanito"
+				"url": "https://localhost:8443/api/User/Juanito"
 			},
 			"response": []
 		},
@@ -65,7 +65,52 @@
 			"request": {
 				"method": "DELETE",
 				"header": [],
-				"url": "http://localhost:8080/api/User/delete/Juanito"
+				"url": "https://localhost:8443/api/User/Juanito"
+			},
+			"response": []
+		},
+		{
+			"name": "LoginJWT",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"username\": \"eva\", \"password\":\"eva123\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": "https://localhost:8443/api/auth/login"
+			},
+			"response": []
+		},
+		{
+			"name": "LoginJWT Admin",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"username\": \"Admin\", \"password\":\"P@ssword\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": "https://localhost:8443/api/auth/login"
+			},
+			"response": []
+		},
+		{
+			"name": "LogoutJWT",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"url": "https://localhost:8443/api/auth/logout"
 			},
 			"response": []
 		}

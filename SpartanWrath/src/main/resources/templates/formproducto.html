@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="es" xmlns:th="http://www.w3.org/1999/xhtml">
+<html lang="es">
 <head>
     <title>New Product</title>
     <meta charset="UTF-8">
@@ -7,48 +7,59 @@
     <title>Spartan Market</title>
     <!--<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
     <link rel="stylesheet" href="../css/market.css">-->
-    <link rel="icon" type="image/x-icon" href="../../images/spartan-logo.png">
-    <link rel="stylesheet" href="../../css/aboutus.css">
+    <link rel="icon" type="image/x-icon" href="/images/spartan-logo.png">
+    <link rel="stylesheet" href="/css/aboutus.css">
+    <link href="https://cdn.jsdelivr.net/npm/quill@2.0.0-rc.2/dist/quill.snow.css" rel="stylesheet" />
 </head>
 <body>
 <header>
     <a href="/" class="logo">Spartan Wrath</a>
     <ul>
-        <li> <a href="/" >Inicio</a> </li>
-        <li> <a href="/api/Market">Tienda</a> </li>
-        <li> <a href="/AboutUs">About Us</a> </li>
-        <li> <a href="/login">Login</a> </li>
-        <!--<li><a href="/private">Perfil</a></li>-->
+        <li><a href="/">Home</a></li>
+        <li><a href="/Market" class="active">Tienda</a></li>
+        <li><a href="/AboutUs" >About Us</a></li>
+        <li><a href="/login">Login</a></li>
+        {{#logged}}
+        {{#isAdmin}}
+        <li><a href="/Admin">Admin</a></li>
+        {{/isAdmin}}
+        {{#isUser}}
+        <li><a href="/Membership">Memberships</a></li>
+        <li><a href="/private">Perfil</a></li>
+        {{/isUser}}
+        {{/logged}}
     </ul>
 </header>
 <section class="top">
-    <img src="../../images/sky.png" id="sky">
-    <img src="../../images/cloud.png" id="cloud">
-    <img src="../../images/hill_03.png" id="mountains_behind">
-    <img src="../../images/hill_02.png" id="mountains_02">
-    <img src="../../images/hill_01.png" id="mountains_03">
-    <img src="../../images/tree.png" id="tree">
+    <img src="/images/sky.png" id="sky">
+    <img src="/images/cloud.png" id="cloud">
+    <img src="/images/hill_03.png" id="mountains_behind">
+    <img src="/images/hill_02.png" id="mountains_02">
+    <img src="/images/hill_01.png" id="mountains_03">
+    <img src="/images/tree.png" id="tree">
     <h2 id="texto">Spartan Market</h2>
-    <img src="../../images/city.png" id="city">
+    <img src="/images/city.png" id="city">
 </section>
-
 <div class="sec" id="sec">
-
     <form action="/nuevoproducto" method="post" class="input-group" enctype="multipart/form-data">
         <h2>Nuevo Producto</h2>
-
         <div>
             <label style="color: white">Nombre: </label>
             <input name="nombre" placeholder="nombre"/>
         </div>
         <br>
-        <div>
+        <div id="editor-container">
             <label style="color: white">Descripcion: </label>
-            <textarea name="descripcion" placeholder="descripcion"></textarea>
+            <div id="editor"></div>
+            <textarea name="descripcion" placeholder="descripcion" id="description-textarea" style="visibility: hidden;" required></textarea>
         </div>
         <br>
-        <p>Imagen: </p>
+        <div>
+        <!--<p>Imagen: </p>-->
+        <label style="color: white">Imagen</label>
         <input style="color: white" type='file' name='imageFile' accept=".jpg, .jpeg" />
+        </div>
+        <br>
         <div>
             <label style="color: white">Precio: </label>
             <input name="precio" type="number"/>
@@ -65,6 +76,7 @@
         </div>
         <br>
         <p>
+            <input type="hidden" name="_csrf" value="{{token}}"/>
             <button onclick="location.href='/'; return false;">Cancel</button>
             <input type="submit" value="Save"/>
         </p>
@@ -73,12 +85,22 @@
 
 <footer class="pie">
     <div class="pie2">
-        <img class="footer-logo" src="../../images/spartan-logo.png" alt="logo de SW">
+        <img class="footer-logo" src="/images/spartan-logo.png" alt="logo de SW">
         <p class="footer-texto">This is<br> SPARTA!</p>
     </div>
     <div class="derechos-de-autor">Creado por Grupo L ©</div>
 </footer>
-
-<script src="../../js/aboutus.js"></script>
+<!-- Include the Quill library -->
+<script src="https://cdn.jsdelivr.net/npm/quill@2.0.0-rc.2/dist/quill.js"></script>
+<!-- Initialize Quill editor -->
+<script>
+    const quill = new Quill('#editor', {
+        theme: 'snow'
+    });
+    quill.on('text-change', function () {
+        document.getElementById('description-textarea').value = quill.root.innerHTML;
+    });
+</script>
+<script src="/js/aboutus.js"></script>
 </body>
 </html>

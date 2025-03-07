@@ -11,7 +11,7 @@
 			"request": {
 				"method": "GET",
 				"header": [],
-				"url": "http://localhost:8080/api/Membership"
+				"url": "https://localhost:8443/api/Membership"
 			},
 			"response": []
 		},
@@ -29,7 +29,7 @@
 						}
 					}
 				},
-				"url": "http://localhost:8080/api/Membership/new"
+				"url": "https://localhost:8443/api/Membership/new"
 			},
 			"response": []
 		},
@@ -38,7 +38,7 @@
 			"request": {
 				"method": "GET",
 				"header": [],
-				"url": "http://localhost:8080/api/Membership/3"
+				"url": "https://localhost:8443/api/Membership/1"
 			},
 			"response": []
 		},
@@ -47,7 +47,16 @@
 			"request": {
 				"method": "DELETE",
 				"header": [],
-				"url": "http://localhost:8080/api/Membership/delete/3"
+				"url": "https://localhost:8443/api/Membership/delete/3"
+			},
+			"response": []
+		},
+		{
+			"name": "Suscribirse",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"url": "https://localhost:8443/api/Membership/2"
 			},
 			"response": []
 		}

@@ -6,31 +6,37 @@
     <title>Membership</title>
     <!--<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
     <link rel="stylesheet" href="../css/market.css">-->
-    <link rel="icon" type="image/x-icon" href="../../images/spartan-logo.png">
-    <link rel="stylesheet" href="../../css/products.css">
+    <link rel="icon" type="image/x-icon" href="/images/spartan-logo.png">
+    <link rel="stylesheet" href="/css/products.css">
 </head>
 <body>
 <header>
     <a href="/" class="logo">Spartan Wrath</a>
     <ul>
-        <li> <a href="/" >Home</a> </li>
-        <li> <a href="/Market" >Tienda</a> </li>
-        <li> <a href="/AboutUs" >About Us</a> </li>
-        <!--<li> <a href="/login">Login</a> </li>-->
-        <li> <a href="/Admin" class="active">Admin</a> </li>
-        <li> <a href="/Membership">Memberships</a> </li>
-        <!--<li><a href="/private">Perfil</a></li>-->
+        <li><a href="/">Home</a></li>
+        <li><a href="/Market" >Tienda</a></li>
+        <li><a href="/AboutUs" >About Us</a></li>
+        <li><a href="/login">Login</a></li>
+        {{#logged}}
+        {{#isAdmin}}
+        <li><a href="/Admin" class="active">Admin</a></li>
+        {{/isAdmin}}
+        {{#isUser}}
+        <li><a href="/Membership">Memberships</a></li>
+        <li><a href="/private">Perfil</a></li>
+        {{/isUser}}
+        {{/logged}}
     </ul>
 </header>
 <section class="top">
-    <img src="../../images/sky.png" id="sky">
-    <img src="../../images/cloud.png" id="cloud">
-    <img src="../../images/hill_03.png" id="mountains_behind">
-    <img src="../../images/hill_02.png" id="mountains_02">
-    <img src="../../images/hill_01.png" id="mountains_03">
-    <img src="../../images/tree.png" id="tree">
+    <img src="/images/sky.png" id="sky">
+    <img src="/images/cloud.png" id="cloud">
+    <img src="/images/hill_03.png" id="mountains_behind">
+    <img src="/images/hill_02.png" id="mountains_02">
+    <img src="/images/hill_01.png" id="mountains_03">
+    <img src="/images/tree.png" id="tree">
     <h2 id="texto">Combat Classes</h2>
-    <img src="../../images/city.png" id="city">
+    <img src="/images/city.png" id="city">
 </section>
 <div class="sec" id="sec">
     <h2>Class</h2>
@@ -53,18 +59,18 @@
     </div>
 </section>
 
-<!--Footer-->
+<!--Pie de página-->
 <footer class="pie">
     <div class="pie2">
-        <img class="footer-logo" src="../../images/spartan-logo.png" alt="logo de SW">
+        <img class="footer-logo" src="/images/spartan-logo.png" alt="logo de SW">
         <p class="footer-texto">Respice post te!<br> Hominem te esse memento.</p>
     </div>
     <div class="derechos-de-autor">Creado por Grupo L ©</div>
     <!--<a href="register.html">Register</a>-->
 </footer>
 <!-- Scripts -->
-<script src="../../js/AboutUs.js" defer></script>
-<script type="text/javascript" src="../../js/vanilla-tilt.js"></script>
+<script src="/js/AboutUs.js" defer></script>
+<script type="text/javascript" src="/js/vanilla-tilt.js"></script>
 <script>
     VanillaTilt.init(document.querySelectorAll(".card"), {
         max: 25,

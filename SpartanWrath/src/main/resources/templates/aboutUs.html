@@ -9,34 +9,39 @@
     <meta name="team" content="">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
     <!-- MAIN CSS -->
-    <link rel="icon" type="image/x-icon" href="../images/spartan-logo.png">
-    <link rel="stylesheet" href="../css/aboutus.css">
+    <link rel="icon" type="image/x-icon" href="/images/spartan-logo.png">
+    <link rel="stylesheet" href="/css/aboutus.css">
 </head>
 <body>
 <!-- Sección Inicio -->
 <header>
     <a href="/" class="logo">Spartan Wrath</a>
     <ul>
-        <li> <a href="/" >Inicio</a> </li>
-        <li> <a href="/Market">Tienda</a> </li>
-        <li> <a href="/AboutUs" class="active">About Us</a> </li>
-        <!--<li> <a href="/login">Login</a> </li>-->
-        <li> <a href="/Admin">Admin</a> </li>
-        <li> <a href="/Membership">Memberships</a> </li>
-        <!--<li><a href="/private">Perfil</a></li>-->
-
+        <li><a href="/">Home</a></li>
+        <li><a href="/Market" >Tienda</a></li>
+        <li><a href="/AboutUs" class="active">About Us</a></li>
+        <li><a href="/login">Login</a></li>
+        {{#logged}}
+        {{#isAdmin}}
+        <li><a href="/Admin">Admin</a></li>
+        {{/isAdmin}}
+        {{#isUser}}
+        <li><a href="/Membership">Memberships</a></li>
+        <li><a href="/private">Perfil</a></li>
+        {{/isUser}}
+        {{/logged}}
     </ul>
 </header>
     <section class="top">
-        <img src="../images/sky.png" id="sky">
-        <img src="../images/cloud.png" id="cloud">
-        <img src="../images/hill_03.png" id="mountains_behind">
-        <img src="../images/hill_02.png" id="mountains_02">
-        <img src="../images/hill_01.png" id="mountains_03">
-        <img src="../images/tree.png" id="tree">
+        <img src="/images/sky.png" id="sky">
+        <img src="/images/cloud.png" id="cloud">
+        <img src="/images/hill_03.png" id="mountains_behind">
+        <img src="/images/hill_02.png" id="mountains_02">
+        <img src="/images/hill_01.png" id="mountains_03">
+        <img src="/images/tree.png" id="tree">
         <h2 id="texto">About Us</h2>
-        <a href="#sec" id="boton">Grupo R-2</a>
-        <img src="../images/city.png" id="city">
+        <a href="#sec" id="boton">Grupo L</a>
+        <img src="/images/city.png" id="city">
     </section>
     <div class="sec" id="sec" style="text-align: center">
         <h2>About us</h2>
@@ -60,7 +65,7 @@
         <div class="contentBx active" id="content1">
             <div class="card">
                 <div class="imgBx">
-                    <img src="../images/boxing_zone.jpeg">
+                    <img src="/images/boxing_zone.jpeg">
                 </div>
                 <div class="textBx">
                     <h2>Sala Boxeo/K1<br></h2>
@@ -70,7 +75,7 @@
         <div class="contentBx" id="content2">
             <div class="card">
                 <div class="imgBx">
-                    <img src="../images/ring.jpg">
+                    <img src="/images/ring.jpg">
                 </div>
                 <div class="textBx">
                     <h2>Ring<br></h2>
@@ -80,7 +85,7 @@
         <div class="contentBx" id="content3">
             <div class="card">
                 <div class="imgBx">
-                    <img src="../images/karate_zone.jpg">
+                    <img src="/images/karate_zone.jpg">
                 </div>
                 <div class="textBx">
                     <h2>Sala karate<br></h2>
@@ -90,7 +95,7 @@
         <div class="contentBx" id="content4">
             <div class="card">
                 <div class="imgBx">
-                    <img src="../images/jiu_jitsu_zone.jpeg">
+                    <img src="/images/jiu_jitsu_zone.jpeg">
                 </div>
                 <div class="textBx">
                     <h2>Sala jiu jitsu brasileño<br></h2>
@@ -100,7 +105,7 @@
         <div class="contentBx" id="content5">
             <div class="card">
                 <div class="imgBx">
-                    <img src="../images/gym_zone.jpg">
+                    <img src="/images/gym_zone.jpg">
                 </div>
                 <div class="textBx">
                     <h2>Zona de musculación<br></h2>
@@ -110,7 +115,7 @@
         <div class="contentBx" id="content6">
             <div class="card">
                 <div class="imgBx">
-                    <img src="../images/cardio_zone.jpg">
+                    <img src="/images/cardio_zone.jpg">
                 </div>
                 <div class="textBx">
                     <h2>Zona de cardio<br></h2>
@@ -128,22 +133,22 @@
     </div>
 <div class="icon">
     <div class="imgBx active" data-id="content1">
-        <img src="../images/boxing_zone.jpeg">
+        <img src="/images/boxing_zone.jpeg">
     </div>
     <div class="imgBx" data-id="content2">
-        <img src="../images/ring.jpg">
+        <img src="/images/ring.jpg">
     </div>
     <div class="imgBx" data-id="content3">
-        <img src="../images/karate_zone.jpg">
+        <img src="/images/karate_zone.jpg">
     </div>
     <div class="imgBx" data-id="content4">
-        <img src="../images/jiu_jitsu_zone.jpeg">
+        <img src="/images/jiu_jitsu_zone.jpeg">
     </div>
     <div class="imgBx" data-id="content5">
-        <img src="../images/gym_zone.jpg">
+        <img src="/images/gym_zone.jpg">
     </div>
     <div class="imgBx" data-id="content6">
-        <img src="../images/cardio_zone.jpg">
+        <img src="/images/cardio_zone.jpg">
     </div>
 </div>
 </div>
@@ -151,13 +156,13 @@
 <!--Pie de página-->
 <footer class="pie">
     <div class="pie2">
-    <img class="footer-logo" src="../images/spartan-logo.png" alt="logo de SW">
+    <img class="footer-logo" src="/images/spartan-logo.png" alt="logo de SW">
     <p class="footer-texto">This is<br> SPARTA!</p>
     </div>
     <div class="derechos-de-autor">Creado por Grupo L ©</div>
 </footer>
 
 <!-- Scripts -->
-<script src="../js/AboutUs.js" defer></script>
+<script src="/js/AboutUs.js" defer></script>
 </body>
 </html>

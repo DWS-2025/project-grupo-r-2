@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <title>Private</title>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge">
+    <meta name="description" content="">
+    <meta name="keywords" content="">
+    <meta name="team" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <!-- MAIN CSS -->
+    <link rel="icon" type="image/x-icon" href="/images/spartan-logo.png">
+    <link rel="stylesheet" href="/css/private.css">
+    <link href="https://cdn.jsdelivr.net/npm/quill@2.0.0-rc.2/dist/quill.snow.css" rel="stylesheet" />
+</head>
+<body>
+<header>
+    <a href="/" class="logo">Spartan Wrath</a>
+    <ul>
+        <li><a href="/">Home</a></li>
+        <li><a href="/Market" >Tienda</a></li>
+        <li><a href="/AboutUs" class="active">About Us</a></li>
+        <li><a href="/login">Login</a></li>
+        {{#logged}}
+        {{#isAdmin}}
+        <li><a href="/Admin">Admin</a></li>
+        {{/isAdmin}}
+        {{#isUser}}
+        <li><a href="/Membership">Memberships</a></li>
+        <li><a href="/private">Perfil</a></li>
+        {{/isUser}}
+        {{/logged}}
+    </ul>
+</header>
+<section class="seccion-perfil-usuario">
+    <div class="perfil-usuario-header">
+        <div class="perfil-usuario-portada">
+            <div class="perfil-usuario-avatar">
+                <img src="/images/undertakerelpro.png" alt="img-avatar">
+                <button type="button" class="boton-avatar">
+                    <i class="far fa-image"></i>
+                </button>
+            </div>
+            <form action="/logout" method="post" >
+                <input type="hidden" name="_csrf" value="{{token}}"/>
+                <input class="submit-btn" type="submit" value="Sign Out"/>
+            </form>
+        </div>
+    </div>
+    {{#user}}
+    <div class="perfil-usuario-body">
+        <div class="perfil-usuario-bio">
+            <h2 class="titulo">Hola, {{username}}</h2>
+            <h3>{{username}}´s info:</h3>
+
+            <form action="/private/{{id}}" method="post" class="input-group" enctype="multipart/form-data">
+                <h2>Modificar Usuario</h2>
+                <div>
+                    <label>Nombre: </label>
+                    <input name="name" placeholder="nombre" value="{{name}}" maxlength="60" required/>
+                </div>
+                <div id="editor-container">
+                    <label>Dirección: </label>
+                    <div id="editor"></div>
+                    <textarea name="address" placeholder="direccion" id="description-textarea" style="visibility: hidden;" maxlength="40" required>{{address}}</textarea>
+                </div>
+                <div>
+                    <label>DNI: </label>
+                    <input name="dni" placeholder="DNI" value="{{dni}}" maxlength="9" required/>
+                </div>
+                <div>
+                    <label>Teléfono: </label>
+                    <input name="phone" placeholder="Phone" value="{{phone}}" type="number" max="999999999" required/>
+                </div>
+                <div>
+                    <label>Nombre de usuario: </label>
+                    <input name="username" placeholder="username" value="{{username}}" maxlength="20"/>
+                </div>
+                <div>
+                    <label>Contraseña: </label>
+                    <input name="password" placeholder="password" type="password" maxlength="60"/>
+                </div>
+                <div>
+                    <label>Fecha de nacimiento: </label>
+                    <input name="birthday" placeholder="birthday" type="date" value="{{birthday}}"/>
+                </div>
+                <div>
+                    <label>Método de Pago: </label>
+                    <input name="payment" placeholder="payment" value="{{payment}}" maxlength="15"/>
+                </div>
+                <div>
+                    <label>Email: </label>
+                    <input name="email" placeholder="email" type="email" value="{{email}}" maxlength="30" required/>
+                </div>
+                <p>
+                    <input type="hidden" name="_csrf" value="{{token}}"/>
+                    <button onclick="location.href='/'; return false;">Cancel</button>
+                    <button type="submit">Guardar</button>
+                </p>
+            </form>
+
+            {{/user}}
+        </div>
+    </div>
+</section>
+<!-- Seccion Cards -->
+{{#admin}}
+<section class="producto">
+    <div class="container">
+        {{#users}}
+        <div class="card">
+            <div class="contenido">
+                <h2>{{name}}</h2>
+                <p>Username: {{username}}</p>
+
+
+                <a href="/private/delete/{{id}}">Borrar</a>
+
+            </div>
+        </div>
+        {{/users}}
+        {{/admin}}
+    </div>
+</section>
+<!--Pie de página-->
+<footer class="pie">
+    <div class="pie2">
+        <img class="footer-logo" src="/images/spartan-logo.png" alt="logo de SW">
+        <p class="footer-texto">Respice post te!<br> Hominem te esse memento.</p>
+    </div>
+    <div class="derechos-de-autor">Creado por Grupo L ©</div>
+</footer>
+<!-- Include the Quill library -->
+<script src="https://cdn.jsdelivr.net/npm/quill@2.0.0-rc.2/dist/quill.js"></script>
+<!-- Initialize Quill editor -->
+<script>
+    const quill = new Quill('#editor', {
+        theme: 'snow'
+    });
+    var descriptionTextarea = document.getElementById('description-textarea');
+    quill.root.innerHTML = descriptionTextarea.value;
+    quill.on('text-change', function () {
+        document.getElementById('description-textarea').value = quill.root.innerHTML;
+    });
+</script>
+</body>
+</html>

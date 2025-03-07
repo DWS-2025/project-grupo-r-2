@@ -1,6 +1,7 @@
 package com.spartanwrath.model;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonView;
 import jakarta.persistence.*;
 
 import java.util.ArrayList;
@@ -11,21 +12,26 @@ import java.util.List;
 @Entity
 @Table(name="combatclasses")
 public class CombatClass {
+
+    public interface Basico {}
+    public interface Memberships {}
+
+    @JsonView(Basico.class)
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
-
+    @JsonView(Basico.class)
     @Column(name = "name")
     private String name;
-
+    @JsonView(Basico.class)
     @Column(name = "description")
     private String description;
-
+    @JsonView(Basico.class)
     @Column(name = "turn")
     private String turn;
-    @JsonIgnore
-    @OneToMany(mappedBy = "combatClass")
-    private List<Membership> memberships;
+    @JsonView(Memberships.class)
+    @OneToMany(mappedBy = "combatClass", cascade = {CascadeType.PERSIST, CascadeType.MERGE}, fetch = FetchType.LAZY)
+    private List<Membership> memberships = new ArrayList<>();
 
     public CombatClass() {
     }
@@ -80,12 +86,11 @@ public class CombatClass {
 
     @Override
     public String toString() {
-        return "Class{" +
+        return "CombatClass{" +
                 "id=" + id +
                 ", name='" + name + '\'' +
                 ", description='" + description + '\'' +
-                ", turn=" + turn +
-                ", memberships=" + memberships +
+                ", turn='" + turn + '\'' +
                 '}';
     }
 }

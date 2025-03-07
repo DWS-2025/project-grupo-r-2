@@ -7,12 +7,16 @@ function addToCart(productName, price, productId) {
     const existingItem = cartItems.find(item => item.name === productName);
 
     if (existingItem) {
+        // Si el producto ya está en el carrito, incrementar el contador de unidades
         existingItem.quantity++;
     } else {
+        // Si el producto no está en el carrito, agregarlo con una unidad
         cartItems.push({ name: productName, price: price, quantity: 1, productId: productId });
     }
 
+    // Actualizar la cantidad de productos en el carrito
     updateCartCount();
+    // Actualizar la visualización del carrito
     showCart();
 }
 
@@ -26,7 +30,7 @@ function updateCartCount() {
 function showCart() {
     const cart = document.getElementById('cart');
     const cartItemsList = document.getElementById('cart-items');
-    cartItemsList.innerHTML = '';// Clear the list before adding elements
+    cartItemsList.innerHTML = ''; // Limpiar la lista antes de agregar los elementos
 
     if (cartItems.length === 0) {
         const emptyCartMsg = document.createElement('p');
@@ -47,12 +51,12 @@ function showCart() {
             addButton.textContent = '+';
             removeButton.textContent = '-';
 
-            // Circle icon filled with orange color
+            // Icono del círculo relleno con color naranja
             const circleIcon = document.createElement('i');
             circleIcon.classList.add('bi', 'bi-circle-fill');
             circleIcon.style.color = '#FFA500';
 
-            // Add space between price and buttons
+            // Añadir espacio entre el precio y los botones
             const space = document.createElement('span');
             space.textContent = ' ';
 
@@ -68,7 +72,7 @@ function showCart() {
                     item.quantity--;
                     quantitySpan.textContent = `${item.quantity} x `;
                 } else {
-                    //If there is only one unit and "-" is clicked, remove the product from the cart
+                    // Si solo hay una unidad y se hace clic en "-", eliminar el producto del carrito
                     const index = cartItems.indexOf(item);
                     if (index !== -1) {
                         cartItems.splice(index, 1);
@@ -79,10 +83,10 @@ function showCart() {
             });
 
             li.appendChild(quantitySpan);
-            li.appendChild(circleIcon);
+            li.appendChild(circleIcon); // Agregar el icono del círculo relleno
             li.appendChild(nameSpan);
             li.appendChild(priceSpan);
-            li.appendChild(space);
+            li.appendChild(space); // Agregar espacio
             li.appendChild(addButton);
             li.appendChild(removeButton);
 
@@ -102,9 +106,17 @@ function showCart() {
 
 
 function purchaseItems() {
+    const csrfToken = document.querySelector('meta[name="_csrf"]').getAttribute('value');
+
     const form = document.createElement('form');
     form.method = 'POST';
     form.action = '/products/purchase';
+
+    const csrfInput = document.createElement('input');
+    csrfInput.type = 'hidden';
+    csrfInput.name = '_csrf';
+    csrfInput.value = csrfToken;
+    form.appendChild(csrfInput);
 
     cartItems.forEach(item => {
         const productIdInput = document.createElement('input');
@@ -124,5 +136,12 @@ function purchaseItems() {
     form.submit();
 }
 
+document.querySelectorAll('.addToCartButton').forEach(button => {
+    button.addEventListener('click', function() {
+        addToCart(this.getAttribute('data-productName'), this.getAttribute('data-price'), this.getAttribute('data-productId'));
+    });
+});
 
-
+document.getElementById('cart-icon').addEventListener('click', function() {
+    showCart();
+});
