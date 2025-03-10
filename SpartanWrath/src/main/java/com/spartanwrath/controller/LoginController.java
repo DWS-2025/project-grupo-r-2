@@ -119,7 +119,6 @@ public class LoginController {
         model.addAttribute("users",userList);
     }
 
-
         return "private";
     }
 

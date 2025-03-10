@@ -33,11 +33,16 @@ public class MembershipsController {
     }
 
     @GetMapping("/Membership")
-    public String showMembership(Model model) {
+    public String showMembership(Model model, HttpServletRequest request) {
+        boolean isAdmin = request.isUserInRole("ADMIN");
+        model.addAttribute("admin", isAdmin);
+
         List<Membership> membershipList = membershipService.findAll();
         model.addAttribute("membership", membershipList);
+
         return "membership";
     }
+
 
     @GetMapping("/Mymemberships")
     public String showMymemberships(){
