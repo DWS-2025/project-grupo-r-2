@@ -115,22 +115,34 @@
 </section>
 <!-- Seccion Cards -->
 {{#admin}}
-<section class="producto">
-    <div class="container">
-        {{#users}}
-        <div class="card">
-            <div class="contenido">
-                <h2>{{name}}</h2>
-                <p>Username: {{username}}</p>
+{{#users}}
+<div>
+    <h3>{{name}}</h3>
+    <p>Username: {{username}}</p>
 
-
-                <a href="/private/delete/{{id}}">Borrar</a>
-
-            </div>
-        </div>
-        {{/users}}
-        {{/admin}}
+    <!-- Lista de productos comprados -->
+    {{#products}}
+    <div>
+        <h4>Productos comprados:</h4>
+        <ul>
+            {{#products}}
+            <li>
+                <p>Nombre: {{nombre}}</p>
+                <p>Descripción: {{descripcion}}</p>
+                <p>Precio: {{precio}}</p>
+            </li>
+            {{/products}}
+        </ul>
     </div>
+    {{/products}}
+
+    <a href="/private/delete/{{id}}">Borrar</a>
+</div>
+<hr>
+{{/users}}
+
+    {{/admin}}
+</div>
 </section>
 <!--Pie de página-->
 <footer class="pie">
