@@ -1,16 +1,14 @@
-var x = document.getElementById("login1");
-var y = document.getElementById("registro");
-var z = document.getElementById("btn");
+var loginForm = document.getElementById("login1");
+var registerForm = document.getElementById("registro");
 
 function registro(){
-    x.style.left = "-400px";
-    y.style.left = "50px";
-    z.style.left = "110px";
+    loginForm.style.display = "none";
+    registerForm.style.display = "block";
 }
+
 function login(){
-    x.style.left = "50px";
-    y.style.left = "450px";
-    z.style.left = "0";
+    loginForm.style.display = "block";
+    registerForm.style.display = "none";
 }
 
 document.getElementById('register').addEventListener('click', function() {

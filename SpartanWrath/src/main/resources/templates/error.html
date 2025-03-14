@@ -1,56 +1,35 @@
 <!DOCTYPE html>
-<html lang="en" xmlns="http://www.w3.org/1999/html">
+<html lang="es">
 <head>
-    <title>Spartan Wrath</title>
+    <title>404 - Página No Encontrada | Spartan Wrath</title>
     <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=Edge">
-    <meta name="description" content="">
-    <meta name="keywords" content="">
-    <meta name="team" content="">
-    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-    <!-- MAIN CSS -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="icon" type="image/x-icon" href="/images/spartan-logo.png">
-    <link rel="stylesheet" href="/css/aboutus.css">
+    <link rel="stylesheet" href="/css/styles.css">
 </head>
 <body>
-<!-- Sección Inicio -->
 <header>
-    <a href="/" class="logo">spartan wrath</a>
+    <a href="/" class="logo">Spartan Wrath</a>
     <ul>
         <li><a href="/">Home</a></li>
-        <li><a href="/Market" >Tienda</a></li>
+        <li><a href="/Market">Tienda</a></li>
         <li><a href="/AboutUs">About Us</a></li>
         <li><a href="/login">Login</a></li>
-        {{#logged}}
-        {{#isAdmin}}
-        <li><a href="/Admin">Admin</a></li>
-        {{/isAdmin}}
-        {{#isUser}}
-        <li><a href="/Membership">Memberships</a></li>
-        <li><a href="/private">Perfil</a></li>
-        {{/isUser}}
-        {{/logged}}
     </ul>
 </header>
-<section class="top">
-    <img src="/images/sky.png" id="sky">
-    <img src="/images/cloud.png" id="cloud">
-    <img src="/images/hill_03.png" id="mountains_behind">
-    <h2 id="texto" style="right: 550px; color: #0a0a23;z-index: 7">Error</h2>
-    {{#error}}
-    <div class="error-message">{{error}}</div>
-    {{/error}}
+
+<section class="error-container">
+    <h1 class="error-title">404</h1>
+    <p class="error-message">Lo sentimos, la página que buscas no existe.</p>
+    <a href="/" class="error-button">Volver al Inicio</a>
 </section>
 
-<!--Pie de página-->
 <footer class="pie">
     <div class="pie2">
         <img class="footer-logo" src="/images/spartan-logo.png" alt="logo de SW">
-        <p class="footer-texto">Errar,<br> es humano.</p>
+        <p class="footer-texto">Respice post te!<br> Hominem te esse memento.</p>
     </div>
-    <div class="derechos-de-autor">Creado por Grupo L ©</div>
+    <div class="derechos-de-autor">Creado por Grupo R-2 ©</div>
 </footer>
-<!-- Scripts -->
-<script type="text/javascript" src="/js/AboutUs.js" defer></script>
 </body>
 </html>
