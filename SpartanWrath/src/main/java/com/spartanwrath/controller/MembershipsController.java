@@ -55,8 +55,9 @@ public class MembershipsController {
     }
 
     @GetMapping("/Membership/{id}")
-    public String showMembership(Model model, @PathVariable Long id) throws NoSuchMem {
-
+    public String showMembership(Model model, @PathVariable Long id, HttpServletRequest request) throws NoSuchMem {
+        boolean isAdmin = request.isUserInRole("ADMIN");
+        model.addAttribute("admin", isAdmin);
         Membership membership = membershipService.findById(id);
         if (membership != null) {
             model.addAttribute("membership", membership);

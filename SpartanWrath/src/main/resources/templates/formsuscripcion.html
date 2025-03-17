@@ -28,16 +28,6 @@
     {{/logged}}
   </ul>
 </header>
-<section class="top">
-  <img src="/images/sky.png" id="sky">
-  <img src="/images/cloud.png" id="cloud">
-  <img src="/images/hill_03.png" id="mountains_behind">
-  <img src="/images/hill_02.png" id="mountains_02">
-  <img src="/images/hill_01.png" id="mountains_03">
-  <img src="/images/tree.png" id="tree">
-  <h2 id="texto">Memberships</h2>
-  <img src="/images/city.png" id="city">
-</section>
 <div class="sec" id="sec">
   <form action="/nuevasuscripcion" method="post" class="input-group" enctype="multipart/form-data">
     <h2>Nueva Suscripcion</h2>
@@ -53,6 +43,11 @@
       <label>Precio: </label>
       <input name="precio" type="number"/>
     </div>
+    <div>
+      <label>Fecha de Finalización: </label>
+      <input name="fechafin" type="date"/>
+    </div>
+
     <input type="hidden" name="_csrf" value="{{token}}"/>
 
 

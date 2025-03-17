@@ -10,6 +10,7 @@ import jakarta.servlet.http.HttpServletRequest;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.web.csrf.CsrfToken;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -45,9 +46,11 @@ public class AdminController {
     }
 
     @GetMapping("/Admin/combatclass/{id}")
-    public String showCombatClass(Model model, @PathVariable Long id) {
+    public String showCombatClass(Model model, @PathVariable Long id,HttpServletRequest request) {
 
         Optional<CombatClass> combatClass = combatClassService.findById(id);
+        CsrfToken token = (CsrfToken) request.getAttribute("_csrf");
+        model.addAttribute("token", token.getToken());
         if (combatClass.isPresent()) {
             CombatClass combatclass = combatClass.get();
             model.addAttribute("combatclasses", combatclass);
@@ -57,8 +60,9 @@ public class AdminController {
         }
     }
     @PostMapping("/nuevaclase")
-    public String newCombatClass(Model model, CombatClass combatClass) throws IOException {
-
+    public String newCombatClass(Model model, CombatClass combatClass,HttpServletRequest request) throws IOException {
+        CsrfToken token = (CsrfToken) request.getAttribute("_csrf");
+        model.addAttribute("token", token.getToken());
         CombatClass newCombatClass = combatClassService.save(combatClass);
 
         model.addAttribute("combatclasses", newCombatClass.getId());

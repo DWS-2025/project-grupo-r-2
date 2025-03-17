@@ -19,9 +19,11 @@
 </header>
 
 <section class="error-container">
-    <h1 class="error-title">404</h1>
-    <p class="error-message">Lo sentimos, la página que buscas no existe.</p>
-    <a href="/" class="error-button">Volver al Inicio</a>
+    <h1 class="error-title">ERROR</h1>
+    {{#error}}
+    <div class="error-message">{{error}}</div>
+    {{/error}}
+
 </section>
 
 <footer class="pie">

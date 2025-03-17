@@ -471,3 +471,10 @@ footer {
 .contenido a:hover {
     background: #b8972e;
 }
+
+.content {
+    display: flex;
+    flex-wrap: wrap; /* Permite que los elementos pasen a una nueva fila */
+    gap: 20px; /* Espacio entre elementos */
+    justify-content: center; /* Centra los elementos */
+}
