@@ -1,12 +1,10 @@
 package com.spartanwrath.model;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonView;
 import jakarta.persistence.*;
 
 import java.time.LocalDate;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 
 @Entity
@@ -21,39 +19,44 @@ public class Membership {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
+
     @JsonView(Basico.class)
     @Column(name = "nombre")
-        private String nombre;
+    private String nombre;
+
     @JsonView(Basico.class)
     @Column(name = "descripcion")
-        private String descripcion;
+    private String descripcion;
+
     @JsonView(Basico.class)
     @Column(name = "precio")
-        private double precio;
+    private double precio;
+
     @JsonView(Basico.class)
     @Column(name = "fechaalta")
-        private LocalDate fechaalta;
+    private LocalDate fechaalta;
+
     @JsonView(Basico.class)
     @Column(name = "fechafin")
-        private LocalDate fechafin;
+    private LocalDate fechafin;
+
     @JsonView(Basico.class)
     @Column(name = "active")
-        private boolean active;
+    private boolean active;
+
     @JsonView(Users.class)
     @OneToMany(mappedBy = "membership", cascade = {CascadeType.PERSIST, CascadeType.MERGE}, fetch = FetchType.LAZY)
     private List<User> users = new ArrayList<>();
+
     @JsonView(CombatClasses.class)
     @ManyToOne
     @JoinColumn(name = "combatclass_id")
     private CombatClass combatClass;
 
     public Membership() {
+    }
 
-        }
-
-    public Membership( String nombre, String descripcion, double precio, LocalDate fechaalta, LocalDate fechafin, boolean active) {
-
-        super();
+    public Membership(String nombre, String descripcion, double precio, LocalDate fechaalta, LocalDate fechafin, boolean active) {
         this.nombre = nombre;
         this.descripcion = descripcion;
         this.precio = precio;
@@ -61,6 +64,8 @@ public class Membership {
         this.fechafin = fechafin;
         this.active = active;
     }
+
+    // Getters y Setters
 
     public Long getId() {
         return id;
@@ -122,7 +127,7 @@ public class Membership {
         return users;
     }
 
-    public void setUser(List<User> users) {
+    public void setUsers(List<User> users) {
         this.users = users;
     }
 
