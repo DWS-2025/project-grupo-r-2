@@ -62,11 +62,7 @@
             <div class="accordion" id="accordionExample">
                 <div class="card">
                     <div class="card-header" id="headingOne">
-                        <h5 class="mb-0">
-                            <button class="btn btn-link" type="button" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
-                               Productos comprados
-                            </button>
-                        </h5>
+                        <h5 class="mb-0">Productos comprados</h5>
                     </div>
 
                     <div id="collapseOne" class="collapse show" aria-labelledby="headingOne" data-parent="#accordionExample">
@@ -83,11 +79,7 @@
             <div class="accordion" >
                 <div class="card">
                     <div class="card-header" >
-                        <h5 class="mb-0">
-                            <button class="btn btn-link" type="button" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
-                                Membresia
-                            </button>
-                        </h5>
+                        <h5 class="mb-0">Membresia</h5>
                     </div>
 
                     <div  class="collapse show" aria-labelledby="headingOne" data-parent="#accordionExample">
@@ -121,7 +113,6 @@
     <p>Username: {{username}}</p>
 
     <!-- Lista de productos comprados -->
-    {{#products}}
     <div>
         <h4>Productos comprados:</h4>
         <ul>
@@ -134,7 +125,22 @@
             {{/products}}
         </ul>
     </div>
-    {{/products}}
+
+    <div>
+        <h4>Membresias:</h4>
+        <ul>
+            {{#membership}}
+            <li>
+                <p>Nombre: {{nombre}}</p>
+                <p>descripcion: {{descripcion}}</p>
+                <p>precio: {{precio}}</p>
+                <p>F.Alta: {{fechaalta}}</p>
+                <p>F.Fin: {{fechafin}}</p>
+                <p>condición: {{active}}</p>
+            </li>
+            {{/membership}}
+        </ul>
+    </div>
 
     <a href="/private/delete/{{id}}">Borrar</a>
 </div>

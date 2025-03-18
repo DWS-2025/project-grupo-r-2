@@ -46,7 +46,7 @@ public class DatabaseInitializer {
     public void init() throws IOException, UserAlreadyRegister, InvalidUser, UserNotFound {
         //NUEVOS USUARIOS
         try {
-        User user1 = new User( "Nombre1", "usuario1", "email1@example.com", "Dirección1", 123456789, "contraseña1", LocalDate.of(2015, 5,25) ,  "12345678M", "pago1");
+        User user1 = new User( "Nombre1", "usuario1", "email1@example.com", "Dirección1", 123456789, "password1", LocalDate.of(2015, 5,25) ,  "12345678M", "pago1");
         usersService.add(user1);
         User user2 = new User("Alice Johnson", "alice", "alice@example.com", "123 Main St, Springfield", 123456789, "123", LocalDate.of(1990, 8, 15), "12345678A", "visa");
         usersService.add(user2);

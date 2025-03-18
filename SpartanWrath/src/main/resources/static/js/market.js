@@ -104,7 +104,6 @@ function showCart() {
     cart.classList.toggle('hide');
 }
 
-
 function purchaseItems() {
     const csrfToken = document.querySelector('meta[name="_csrf"]').getAttribute('value');
 
@@ -143,5 +142,6 @@ document.querySelectorAll('.addToCartButton').forEach(button => {
 });
 
 document.getElementById('cart-icon').addEventListener('click', function() {
-    showCart();
+    const cart = document.getElementById('cart');
+    cart.classList.toggle('show');
 });

@@ -46,6 +46,9 @@
             <label>Turno: </label>
             <textarea name="turn" placeholder="turn"></textarea>
         </div>
+
+        <input type="hidden" name="_csrf" value="{{token}}"/>
+
         <p>
             <button onclick="location.href='/'; return false;">Cancel</button>
             <input type="submit" value="Save"/>
