@@ -29,7 +29,7 @@
 						}
 					}
 				},
-				"url": "https://localhost:8443/api/Membership/new"
+				"url": "https://localhost:8443/api/Membership"
 			},
 			"response": []
 		},
