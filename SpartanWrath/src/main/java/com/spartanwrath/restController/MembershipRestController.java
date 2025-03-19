@@ -84,9 +84,26 @@ public class MembershipRestController {
     }
 
     @DeleteMapping("/Membership/{id}")
-    public ResponseEntity<Membership> deleteMem(@PathVariable long id){
-        membershipService.delete(id);
-        return ResponseEntity.ok().build();
+    public ResponseEntity<?> deleteMem(@PathVariable long id) {
+        try {
+            // Intentar obtener la Membership
+            Membership membership = membershipService.findById(id);
+
+            // Desvincular a los usuarios de la membresía
+            for (User user : membership.getUser()) {
+                user.setMembership(null);
+                userService.updateUser(user.getUsername(), user);
+            }
+
+            // Ahora eliminar la Membership
+            membershipService.delete(id);
+            return ResponseEntity.ok().body("Membresía eliminada correctamente.");
+
+        } catch (NoSuchMem e) {
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body("La membresía con ID " + id + " no existe.");
+        } catch (Exception e) {
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("Error al eliminar la membresía: " + e.getMessage());
+        }
     }
 
 }
