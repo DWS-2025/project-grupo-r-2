@@ -22,7 +22,7 @@
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "{\r\n    \"nombre\": \"3 meses\",\r\n    \"descripcion\": \"Acceso a todas las clases durante 3 meses\",\r\n    \"precio\": 150.0,\r\n    \"fechaalta\": \"\",\r\n    \"fechafin\": \"\",\r\n    \"active\": true\r\n}",
+					"raw": "{\r\n    \"nombre\": \"3 meses\",\r\n    \"descripcion\": \"Acceso a K1 durante 3 meses\",\r\n    \"precio\": 50.0,\r\n    \"fechaalta\": \"\",\r\n    \"fechafin\": \"\",\r\n    \"active\": true\r\n}",
 					"options": {
 						"raw": {
 							"language": "json"

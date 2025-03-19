@@ -11,7 +11,7 @@
 			"request": {
 				"method": "GET",
 				"header": [],
-				"url": "https://localhost:8443/api/combatclasses"
+				"url": "https://localhost:8443/api/combatclass"
 			},
 			"response": []
 		},
@@ -29,7 +29,7 @@
 						}
 					}
 				},
-				"url": "https://localhost:8443/api/combatclasses"
+				"url": "https://localhost:8443/api/combatclass"
 			},
 			"response": []
 		},
@@ -38,7 +38,7 @@
 			"request": {
 				"method": "GET",
 				"header": [],
-				"url": "https://localhost:8443/api/combatclasses/3"
+				"url": "https://localhost:8443/api/combatclass/3"
 			},
 			"response": []
 		},
@@ -47,7 +47,7 @@
 			"request": {
 				"method": "DELETE",
 				"header": [],
-				"url": "https://localhost:8443/api/combatclasses/4"
+				"url": "https://localhost:8443/api/combatclass/4"
 			},
 			"response": []
 		}
