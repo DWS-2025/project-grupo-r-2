@@ -2,6 +2,7 @@ package com.spartanwrath.service;
 
 import com.spartanwrath.model.Product;
 import com.spartanwrath.repository.ProductRepository;
+import com.spartanwrath.repository.UserRepository;
 import org.springframework.core.io.Resource;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
@@ -31,6 +32,8 @@ import java.util.Optional;
 public class ProductService {
 
     private final ProductRepository productRepository;
+    @Autowired
+    private UserService userService;
 
     @Autowired
     private ImageService imageService;
@@ -80,6 +83,9 @@ public class ProductService {
 
     // Método para eliminar un producto por su ID
     public void deleteProduct(Long id) {
+        // Llamamos a UserService para eliminar las relaciones del producto con los usuarios
+        userService.removeProductFromUsers(id);
+        // Luego eliminamos el producto
         productRepository.deleteById(id);
     }
     public void deleteAllProduct(){

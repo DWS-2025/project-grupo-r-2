@@ -111,7 +111,21 @@ public class ProductRestController {
                 return ResponseEntity.notFound().build();
             }
 
-            return ResponseEntity.ok().contentType(MediaType.IMAGE_JPEG).body(imageData);
+            // Detectar el tipo de contenido basado en el nombre del archivo original
+            String filename = product.getOriginalImageName();
+            MediaType mediaType = MediaType.IMAGE_JPEG; // Por defecto JPEG
+
+            if (filename != null) {
+                if (filename.endsWith(".png")) {
+                    mediaType = MediaType.IMAGE_PNG;
+                } else if (filename.endsWith(".jpg") || filename.endsWith(".jpeg")) {
+                    mediaType = MediaType.IMAGE_JPEG;
+                } else if (filename.endsWith(".gif")) {
+                    mediaType = MediaType.IMAGE_GIF;
+                }
+            }
+
+            return ResponseEntity.ok().contentType(mediaType).body(imageData);
         } else {
             return ResponseEntity.notFound().build();
         }

@@ -48,6 +48,10 @@ public class UserService {
         return UserRepo.findByUsername(username).orElseThrow(UserNotFound::new);
     }
 
+    public void removeProductFromUsers(Long productId) {
+        // Eliminar todas las relaciones del producto en la tabla user_product
+        UserRepo.deleteProductByProductId(productId);
+    }
 
     public List<User> findByIds(List<Long> ids){
         List<User> users = new ArrayList<>();
