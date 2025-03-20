@@ -160,19 +160,20 @@ public class ProductRestController {
     }
 
     @DeleteMapping("/products/{id}")
-    public ResponseEntity<Product> deleteProduct(@PathVariable long id) throws IOException{
+    public ResponseEntity<Void> deleteProduct(@PathVariable long id) throws IOException {
         Optional<Product> productOptional = productServ.getProductById(id);
-        if (productOptional.isPresent()){
+        if (productOptional.isPresent()) {
             Product product = productOptional.get();
             productServ.deleteProduct(id);
-            if (product.getImagen() != null){
+            if (product.getImagen() != null) {
                 this.imageServ.deleteImage(product.getOriginalImageName());
             }
-            return ResponseEntity.ok().body(product);
+            return ResponseEntity.ok().build();
         } else {
             return ResponseEntity.notFound().build();
         }
     }
+
 
     @DeleteMapping("/products/{id}/imagen")
     public ResponseEntity<Object> deleteImage(@PathVariable long id) throws IOException{
