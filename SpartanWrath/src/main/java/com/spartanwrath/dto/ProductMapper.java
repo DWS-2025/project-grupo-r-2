@@ -6,5 +6,5 @@ import com.spartanwrath.model.Product;
 
 @Mapper(componentModel = "Spring")
 public interface ProductMapper {
-    
+
 }
