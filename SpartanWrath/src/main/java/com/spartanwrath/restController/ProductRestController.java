@@ -202,7 +202,7 @@ public class ProductRestController {
             product.setPrecio(productDTO.getPrecio());
 
             productServ.updateProduct(product);
-
+            //linea 43 ccombatclassrestcontroller y linea 2
             ProductDTO updatedProductDTO = productServ.toDTO(product);  // Convertir la entidad actualizada a DTO
             return ResponseEntity.ok().body(updatedProductDTO);
         } else {
