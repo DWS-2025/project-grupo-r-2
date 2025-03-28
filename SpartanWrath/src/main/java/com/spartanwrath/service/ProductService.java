@@ -200,15 +200,15 @@ public class ProductService {
         return product;
     }
 
-    private ProductDTO toDTO(Product product){
+    public ProductDTO toDTO(Product product){
         return mapper.toDTO(product);
     }
 
-    private Product toDomain(ProductDTO productDTO){
+    public Product toDomain(ProductDTO productDTO){
         return mapper.toDomain(productDTO);
     }
 
-    private List<ProductDTO> toDTOs(List<Product> products){
+    public List<ProductDTO> toDTOs(List<Product> products){
         return mapper.toDTOs(products);
     }
 }

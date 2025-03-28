@@ -53,15 +53,15 @@ public class CombatClassService {
     public void delete(long id) {
         ccRepo.deleteById(id);
     }
-    private CombatClassDTO toDTO(CombatClass combatClass){
+    public CombatClassDTO toDTO(CombatClass combatClass){
         return mapper.toDTO(combatClass);
     }
 
-    private List<CombatClassDTO> toDTOs(List<CombatClass> combatclasses){
+    public List<CombatClassDTO> toDTOs(List<CombatClass> combatclasses){
         return mapper.toDTOs(combatclasses);
     }
 
-    private CombatClass toDomain(CombatClassDTO combatClassDTO){
+    public CombatClass toDomain(CombatClassDTO combatClassDTO){
         return mapper.toDomain(combatClassDTO);
     }
 

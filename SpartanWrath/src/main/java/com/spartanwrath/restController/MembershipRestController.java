@@ -14,6 +14,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import com.spartanwrath.dto.MembershipDTO;
 
 import java.util.List;
 
@@ -26,6 +27,7 @@ public class MembershipRestController {
     @Autowired
     private UserService userService;
     @JsonView(Membership.Basico.class)
+    // ?? @JsonView(MembershipDTO.Basico.class)
     @GetMapping("/Membership")
     public ResponseEntity<List<Membership>> getAllMembership(){
         List<Membership> membership = membershipService.findAll();
@@ -33,6 +35,16 @@ public class MembershipRestController {
             return ResponseEntity.notFound().build();
         }
         return ResponseEntity.ok().body(membership);
+    }
+    public ResponseEntity<List<MembershipDTO>> getAllMembershipDTO() {
+        List<MembershipDTO> membershipDTOs = membershipService.findAll().stream()
+                .map(membershipService::toDTO)  // Convertir cada Membership a MembershipDTO
+                .toList();
+
+        if (membershipDTOs.isEmpty()) {
+            return ResponseEntity.notFound().build();
+        }
+        return ResponseEntity.ok().body(membershipDTOs);
     }
 
     interface MemDetails extends Membership.Basico, Membership.CombatClasses, Membership.Users, CombatClass.Basico, User.Basico {}
@@ -46,11 +58,29 @@ public class MembershipRestController {
             return ResponseEntity.notFound().build();
         }
     }
+    @JsonView(MemDetails.class)
+    @GetMapping("/Membership/{id}")
+    public ResponseEntity<MembershipDTO> getMembershipDTO(@PathVariable long id) throws NoSuchMem {
+        try {
+            Membership membership = membershipService.findById(id);
+            MembershipDTO membershipDTO = membershipService.toDTO(membership);  // Convertir a DTO
+            return ResponseEntity.ok().body(membershipDTO);
+        } catch (NoSuchMem noSuchMem) {
+            return ResponseEntity.notFound().build();
+        }
+    }
+
 
     @PostMapping("/Membership")
     public ResponseEntity<Membership> newMembership(@RequestBody Membership membership){
         membershipService.save(membership);
         return ResponseEntity.ok().body(membership);
+    }
+    @PostMapping("/Membership")
+    public ResponseEntity<MembershipDTO> newMembershipDTO(@RequestBody MembershipDTO membershipDTO) {
+        Membership membership = membershipService.toDomain(membershipDTO);  // Convertir DTO a entidad
+        membershipService.save(membership);
+        return ResponseEntity.ok().body(membershipService.toDTO(membership));  // Convertir la entidad guardada a DTO
     }
     @PostMapping("/Membership/{id}")
     public ResponseEntity<?> subscribeToMembership(@PathVariable long id, HttpServletRequest request) {
@@ -82,6 +112,7 @@ public class MembershipRestController {
             return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Ocurrió un error al realizar la suscripción.");
         }
     }
+
 
     @DeleteMapping("/Membership/{id}")
     public ResponseEntity<?> deleteMem(@PathVariable long id) {

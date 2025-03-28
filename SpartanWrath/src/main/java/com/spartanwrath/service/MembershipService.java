@@ -64,13 +64,13 @@ public class MembershipService {
     public void delete(long id) {
         memRepo.deleteById(id);
     }
-    private MembershipDTO toDTO(Membership membership){
+    public MembershipDTO toDTO(Membership membership){
         return mapper.toDTO(membership);
     }
-    private List<MembershipDTO> toDTOs(List<Membership> memberships){
+    public List<MembershipDTO> toDTOs(List<Membership> memberships){
         return mapper.toDTOs(memberships);
     }
-    private Membership toDomain(MembershipDTO membershipDTO){
+    public Membership toDomain(MembershipDTO membershipDTO){
         return mapper.toDomain(membershipDTO);
     }
 }

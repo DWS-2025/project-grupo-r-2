@@ -19,6 +19,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.annotation.Secured;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
+import com.spartanwrath.dto.ProductDTO;
 
 import java.io.IOException;
 import java.net.MalformedURLException;
@@ -56,6 +57,26 @@ public class ProductRestController {
             return ResponseEntity.ok().body(productServ.getAllProducts());
         }
     }
+    @JsonView(Product.Basico.class)
+    @GetMapping("/products")
+    public ResponseEntity<List<ProductDTO>> getProductsDTO(@RequestParam(required = false) Integer from, @RequestParam(required = false) Integer to,@RequestParam(required = false) String category) {
+        List<ProductDTO> productDTOs;
+        if (category != null || from != null || to != null) {
+            productDTOs = productServ.findProducts(from, to, category).stream()
+                    .map(productServ::toDTO)  // Convertir cada Product a ProductDTO
+                    .toList();
+            if (!productDTOs.isEmpty()) {
+                return ResponseEntity.ok().body(productDTOs);
+            } else {
+                return ResponseEntity.notFound().build();
+            }
+        } else {
+            productDTOs = productServ.getAllProducts().stream()
+                    .map(productServ::toDTO)  // Convertir cada Product a ProductDTO
+                    .toList();
+            return ResponseEntity.ok().body(productDTOs);
+        }
+    }
 
     interface DetailsProduct extends Product.Basico, Product.Users, User.Basico {}
     @JsonView(DetailsProduct.class)
@@ -67,6 +88,16 @@ public class ProductRestController {
         }
         return ResponseEntity.notFound().build();
     }
+    @JsonView(DetailsProduct.class)
+    @GetMapping("/products/{id}")
+    public ResponseEntity<ProductDTO> getProductDTO(@PathVariable long id) {
+        Optional<Product> product = productServ.getProductById(id);
+        if (product.isPresent()) {
+            ProductDTO productDTO = productServ.toDTO(product.get());  // Convertir a DTO
+            return ResponseEntity.ok().body(productDTO);
+        }
+        return ResponseEntity.notFound().build();
+    }
 
     @PostMapping("/products")
     public ResponseEntity<Product> createProduct(@RequestBody Product product) throws IOException {
@@ -75,6 +106,15 @@ public class ProductRestController {
         URI location = fromCurrentRequest().path("/{id}").buildAndExpand(product.getId()).toUri();
 
         return ResponseEntity.created(location).body(product);
+    }
+    @PostMapping("/products")
+    public ResponseEntity<ProductDTO> createProductDTO(@RequestBody ProductDTO productDTO) throws IOException {
+        Product product = productServ.toDomain(productDTO);  // Convertir DTO a entidad
+        productServ.createProduct(product);
+        URI location = fromCurrentRequest().path("/{id}").buildAndExpand(product.getId()).toUri();
+
+        ProductDTO createdProductDTO = productServ.toDTO(product);  // Convertir la entidad a DTO
+        return ResponseEntity.created(location).body(createdProductDTO);
     }
 
     @PostMapping("/products/{id}/imagen")
@@ -99,6 +139,7 @@ public class ProductRestController {
             return ResponseEntity.notFound().build();
         }
     }
+
 
     @GetMapping("/products/{id}/imagen")
     public ResponseEntity<byte[]> downloadImage(@PathVariable long id) throws MalformedURLException {
@@ -148,6 +189,22 @@ public class ProductRestController {
             productServ.updateProduct(_product);
 
             return ResponseEntity.ok().body(product);
+        } else {
+            return ResponseEntity.notFound().build();
+        }
+    }
+    @PutMapping("/products/{id}")
+    public ResponseEntity<ProductDTO> updateProductDTO(@PathVariable long id, @RequestBody ProductDTO productDTO) {
+        Optional<Product> productOptional = productServ.getProductById(id);
+        if (productOptional.isPresent()) {
+            Product product = productOptional.get();
+            product.setNombre(productDTO.getNombre());
+            product.setPrecio(productDTO.getPrecio());
+
+            productServ.updateProduct(product);
+
+            ProductDTO updatedProductDTO = productServ.toDTO(product);  // Convertir la entidad actualizada a DTO
+            return ResponseEntity.ok().body(updatedProductDTO);
         } else {
             return ResponseEntity.notFound().build();
         }
