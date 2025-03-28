@@ -1,6 +1,11 @@
 package com.spartanwrath.dto;
 
 import java.time.LocalDate;
+import java.util.List;
 
-public record MembershipDTO(Long id, String name, String descripcion, Double precio, LocalDate fechaalta, LocalDate fechafin, boolean active, List<UserBasicDTO> users, CombatClassBasicDTO combatClass) {
+public class MembershipDTO {
+    private String nombre;
+    private double precio;
+    private List<UserDTO> users;
+    private CombatClassDTO combatClass;
 }
