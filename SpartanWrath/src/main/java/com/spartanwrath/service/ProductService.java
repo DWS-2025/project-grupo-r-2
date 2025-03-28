@@ -1,5 +1,7 @@
 package com.spartanwrath.service;
 
+import com.spartanwrath.dto.ProductDTO;
+import com.spartanwrath.dto.ProductMapper;
 import com.spartanwrath.model.Product;
 import com.spartanwrath.repository.ProductRepository;
 import com.spartanwrath.repository.UserRepository;
@@ -38,6 +40,9 @@ public class ProductService {
     @Autowired
     private ImageService imageService;
 
+    @Autowired
+    private ProductMapper mapper;
+
     @Value("${image.upload.dir}")
     private String uploadDir;
 
@@ -60,23 +65,55 @@ public class ProductService {
         }
         return productRepository.save(product);
     }
+    public ProductDTO createProductDTO(ProductDTO productDTO) throws IOException {
+        Product product = toDomain(productDTO);
+        product = sanitizeProduct(product);
+
+        if (product.getImagen() == null || product.getImagen().length == 0) {
+            byte[] defaultImageData = imageService.getDefault();
+            product.setImagen(defaultImageData);
+            product.setOriginalImageName(imageService.getDefaultName());
+        } else {
+            byte[] imageData = product.getImagen();
+            product.setImagen(imageData);
+        }
+
+        product = productRepository.save(product);
+        return toDTO(product);
+    }
 
     // Método para obtener todos los productos
     public List<Product> getAllProducts() {
         return productRepository.findAll();
     }
-
+    public List<ProductDTO> getAllProductsDTO() {
+        List<Product> products = productRepository.findAll();
+        return toDTOs(products);
+    }
     // Método para obtener un producto por su ID
 
     public Optional<Product> getProductById(Long id) {
         return productRepository.findById(id);
     }
+    public Optional<ProductDTO> getProductByIdDTO(Long id) {
+        Optional<Product> product = productRepository.findById(id);
+        return product.map(this::toDTO);
+    }
 
     public List<Product> getProductsByCategory(String category) {
         return productRepository.findByCategory(category);
     }
+    public List<ProductDTO> getProductsByCategoryDTO(String category) {
+        List<Product> products = productRepository.findByCategory(category);
+        return toDTOs(products);
+    }
     // Método para actualizar un producto
     public void updateProduct(Product product) {
+        product = sanitizeProduct(product);
+        productRepository.save(product);
+    }
+    public void updateProductDTO(ProductDTO productDTO) {
+        Product product = toDomain(productDTO);
         product = sanitizeProduct(product);
         productRepository.save(product);
     }
@@ -109,7 +146,23 @@ public class ProductService {
         }
 
     }
-
+    public List<ProductDTO> findProductsDTO(Integer from, Integer to, String category) {
+        List<Product> products;
+        if (from != null || to != null || (category != null && !category.isEmpty())) {
+            if (from != null && to != null && (category != null && !category.isEmpty())) {
+                products = productRepository.findByPrecioAndCategory(from, to, category);
+            } else if (from != null && to != null) {
+                products = productRepository.findByPrecioBetween(from, to);
+            } else if (category != null && !category.isEmpty()) {
+                products = productRepository.findByCategory(category);
+            } else {
+                products = productRepository.findAll();
+            }
+        } else {
+            products = productRepository.findAll();
+        }
+        return toDTOs(products);
+    }
     public List<Product> getProductsByIds(List<Long> productIds){
         List<Product> products = new ArrayList<>();
         for (Long productId : productIds){
@@ -117,6 +170,14 @@ public class ProductService {
             optionalProduct.ifPresent(products::add);
         }
         return products;
+    }
+    public List<ProductDTO> getProductsByIdsDTO(List<Long> productIds) {
+        List<Product> products = new ArrayList<>();
+        for (Long productId : productIds) {
+            Optional<Product> optionalProduct = productRepository.findById(productId);
+            optionalProduct.ifPresent(products::add);
+        }
+        return toDTOs(products);
     }
 
     public Product sanitizeProduct(Product product){
@@ -139,4 +200,15 @@ public class ProductService {
         return product;
     }
 
+    private ProductDTO toDTO(Product product){
+        return mapper.toDTO(product);
+    }
+
+    private Product toDomain(ProductDTO productDTO){
+        return mapper.toDomain(productDTO);
+    }
+
+    private List<ProductDTO> toDTOs(List<Product> products){
+        return mapper.toDTOs(products);
+    }
 }

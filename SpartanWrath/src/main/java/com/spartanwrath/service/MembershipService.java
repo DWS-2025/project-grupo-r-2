@@ -1,5 +1,7 @@
 package com.spartanwrath.service;
 
+import com.spartanwrath.dto.MembershipDTO;
+import com.spartanwrath.dto.MembershipMapper;
 import com.spartanwrath.exceptions.NoSuchMem;
 import com.spartanwrath.model.Membership;
 import com.spartanwrath.repository.MembershipRepository;
@@ -14,15 +16,24 @@ public class MembershipService {
 
     @Autowired
     private MembershipRepository memRepo;
+    private MembershipMapper mapper;
 
     public MembershipService() {}
 
     public Membership findById(long id) throws NoSuchMem {
         return memRepo.findById(id).orElseThrow(NoSuchMem::new);
     }
+    public MembershipDTO findByIdDTO(long id) throws NoSuchMem {
+        Membership membership = memRepo.findById(id).orElseThrow(NoSuchMem::new);
+        return toDTO(membership);
+    }
 
     public List<Membership> findAll() {
         return memRepo.findAll();
+    }
+    public List<MembershipDTO> findAllDTO() {
+        List<Membership> memberships = memRepo.findAll();
+        return toDTOs(memberships);
     }
 
     public Membership save(Membership membership) {
@@ -35,11 +46,33 @@ public class MembershipService {
         membership.setActive(true);
         return memRepo.save(membership);
     }
+    public MembershipDTO saveDTO(MembershipDTO membershipDTO) {
+        Membership membership = toDomain(membershipDTO);
+        membership.setFechaalta(LocalDate.now());
+
+        if (membership.getDescripcion().contains("1 mes")) {
+            membership.setFechafin(membership.getFechaalta().plusMonths(1));
+        } else if (membership.getDescripcion().contains("3 meses")) {
+            membership.setFechafin(membership.getFechaalta().plusMonths(3));
+        }
+        membership.setActive(true);
+
+        membership = memRepo.save(membership);
+        return toDTO(membership);
+    }
 
     public void delete(long id) {
         memRepo.deleteById(id);
     }
-
+    private MembershipDTO toDTO(Membership membership){
+        return mapper.toDTO(membership);
+    }
+    private List<MembershipDTO> toDTOs(List<Membership> memberships){
+        return mapper.toDTOs(memberships);
+    }
+    private Membership toDomain(MembershipDTO membershipDTO){
+        return mapper.toDomain(membershipDTO);
+    }
 }
 
 
