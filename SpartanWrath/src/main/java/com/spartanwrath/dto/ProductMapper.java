@@ -7,7 +7,7 @@ import com.spartanwrath.model.Product;
 
 import java.util.List;
 
-@Mapper(componentModel = "Spring")
+@Mapper(componentModel = "spring")
 public interface ProductMapper {
     ProductDTO toDTO(Product product);
     List<ProductDTO> toDTOs(List<Product> products);

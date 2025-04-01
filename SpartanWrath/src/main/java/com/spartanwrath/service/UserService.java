@@ -256,15 +256,15 @@ public class UserService {
     public boolean exists(String username){
         return UserRepo.existsByUsername(username);
     }
-    private UserDTO toDTO(User user){
+    public UserDTO toDTO(User user){
         return mapper.toDTO(user);
     }
 
-    private User toDomain(UserDTO userDTO){
+    public User toDomain(UserDTO userDTO){
         return mapper.toDomain(userDTO);
     }
 
-    private List<UserDTO> toDTOs(List<User> users){
+    public List<UserDTO> toDTOs(List<User> users){
         return mapper.toDTOs(users);
     }
 }
