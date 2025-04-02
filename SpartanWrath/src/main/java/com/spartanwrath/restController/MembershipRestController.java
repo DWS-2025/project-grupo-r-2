@@ -28,14 +28,15 @@ public class MembershipRestController {
     private UserService userService;
     @JsonView(Membership.Basico.class)
     // ?? @JsonView(MembershipDTO.Basico.class)
-    @GetMapping("/Membership")
+    /*@GetMapping("/Membership")
     public ResponseEntity<List<Membership>> getAllMembership(){
         List<Membership> membership = membershipService.findAll();
         if (membership.isEmpty()){
             return ResponseEntity.notFound().build();
         }
         return ResponseEntity.ok().body(membership);
-    }
+    }*/
+    @GetMapping("/Membership")
     public ResponseEntity<List<MembershipDTO>> getAllMembershipDTO() {
         List<MembershipDTO> membershipDTOs = membershipService.findAll().stream()
                 .map(membershipService::toDTO)  // Convertir cada Membership a MembershipDTO
@@ -48,8 +49,8 @@ public class MembershipRestController {
     }
 
     interface MemDetails extends Membership.Basico, Membership.CombatClasses, Membership.Users, CombatClass.Basico, User.Basico {}
-    @JsonView(MemDetails.class)
-    @GetMapping("/Membership/{id}")
+
+    /*@GetMapping("/Membership/{id}")
     public ResponseEntity<Membership> getMembership(@PathVariable long id) throws NoSuchMem {
         try {
             Membership membership = membershipService.findById(id);
@@ -57,7 +58,7 @@ public class MembershipRestController {
         }catch (NoSuchMem noSuchMem){
             return ResponseEntity.notFound().build();
         }
-    }
+    }*/
     @JsonView(MemDetails.class)
     @GetMapping("/Membership/{id}")
     public ResponseEntity<MembershipDTO> getMembershipDTO(@PathVariable long id) throws NoSuchMem {
@@ -71,11 +72,11 @@ public class MembershipRestController {
     }
 
 
-    @PostMapping("/Membership")
+    /*@PostMapping("/Membership")
     public ResponseEntity<Membership> newMembership(@RequestBody Membership membership){
         membershipService.save(membership);
         return ResponseEntity.ok().body(membership);
-    }
+    }*/
     @PostMapping("/Membership")
     public ResponseEntity<MembershipDTO> newMembershipDTO(@RequestBody MembershipDTO membershipDTO) {
         Membership membership = membershipService.toDomain(membershipDTO);  // Convertir DTO a entidad

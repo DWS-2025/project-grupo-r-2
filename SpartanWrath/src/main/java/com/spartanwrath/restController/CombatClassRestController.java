@@ -20,14 +20,14 @@ public class CombatClassRestController {
     private CombatClassService combatClassService;
     @JsonView(CombatClass.Basico.class)
     // ??     @JsonView(CombatClass.Basico.class)
-    @GetMapping("/combatclass")
+    /*@GetMapping("/combatclass")
     public ResponseEntity<List<CombatClass>> getAllCombatClasses(){
         List<CombatClass> combatClasses = combatClassService.findAll();
         if (combatClasses.isEmpty()){
             return ResponseEntity.notFound().build();
         }
         return ResponseEntity.ok().body(combatClasses);
-    }
+    }*/
     @GetMapping("/combatclass")
     public ResponseEntity<List<CombatClassDTO>> getAllCombatClassesDTO(){
         List<CombatClassDTO> combatClasses = combatClassService.findAll().stream()
@@ -43,7 +43,7 @@ public class CombatClassRestController {
     interface CombatClassDetails extends CombatClass.Basico, CombatClass.Memberships, Membership.Basico {}
     // ?? interface CombatClassDetails extends CombatClassDTO.Basico, CombatClassDTO.Memberships, MembershipDTO.Basico {}
 
-    @JsonView(CombatClassDetails.class)
+    /*@JsonView(CombatClassDetails.class)
     @GetMapping("/combatclass/{id}")
     public ResponseEntity<Optional<CombatClass>> getCombatClass(@PathVariable long id){
         Optional<CombatClass> combatClassOptional = combatClassService.findById(id);
@@ -51,7 +51,7 @@ public class CombatClassRestController {
             return ResponseEntity.ok().body(combatClassOptional);
         }
         return ResponseEntity.notFound().build();
-    }
+    }*/
     @GetMapping("/combatclass/{id}")
     public ResponseEntity<CombatClassDTO> getCombatClassDTO(@PathVariable long id){
         Optional<CombatClass> combatClassOptional = combatClassService.findById(id);
@@ -62,20 +62,20 @@ public class CombatClassRestController {
         return ResponseEntity.notFound().build();
     }
 
-    @PostMapping("/combatclass")
+    /*@PostMapping("/combatclass")
     public ResponseEntity<CombatClass> createCombatClass(@RequestBody CombatClass combatClass){
         CombatClass newCombatClass = combatClassService.save(combatClass);
         return ResponseEntity.ok().body(newCombatClass);
-    }
+    }*/
     @PostMapping("/combatclass")
-    public ResponseEntity<CombatClassDTO> createCombatClass(@RequestBody CombatClassDTO combatClassDTO){
+    public ResponseEntity<CombatClassDTO> createCombatClassDTO(@RequestBody CombatClassDTO combatClassDTO){
         CombatClass combatClass = combatClassService.toDomain(combatClassDTO);  // Convertir DTO a entidad
         CombatClass newCombatClass = combatClassService.save(combatClass);
         CombatClassDTO newCombatClassDTO = combatClassService.toDTO(newCombatClass);
         return ResponseEntity.ok().body(newCombatClassDTO);  // Convertir la entidad guardada a DTO
     }
 
-    @DeleteMapping("/combatclass/{id}")
+    /*@DeleteMapping("/combatclass/{id}")
     public ResponseEntity<Object> deleteCombatClass(@PathVariable long id){
         if(combatClassService.exist(id)) {
             combatClassService.delete(id);
@@ -83,7 +83,7 @@ public class CombatClassRestController {
         } else {
             return ResponseEntity.notFound().build();
         }
-    }
+    }*/
     @DeleteMapping("/combatclass/{id}")
     public ResponseEntity<Object> deleteCombatClassDTO(@PathVariable long id){
         if(combatClassService.exist(id)) {

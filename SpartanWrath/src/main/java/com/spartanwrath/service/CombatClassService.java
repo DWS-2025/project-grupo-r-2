@@ -44,7 +44,7 @@ public class CombatClassService {
     public CombatClass save(CombatClass clase) {
         return ccRepo.save(clase);
     }
-    public CombatClassDTO saveDTO(CombatClassDTO combatClassDTO) {
+    public CombatClassDTO save(CombatClassDTO combatClassDTO) {
         CombatClass combatClass = toDomain(combatClassDTO);
         combatClass = ccRepo.save(combatClass);
         return toDTO(combatClass);

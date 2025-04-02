@@ -29,8 +29,8 @@ public class UserRestController {
     private UserService userServ ;
 
 
-    @JsonView(User.Basico.class)
-    @GetMapping("/User")
+
+    /*@GetMapping("/User")
     public ResponseEntity<List<User>> getAllUsers(){
         try {
             List<User> users = userServ.GetAllUsers();
@@ -38,7 +38,7 @@ public class UserRestController {
         } catch (NoUsers noUsers){
             return ResponseEntity.notFound().build();
         }
-    }
+    }*/
     @JsonView(UserDTO.class)
     @GetMapping("/User")
     public ResponseEntity<List<UserDTO>> getAllUsersDTO() {
@@ -51,7 +51,7 @@ public class UserRestController {
     }
 
     interface DetailUsers extends User.Basico, User.Products, User.Memberships, Membership.Basico, Product.Basico {}
-    @JsonView(DetailUsers.class)
+    /*@JsonView(DetailUsers.class)
     @GetMapping("/User/{username}")
     public ResponseEntity<User> getUser(@PathVariable String username,HttpServletRequest request){
         String authenticatedUsername = request.getUserPrincipal().getName();
@@ -67,7 +67,7 @@ public class UserRestController {
         } catch (UserNotFound userNotFound){
             return ResponseEntity.notFound().build();
         }
-    }
+    }*/
     @JsonView(UserDTO.class)
     @GetMapping("/User/{username}")
     public ResponseEntity<UserDTO> getUserDTO(@PathVariable String username, HttpServletRequest request) {
@@ -86,7 +86,7 @@ public class UserRestController {
         }
     }
 
-    @PostMapping("/User")
+    /*@PostMapping("/User")
     public ResponseEntity<User> newUser(@RequestBody User user){
         try {
             userServ.add(user);
@@ -96,7 +96,7 @@ public class UserRestController {
         } catch (InvalidUser e) {
             return ResponseEntity.badRequest().build();
         }
-    }
+    }*/
     @PostMapping("/User")
     public ResponseEntity<UserDTO> newUserDTO(@RequestBody UserDTO userDTO) {
         try {
@@ -110,7 +110,7 @@ public class UserRestController {
     }
 
 
-    @PutMapping("/User/{username}")
+    /*@PutMapping("/User/{username}")
     public ResponseEntity<?> updateUser(@PathVariable String username, @RequestBody User upuser, HttpServletRequest request) throws NoUsers, InvalidUser {
         String authenticatedUsername = request.getUserPrincipal().getName();
         boolean isAdmin = request.isUserInRole("ADMIN");
@@ -135,7 +135,7 @@ public class UserRestController {
     } catch (InvalidUser e) {
         return ResponseEntity.badRequest().build();
         }
-    }
+    }*/
     @PutMapping("/User/{username}")
     public ResponseEntity<?> updateUserDTO(@PathVariable String username, @RequestBody UserDTO userDTO, HttpServletRequest request) {
         String authenticatedUsername = request.getUserPrincipal().getName();
@@ -156,7 +156,7 @@ public class UserRestController {
     }
 
 
-    @DeleteMapping("/User/{username}")
+    /*@DeleteMapping("/User/{username}")
     public ResponseEntity<User> deleteUser(@PathVariable String username,HttpServletRequest request) {
         String authenticatedUsername = request.getUserPrincipal().getName();
         boolean isAdmin = request.isUserInRole("ADMIN");
@@ -171,7 +171,7 @@ public class UserRestController {
         } catch (UserNotFound e){
             return ResponseEntity.notFound().build();
         }
-    }
+    }*/
     @DeleteMapping("/User/{username}")
     public ResponseEntity<UserDTO> deleteUserDTO(@PathVariable String username, HttpServletRequest request) {
         String authenticatedUsername = request.getUserPrincipal().getName();

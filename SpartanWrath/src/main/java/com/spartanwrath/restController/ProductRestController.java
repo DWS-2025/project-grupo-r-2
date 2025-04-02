@@ -43,7 +43,7 @@ public class ProductRestController {
 
     @Autowired
     private ImageService imageServ;
-    @JsonView(Product.Basico.class)
+    /*@JsonView(Product.Basico.class)
     @GetMapping("/products")
     public ResponseEntity<List<Product>> getProducts(@RequestParam(required = false) Integer from, @RequestParam(required = false) Integer to,@RequestParam(required = false) String category) {
         if (category != null || from != null || to != null) {
@@ -56,7 +56,7 @@ public class ProductRestController {
         } else {
             return ResponseEntity.ok().body(productServ.getAllProducts());
         }
-    }
+    }*/
     @JsonView(Product.Basico.class)
     @GetMapping("/products")
     public ResponseEntity<List<ProductDTO>> getProductsDTO(@RequestParam(required = false) Integer from, @RequestParam(required = false) Integer to,@RequestParam(required = false) String category) {
@@ -79,7 +79,7 @@ public class ProductRestController {
     }
 
     interface DetailsProduct extends Product.Basico, Product.Users, User.Basico {}
-    @JsonView(DetailsProduct.class)
+    /*@JsonView(DetailsProduct.class)
     @GetMapping("/products/{id}")
     public ResponseEntity<Optional<Product>> getProduct(@PathVariable long id) {
         Optional<Product> product = productServ.getProductById(id);
@@ -87,7 +87,7 @@ public class ProductRestController {
             return ResponseEntity.ok().body(product);
         }
         return ResponseEntity.notFound().build();
-    }
+    }*/
     @JsonView(DetailsProduct.class)
     @GetMapping("/products/{id}")
     public ResponseEntity<ProductDTO> getProductDTO(@PathVariable long id) {
@@ -99,14 +99,14 @@ public class ProductRestController {
         return ResponseEntity.notFound().build();
     }
 
-    @PostMapping("/products")
+    /*@PostMapping("/products")
     public ResponseEntity<Product> createProduct(@RequestBody Product product) throws IOException {
 
         productServ.createProduct(product);
         URI location = fromCurrentRequest().path("/{id}").buildAndExpand(product.getId()).toUri();
 
         return ResponseEntity.created(location).body(product);
-    }
+    }*/
     @PostMapping("/products")
     public ResponseEntity<ProductDTO> createProductDTO(@RequestBody ProductDTO productDTO) throws IOException {
         Product product = productServ.toDomain(productDTO);  // Convertir DTO a entidad
@@ -173,13 +173,13 @@ public class ProductRestController {
     }
 
 
-    @PutMapping("/products/{id}")
+    /*@PutMapping("/products/{id}")
     public ResponseEntity<Product> updateProduct(@PathVariable long id,@RequestBody Product product){
         Optional<Product> productOptional = productServ.getProductById(id);
 
         if (productOptional.isPresent()){
             Product _product = productOptional.get();
-            /*_product = productServ.sanitizeProduct(_product);*/
+            _product = productServ.sanitizeProduct(_product);
             _product.setNombre(product.getNombre());
             _product.setDescripcion(product.getDescripcion());
             _product.setPrecio(product.getPrecio());
@@ -192,7 +192,7 @@ public class ProductRestController {
         } else {
             return ResponseEntity.notFound().build();
         }
-    }
+    }*/
     @PutMapping("/products/{id}")
     public ResponseEntity<ProductDTO> updateProductDTO(@PathVariable long id, @RequestBody ProductDTO productDTO) {
         Optional<Product> productOptional = productServ.getProductById(id);
