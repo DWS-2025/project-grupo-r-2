@@ -78,7 +78,7 @@ public class MarketController {
         boolean isAdmin = request.isUserInRole("ADMIN");
         model.addAttribute("admin", isAdmin);
 
-        List<Product> productList = productService.findProducts(from, to, category);
+        List<Product> productList = productService.findProductsNormal(from, to, category);
         productList.forEach(product -> {
             String base64Image = Base64.getEncoder().encodeToString(product.getImagen());
             product.setBase64Image(base64Image);

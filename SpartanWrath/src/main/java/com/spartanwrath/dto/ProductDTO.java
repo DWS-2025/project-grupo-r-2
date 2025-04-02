@@ -1,18 +1,19 @@
 package com.spartanwrath.dto;
 
 
-import lombok.Data;
-import lombok.NoArgsConstructor;
-import lombok.AllArgsConstructor;
+
+import com.fasterxml.jackson.annotation.JsonView;
+
 import java.util.List;
 
 
-@Data
-@NoArgsConstructor
-@AllArgsConstructor
-public class ProductDTO {
-    private String nombre;
-    private double precio;
-    private List<UserDTO> usuarios;
+import java.util.List;
 
-}
+public record ProductDTO(@JsonView(ProductDTO.class) String nombre,
+                         @JsonView(ProductDTO.class) double precio,
+                         @JsonView(ProductDTO.class) Long id,
+                         @JsonView(ProductDTO.class) String descripcion,
+                         @JsonView(ProductDTO.class) Integer cantidad,
+                         @JsonView(ProductDTO.class) String categoria
+                         ) {}
+

@@ -5,7 +5,7 @@ import org.mapstruct.Mapper;
 
 import java.util.List;
 
-@Mapper(componentModel = "spring",uses = {MembershipMapper.class})
+@Mapper(componentModel = "spring")
 public interface CombatClassMapper {
     CombatClassDTO toDTO(CombatClass combatClass);
 

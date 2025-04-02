@@ -83,10 +83,10 @@ public class ProductService {
     }
 
     // Método para obtener todos los productos
-    public List<Product> getAllProducts() {
+    public List<Product> getAllProductsNormal() {
         return productRepository.findAll();
     }
-    public List<ProductDTO> getAllProductsDTO() {
+    public List<ProductDTO> getAllProducts() {
         List<Product> products = productRepository.findAll();
         return toDTOs(products);
     }
@@ -130,7 +130,7 @@ public class ProductService {
     }
 
 
-    public List<Product> findProducts(Integer from, Integer to, String category){
+    public List<Product> findProductsNormal(Integer from, Integer to, String category){
         if (from != null || to != null || (category != null && !category.isEmpty())){
             if (from != null && to != null  && (category != null && !category.isEmpty())){
                 return productRepository.findByPrecioAndCategory(from,to,category);
@@ -139,14 +139,14 @@ public class ProductService {
             } else if (category != null && !category.isEmpty()) {
                 return productRepository.findByCategory(category);
             } else {
-                return getAllProducts();
+                return getAllProductsNormal();
             }
         }else {
-            return getAllProducts();
+            return getAllProductsNormal();
         }
 
     }
-    public List<ProductDTO> findProductsDTO(Integer from, Integer to, String category) {
+    public List<ProductDTO> findProducts(Integer from, Integer to, String category) {
         List<Product> products;
         if (from != null || to != null || (category != null && !category.isEmpty())) {
             if (from != null && to != null && (category != null && !category.isEmpty())) {
@@ -163,15 +163,15 @@ public class ProductService {
         }
         return toDTOs(products);
     }
-    public List<Product> getProductsByIds(List<Long> productIds){
+    /*public List<Product> getProductsByIds(List<Long> productIds){
         List<Product> products = new ArrayList<>();
         for (Long productId : productIds){
             Optional<Product> optionalProduct = productRepository.findById(productId);
             optionalProduct.ifPresent(products::add);
         }
         return products;
-    }
-    public List<ProductDTO> getProductsByIdsDTO(List<Long> productIds) {
+    }*/
+    public List<ProductDTO> getProductsByIds(List<Long> productIds) {
         List<Product> products = new ArrayList<>();
         for (Long productId : productIds) {
             Optional<Product> optionalProduct = productRepository.findById(productId);

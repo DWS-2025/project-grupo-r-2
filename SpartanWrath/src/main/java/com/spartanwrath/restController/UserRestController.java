@@ -86,7 +86,7 @@ public class UserRestController {
         }
     }
 
-    /*@PostMapping("/User")
+    @PostMapping("/User")
     public ResponseEntity<User> newUser(@RequestBody User user){
         try {
             userServ.add(user);
@@ -96,8 +96,8 @@ public class UserRestController {
         } catch (InvalidUser e) {
             return ResponseEntity.badRequest().build();
         }
-    }*/
-    @PostMapping("/User")
+    }
+    /*@PostMapping("/User")
     public ResponseEntity<UserDTO> newUserDTO(@RequestBody UserDTO userDTO) {
         try {
             userServ.add(userServ.toDomain(userDTO));
@@ -107,10 +107,10 @@ public class UserRestController {
         } catch (InvalidUser e) {
             return ResponseEntity.badRequest().build();
         }
-    }
+    }*/
 
 
-    /*@PutMapping("/User/{username}")
+    @PutMapping("/User/{username}")
     public ResponseEntity<?> updateUser(@PathVariable String username, @RequestBody User upuser, HttpServletRequest request) throws NoUsers, InvalidUser {
         String authenticatedUsername = request.getUserPrincipal().getName();
         boolean isAdmin = request.isUserInRole("ADMIN");
@@ -135,8 +135,8 @@ public class UserRestController {
     } catch (InvalidUser e) {
         return ResponseEntity.badRequest().build();
         }
-    }*/
-    @PutMapping("/User/{username}")
+    }
+    /*@PutMapping("/User/{username}")
     public ResponseEntity<?> updateUserDTO(@PathVariable String username, @RequestBody UserDTO userDTO, HttpServletRequest request) {
         String authenticatedUsername = request.getUserPrincipal().getName();
         boolean isAdmin = request.isUserInRole("ADMIN");
@@ -153,10 +153,10 @@ public class UserRestController {
         } catch (InvalidUser e) {
             return ResponseEntity.badRequest().build();
         }
-    }
+    }*/
 
 
-    /*@DeleteMapping("/User/{username}")
+    @DeleteMapping("/User/{username}")
     public ResponseEntity<User> deleteUser(@PathVariable String username,HttpServletRequest request) {
         String authenticatedUsername = request.getUserPrincipal().getName();
         boolean isAdmin = request.isUserInRole("ADMIN");
@@ -171,8 +171,8 @@ public class UserRestController {
         } catch (UserNotFound e){
             return ResponseEntity.notFound().build();
         }
-    }*/
-    @DeleteMapping("/User/{username}")
+    }
+    /*@DeleteMapping("/User/{username}")
     public ResponseEntity<UserDTO> deleteUserDTO(@PathVariable String username, HttpServletRequest request) {
         String authenticatedUsername = request.getUserPrincipal().getName();
         boolean isAdmin = request.isUserInRole("ADMIN");
@@ -187,7 +187,7 @@ public class UserRestController {
         } catch (UserNotFound e) {
             return ResponseEntity.notFound().build();
         }
-    }
+    }*/
 
 }
 

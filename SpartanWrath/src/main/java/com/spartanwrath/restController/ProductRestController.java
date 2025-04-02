@@ -57,12 +57,12 @@ public class ProductRestController {
             return ResponseEntity.ok().body(productServ.getAllProducts());
         }
     }*/
-    @JsonView(Product.Basico.class)
+    @JsonView(ProductDTO.class)
     @GetMapping("/products")
-    public ResponseEntity<List<ProductDTO>> getProductsDTO(@RequestParam(required = false) Integer from, @RequestParam(required = false) Integer to,@RequestParam(required = false) String category) {
+    public ResponseEntity<List<ProductDTO>> getProducts(@RequestParam(required = false) Integer from, @RequestParam(required = false) Integer to,@RequestParam(required = false) String category) {
         List<ProductDTO> productDTOs;
         if (category != null || from != null || to != null) {
-            productDTOs = productServ.findProducts(from, to, category).stream()
+            productDTOs = productServ.findProductsNormal(from, to, category).stream()
                     .map(productServ::toDTO)  // Convertir cada Product a ProductDTO
                     .toList();
             if (!productDTOs.isEmpty()) {
@@ -71,7 +71,7 @@ public class ProductRestController {
                 return ResponseEntity.notFound().build();
             }
         } else {
-            productDTOs = productServ.getAllProducts().stream()
+            productDTOs = productServ.getAllProductsNormal().stream()
                     .map(productServ::toDTO)  // Convertir cada Product a ProductDTO
                     .toList();
             return ResponseEntity.ok().body(productDTOs);
@@ -88,9 +88,9 @@ public class ProductRestController {
         }
         return ResponseEntity.notFound().build();
     }*/
-    @JsonView(DetailsProduct.class)
+    @JsonView(ProductDTO.class)
     @GetMapping("/products/{id}")
-    public ResponseEntity<ProductDTO> getProductDTO(@PathVariable long id) {
+    public ResponseEntity<ProductDTO> getProduct(@PathVariable long id) {
         Optional<Product> product = productServ.getProductById(id);
         if (product.isPresent()) {
             ProductDTO productDTO = productServ.toDTO(product.get());  // Convertir a DTO
@@ -198,8 +198,8 @@ public class ProductRestController {
         Optional<Product> productOptional = productServ.getProductById(id);
         if (productOptional.isPresent()) {
             Product product = productOptional.get();
-            product.setNombre(productDTO.getNombre());
-            product.setPrecio(productDTO.getPrecio());
+            product.setNombre(productDTO.nombre());
+            product.setPrecio(productDTO.precio());
 
             productServ.updateProduct(product);
             //linea 43 ccombatclassrestcontroller y linea 2
