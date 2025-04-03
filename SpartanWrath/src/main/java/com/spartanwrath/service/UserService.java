@@ -9,6 +9,7 @@ import com.spartanwrath.exceptions.UserNotFound;
 import com.spartanwrath.model.User;
 import com.spartanwrath.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
@@ -23,6 +24,7 @@ public class UserService {
     @Autowired
     private UserRepository UserRepo ;
 
+    @Qualifier("userMapperImpl")
     @Autowired
     private UserMapper mapper;
 

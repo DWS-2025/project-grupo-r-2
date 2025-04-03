@@ -5,6 +5,7 @@ import com.spartanwrath.dto.ProductMapper;
 import com.spartanwrath.model.Product;
 import com.spartanwrath.repository.ProductRepository;
 import com.spartanwrath.repository.UserRepository;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.core.io.Resource;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
@@ -40,6 +41,7 @@ public class ProductService {
     @Autowired
     private ImageService imageService;
 
+    @Qualifier("productMapperImpl")
     @Autowired
     private ProductMapper mapper;
 

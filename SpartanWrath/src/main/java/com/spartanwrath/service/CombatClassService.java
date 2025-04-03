@@ -5,6 +5,7 @@ import com.spartanwrath.dto.CombatClassMapper;
 import com.spartanwrath.model.CombatClass;
 import com.spartanwrath.repository.CombatClassRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -16,6 +17,7 @@ public class CombatClassService {
     @Autowired
     private CombatClassRepository ccRepo;
 
+    @Qualifier("combatClassMapperImpl")
     @Autowired
     private CombatClassMapper mapper;
 
