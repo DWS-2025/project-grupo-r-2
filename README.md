@@ -61,6 +61,7 @@ La aplicación gestiona las siguientes entidades principales:
 - `fichero5`
 
 ### Cesar Martín Baños
+Como partimos de la práctica del año pasado me he encargado de arreglar por completo las funcionalidades que fallaban y hacer el nuevo css, a parte he modificado la base de datos para que muestre bien las relaciones y lo inicialice de manera correcta, también he hecho algunos cambios en los json de prueba para rest. 
 
 **Commits más significativos:**
 - [Commit 1](https://github.com/DWS-2025/project-grupo-r-2/commit/31c5fa0db010a4fbf08dbc791ca1f933c18dfa62) Nuevo css, aun con fallos, pero es la base
