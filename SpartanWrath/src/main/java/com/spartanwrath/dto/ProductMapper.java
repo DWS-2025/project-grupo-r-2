@@ -1,8 +1,8 @@
 package com.spartanwrath.dto;
 
-import com.spartanwrath.model.User;
+
 import org.mapstruct.Mapper;
-import org.mapstruct.Mapping;
+
 import com.spartanwrath.model.Product;
 
 import java.util.List;
