@@ -23,7 +23,7 @@ La aplicación gestiona las siguientes entidades principales:
 - **Producto**: Diferentes objetos que pueden comprar los clientes.
 
 ### Relación entre Entidades
-- Un Usuario puede tener varios productos, puede estar suscrito a varias membresías.
+- Un Usuario puede tener varios productos, puede estar suscrito a una membresía.
 - Una Membresía solo puede tener asociada una clase de combate.
 - Una Clase de combate puede pertenecer a varias membresías.
 
