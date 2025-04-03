@@ -26,16 +26,8 @@ public class MembershipRestController {
     private MembershipService membershipService;
     @Autowired
     private UserService userService;
-    @JsonView(Membership.Basico.class)
-    // ?? @JsonView(MembershipDTO.Basico.class)
-    /*@GetMapping("/Membership")
-    public ResponseEntity<List<Membership>> getAllMembership(){
-        List<Membership> membership = membershipService.findAll();
-        if (membership.isEmpty()){
-            return ResponseEntity.notFound().build();
-        }
-        return ResponseEntity.ok().body(membership);
-    }*/
+
+    @JsonView(MembershipDTO.class)
     @GetMapping("/Membership")
     public ResponseEntity<List<MembershipDTO>> getAllMembershipDTO() {
         List<MembershipDTO> membershipDTOs = membershipService.findAll().stream()
@@ -48,18 +40,7 @@ public class MembershipRestController {
         return ResponseEntity.ok().body(membershipDTOs);
     }
 
-    interface MemDetails extends Membership.Basico, Membership.CombatClasses, Membership.Users, CombatClass.Basico, User.Basico {}
-
-    /*@GetMapping("/Membership/{id}")
-    public ResponseEntity<Membership> getMembership(@PathVariable long id) throws NoSuchMem {
-        try {
-            Membership membership = membershipService.findById(id);
-            return ResponseEntity.ok().body(membership);
-        }catch (NoSuchMem noSuchMem){
-            return ResponseEntity.notFound().build();
-        }
-    }*/
-    @JsonView(MemDetails.class)
+    @JsonView(MembershipDTO.class)
     @GetMapping("/Membership/{id}")
     public ResponseEntity<MembershipDTO> getMembershipDTO(@PathVariable long id) throws NoSuchMem {
         try {

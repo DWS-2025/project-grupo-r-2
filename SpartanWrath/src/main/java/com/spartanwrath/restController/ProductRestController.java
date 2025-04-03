@@ -43,20 +43,6 @@ public class ProductRestController {
 
     @Autowired
     private ImageService imageServ;
-    /*@JsonView(Product.Basico.class)
-    @GetMapping("/products")
-    public ResponseEntity<List<Product>> getProducts(@RequestParam(required = false) Integer from, @RequestParam(required = false) Integer to,@RequestParam(required = false) String category) {
-        if (category != null || from != null || to != null) {
-            List<Product> products = productServ.findProducts(from, to, category);
-            if (!products.isEmpty()) {
-                return ResponseEntity.ok().body(products);
-            } else {
-                return ResponseEntity.notFound().build();
-            }
-        } else {
-            return ResponseEntity.ok().body(productServ.getAllProducts());
-        }
-    }*/
     @JsonView(ProductDTO.class)
     @GetMapping("/products")
     public ResponseEntity<List<ProductDTO>> getProducts(@RequestParam(required = false) Integer from, @RequestParam(required = false) Integer to,@RequestParam(required = false) String category) {

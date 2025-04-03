@@ -28,8 +28,6 @@ public class UserRestController {
     @Autowired
     private UserService userServ ;
 
-
-
     /*@GetMapping("/User")
     public ResponseEntity<List<User>> getAllUsers(){
         try {
@@ -49,8 +47,6 @@ public class UserRestController {
             return ResponseEntity.notFound().build();
         }
     }
-
-    interface DetailUsers extends User.Basico, User.Products, User.Memberships, Membership.Basico, Product.Basico {}
     /*@JsonView(DetailUsers.class)
     @GetMapping("/User/{username}")
     public ResponseEntity<User> getUser(@PathVariable String username,HttpServletRequest request){
@@ -97,18 +93,6 @@ public class UserRestController {
             return ResponseEntity.badRequest().build();
         }
     }
-    /*@PostMapping("/User")
-    public ResponseEntity<UserDTO> newUserDTO(@RequestBody UserDTO userDTO) {
-        try {
-            userServ.add(userServ.toDomain(userDTO));
-            return ResponseEntity.ok().body(userDTO);
-        } catch (UserAlreadyRegister e) {
-            return ResponseEntity.status(HttpStatus.CONFLICT).build();
-        } catch (InvalidUser e) {
-            return ResponseEntity.badRequest().build();
-        }
-    }*/
-
 
     @PutMapping("/User/{username}")
     public ResponseEntity<?> updateUser(@PathVariable String username, @RequestBody User upuser, HttpServletRequest request) throws NoUsers, InvalidUser {
@@ -122,12 +106,9 @@ public class UserRestController {
         for (User u : allUsers) {
             if (u.getUsername().equals(upuser.getUsername()) && !Objects.equals(u.getId(), upuser.getId())) {
                 return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("El nombre de usuario '" + upuser.getUsername() + "' ya está en uso.");
-
             }
         }
-
     try {
-
         userServ.updateUser(username,upuser);
         return ResponseEntity.ok().build();
     } catch (UserNotFound e) {
@@ -136,26 +117,6 @@ public class UserRestController {
         return ResponseEntity.badRequest().build();
         }
     }
-    /*@PutMapping("/User/{username}")
-    public ResponseEntity<?> updateUserDTO(@PathVariable String username, @RequestBody UserDTO userDTO, HttpServletRequest request) {
-        String authenticatedUsername = request.getUserPrincipal().getName();
-        boolean isAdmin = request.isUserInRole("ADMIN");
-
-        if (!isAdmin && !authenticatedUsername.equals(username)) {
-            return ResponseEntity.status(HttpStatus.FORBIDDEN).build();
-        }
-
-        try {
-            userServ.updateUser(username, userServ.toDomain(userDTO));
-            return ResponseEntity.ok().build();
-        } catch (UserNotFound e) {
-            return ResponseEntity.notFound().build();
-        } catch (InvalidUser e) {
-            return ResponseEntity.badRequest().build();
-        }
-    }*/
-
-
     @DeleteMapping("/User/{username}")
     public ResponseEntity<User> deleteUser(@PathVariable String username,HttpServletRequest request) {
         String authenticatedUsername = request.getUserPrincipal().getName();
@@ -172,23 +133,6 @@ public class UserRestController {
             return ResponseEntity.notFound().build();
         }
     }
-    /*@DeleteMapping("/User/{username}")
-    public ResponseEntity<UserDTO> deleteUserDTO(@PathVariable String username, HttpServletRequest request) {
-        String authenticatedUsername = request.getUserPrincipal().getName();
-        boolean isAdmin = request.isUserInRole("ADMIN");
-
-        if (!isAdmin && !authenticatedUsername.equals(username)) {
-            return ResponseEntity.status(HttpStatus.FORBIDDEN).build();
-        }
-
-        try {
-            UserDTO userDTO = userServ.toDTO(userServ.delete(username));
-            return ResponseEntity.ok().body(userDTO);
-        } catch (UserNotFound e) {
-            return ResponseEntity.notFound().build();
-        }
-    }*/
-
 }
 
 

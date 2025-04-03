@@ -18,16 +18,7 @@ public class CombatClassRestController {
 
     @Autowired
     private CombatClassService combatClassService;
-    @JsonView(CombatClass.Basico.class)
-    // ??     @JsonView(CombatClass.Basico.class)
-    /*@GetMapping("/combatclass")
-    public ResponseEntity<List<CombatClass>> getAllCombatClasses(){
-        List<CombatClass> combatClasses = combatClassService.findAll();
-        if (combatClasses.isEmpty()){
-            return ResponseEntity.notFound().build();
-        }
-        return ResponseEntity.ok().body(combatClasses);
-    }*/
+    @JsonView(CombatClassDTO.class)
     @GetMapping("/combatclass")
     public ResponseEntity<List<CombatClassDTO>> getAllCombatClassesDTO(){
         List<CombatClassDTO> combatClasses = combatClassService.findAll().stream()
@@ -40,18 +31,7 @@ public class CombatClassRestController {
         return ResponseEntity.ok().body(combatClasses);
     }
 
-    interface CombatClassDetails extends CombatClass.Basico, CombatClass.Memberships, Membership.Basico {}
-    // ?? interface CombatClassDetails extends CombatClassDTO.Basico, CombatClassDTO.Memberships, MembershipDTO.Basico {}
-
-    /*@JsonView(CombatClassDetails.class)
-    @GetMapping("/combatclass/{id}")
-    public ResponseEntity<Optional<CombatClass>> getCombatClass(@PathVariable long id){
-        Optional<CombatClass> combatClassOptional = combatClassService.findById(id);
-        if (combatClassOptional.isPresent()){
-            return ResponseEntity.ok().body(combatClassOptional);
-        }
-        return ResponseEntity.notFound().build();
-    }*/
+    @JsonView(CombatClassDTO.class)
     @GetMapping("/combatclass/{id}")
     public ResponseEntity<CombatClassDTO> getCombatClassDTO(@PathVariable long id){
         Optional<CombatClass> combatClassOptional = combatClassService.findById(id);
