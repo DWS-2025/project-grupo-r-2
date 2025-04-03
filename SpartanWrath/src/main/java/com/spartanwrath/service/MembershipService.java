@@ -6,6 +6,7 @@ import com.spartanwrath.exceptions.NoSuchMem;
 import com.spartanwrath.model.Membership;
 import com.spartanwrath.repository.MembershipRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDate;
@@ -16,6 +17,9 @@ public class MembershipService {
 
     @Autowired
     private MembershipRepository memRepo;
+
+    @Qualifier("membershipMapperImpl")
+    @Autowired
     private MembershipMapper mapper;
 
     public MembershipService() {}
