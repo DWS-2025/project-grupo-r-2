@@ -1,7 +1,7 @@
 # Spartan Wrath
 
-<h1 align="center">Hola 👋, Somos Spartan's Wrath</h1>
-<h3 align="center">Grupo R-2 de Desarrollo Web Seguro</h3> 
+<h1 >Hola 👋, Somos Spartan's Wrath</h1>
+<h3 >Grupo R-2 de Desarrollo Web Seguro</h3> 
 
 ## 📌 Descripción de la Aplicación Web
 
