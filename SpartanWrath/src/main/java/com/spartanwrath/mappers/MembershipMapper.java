@@ -1,8 +1,8 @@
-package com.spartanwrath.dto;
+package com.spartanwrath.mappers;
 
+import com.spartanwrath.dto.MembershipDTO;
 import com.spartanwrath.model.Membership;
 import org.mapstruct.Mapper;
-import org.mapstruct.Mapping;
 
 import java.util.List;
 

@@ -1,7 +1,7 @@
 package com.spartanwrath.service;
 
 import com.spartanwrath.dto.UserDTO;
-import com.spartanwrath.dto.UserMapper;
+import com.spartanwrath.mappers.UserMapper;
 import com.spartanwrath.exceptions.InvalidUser;
 import com.spartanwrath.exceptions.NoUsers;
 import com.spartanwrath.exceptions.UserAlreadyRegister;

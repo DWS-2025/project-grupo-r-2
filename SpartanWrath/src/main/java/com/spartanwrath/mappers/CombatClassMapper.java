@@ -1,5 +1,6 @@
-package com.spartanwrath.dto;
+package com.spartanwrath.mappers;
 
+import com.spartanwrath.dto.CombatClassDTO;
 import com.spartanwrath.model.CombatClass;
 import org.mapstruct.Mapper;
 

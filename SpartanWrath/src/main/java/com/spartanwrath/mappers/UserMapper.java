@@ -1,5 +1,6 @@
-package com.spartanwrath.dto;
+package com.spartanwrath.mappers;
 
+import com.spartanwrath.dto.UserDTO;
 import com.spartanwrath.model.User;
 
 import org.mapstruct.Mapper;

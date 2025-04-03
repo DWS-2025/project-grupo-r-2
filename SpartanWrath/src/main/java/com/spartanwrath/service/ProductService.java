@@ -1,33 +1,18 @@
 package com.spartanwrath.service;
 
 import com.spartanwrath.dto.ProductDTO;
-import com.spartanwrath.dto.ProductMapper;
+import com.spartanwrath.mappers.ProductMapper;
 import com.spartanwrath.model.Product;
 import com.spartanwrath.repository.ProductRepository;
-import com.spartanwrath.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Qualifier;
-import org.springframework.core.io.Resource;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
-import org.springframework.core.io.ByteArrayResource;
-import org.springframework.core.io.UrlResource;
-import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Transactional;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.multipart.MultipartFile;
-import org.springframework.web.server.ResponseStatusException;
 import org.owasp.html.PolicyFactory;
 import org.owasp.html.Sanitizers;
 
 import java.io.IOException;
-import java.net.MalformedURLException;
-import java.nio.file.Files;
-import java.nio.file.Path;
-import java.nio.file.Paths;
-import java.security.SecureRandom;
 import java.util.ArrayList;
-import java.util.Base64;
 import java.util.List;
 import java.util.Optional;
 

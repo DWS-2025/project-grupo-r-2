@@ -136,6 +136,3 @@ public class UserRestController {
         }
     }
 }
-
-
-// Arreglar lista de productos a usuario y viceversa

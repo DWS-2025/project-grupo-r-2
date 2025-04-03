@@ -1,7 +1,7 @@
 package com.spartanwrath.service;
 
 import com.spartanwrath.dto.CombatClassDTO;
-import com.spartanwrath.dto.CombatClassMapper;
+import com.spartanwrath.mappers.CombatClassMapper;
 import com.spartanwrath.model.CombatClass;
 import com.spartanwrath.repository.CombatClassRepository;
 import org.springframework.beans.factory.annotation.Autowired;

@@ -1,7 +1,7 @@
 package com.spartanwrath.service;
 
 import com.spartanwrath.dto.MembershipDTO;
-import com.spartanwrath.dto.MembershipMapper;
+import com.spartanwrath.mappers.MembershipMapper;
 import com.spartanwrath.exceptions.NoSuchMem;
 import com.spartanwrath.model.Membership;
 import com.spartanwrath.repository.MembershipRepository;
