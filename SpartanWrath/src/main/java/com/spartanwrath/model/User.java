@@ -13,6 +13,7 @@ import java.time.LocalDate;
 import java.util.*;
 import java.util.ArrayList;
 
+
 @Entity
 @Table(name = "Users")
 public class User {

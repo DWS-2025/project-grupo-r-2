@@ -117,8 +117,9 @@ public class UserRestController {
         return ResponseEntity.badRequest().build();
         }
     }
+
     @DeleteMapping("/User/{username}")
-    public ResponseEntity<User> deleteUser(@PathVariable String username,HttpServletRequest request) {
+    public ResponseEntity<UserDTO> deleteUser(@PathVariable String username,HttpServletRequest request) {
         String authenticatedUsername = request.getUserPrincipal().getName();
         boolean isAdmin = request.isUserInRole("ADMIN");
 
@@ -127,8 +128,9 @@ public class UserRestController {
         }
 
         try {
-            User user = userServ.delete(username);
-            return ResponseEntity.ok().body(user);
+            UserDTO userDTO = userServ.toDTO(userServ.getUserbyUsername(username));
+            userServ.delete(username);
+            return ResponseEntity.ok().body(userDTO);
         } catch (UserNotFound e){
             return ResponseEntity.notFound().build();
         }
