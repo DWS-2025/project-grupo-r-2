@@ -43,7 +43,7 @@ public class ProductRestController {
 
     @Autowired
     private ImageService imageServ;
-    @JsonView(ProductDTO.class)
+
     @GetMapping("/products")
     public ResponseEntity<List<ProductDTO>> getProducts(@RequestParam(required = false) Integer from, @RequestParam(required = false) Integer to,@RequestParam(required = false) String category) {
         List<ProductDTO> productDTOs;
@@ -64,17 +64,6 @@ public class ProductRestController {
         }
     }
 
-    interface DetailsProduct extends Product.Basico, Product.Users, User.Basico {}
-    /*@JsonView(DetailsProduct.class)
-    @GetMapping("/products/{id}")
-    public ResponseEntity<Optional<Product>> getProduct(@PathVariable long id) {
-        Optional<Product> product = productServ.getProductById(id);
-        if (product.isPresent()){
-            return ResponseEntity.ok().body(product);
-        }
-        return ResponseEntity.notFound().build();
-    }*/
-    @JsonView(ProductDTO.class)
     @GetMapping("/products/{id}")
     public ResponseEntity<ProductDTO> getProduct(@PathVariable long id) {
         Optional<Product> product = productServ.getProductById(id);
@@ -85,14 +74,7 @@ public class ProductRestController {
         return ResponseEntity.notFound().build();
     }
 
-    /*@PostMapping("/products")
-    public ResponseEntity<Product> createProduct(@RequestBody Product product) throws IOException {
 
-        productServ.createProduct(product);
-        URI location = fromCurrentRequest().path("/{id}").buildAndExpand(product.getId()).toUri();
-
-        return ResponseEntity.created(location).body(product);
-    }*/
     @PostMapping("/products")
     public ResponseEntity<ProductDTO> createProductDTO(@RequestBody ProductDTO productDTO) throws IOException {
         Product product = productServ.toDomain(productDTO);  // Convertir DTO a entidad

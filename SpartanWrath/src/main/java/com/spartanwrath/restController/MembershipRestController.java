@@ -27,7 +27,7 @@ public class MembershipRestController {
     @Autowired
     private UserService userService;
 
-    @JsonView(MembershipDTO.class)
+
     @GetMapping("/Membership")
     public ResponseEntity<List<MembershipDTO>> getAllMembershipDTO() {
         List<MembershipDTO> membershipDTOs = membershipService.findAll().stream()
@@ -40,7 +40,7 @@ public class MembershipRestController {
         return ResponseEntity.ok().body(membershipDTOs);
     }
 
-    @JsonView(MembershipDTO.class)
+
     @GetMapping("/Membership/{id}")
     public ResponseEntity<MembershipDTO> getMembershipDTO(@PathVariable long id) throws NoSuchMem {
         try {

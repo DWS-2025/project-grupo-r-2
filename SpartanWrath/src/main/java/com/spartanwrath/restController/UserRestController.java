@@ -28,16 +28,7 @@ public class UserRestController {
     @Autowired
     private UserService userServ ;
 
-    /*@GetMapping("/User")
-    public ResponseEntity<List<User>> getAllUsers(){
-        try {
-            List<User> users = userServ.GetAllUsers();
-            return ResponseEntity.ok().body(users);
-        } catch (NoUsers noUsers){
-            return ResponseEntity.notFound().build();
-        }
-    }*/
-    @JsonView(UserDTO.class)
+
     @GetMapping("/User")
     public ResponseEntity<List<UserDTO>> getAllUsersDTO() {
         try {
@@ -47,24 +38,7 @@ public class UserRestController {
             return ResponseEntity.notFound().build();
         }
     }
-    /*@JsonView(DetailUsers.class)
-    @GetMapping("/User/{username}")
-    public ResponseEntity<User> getUser(@PathVariable String username,HttpServletRequest request){
-        String authenticatedUsername = request.getUserPrincipal().getName();
-        boolean isAdmin = request.isUserInRole("ADMIN");
 
-        if (!isAdmin && !authenticatedUsername.equals(username)) {
-            return ResponseEntity.status(HttpStatus.FORBIDDEN).build();
-        }
-
-        try {
-            User user = userServ.getUserbyUsername(username);
-            return ResponseEntity.ok().body(user);
-        } catch (UserNotFound userNotFound){
-            return ResponseEntity.notFound().build();
-        }
-    }*/
-    @JsonView(UserDTO.class)
     @GetMapping("/User/{username}")
     public ResponseEntity<UserDTO> getUserDTO(@PathVariable String username, HttpServletRequest request) {
         String authenticatedUsername = request.getUserPrincipal().getName();

@@ -84,9 +84,9 @@ public class SecurityConfiguration {
                 .requestMatchers(HttpMethod.DELETE,"/api/products/{id}").hasRole("ADMIN")
                 .requestMatchers(HttpMethod.DELETE,"/api/products/{id}/imagen").hasRole("ADMIN")
                 .requestMatchers(HttpMethod.POST,"/api/products/purchase").hasAnyRole("USER","ADMIN")
-                .requestMatchers(HttpMethod.GET,"/api/products").hasAnyRole("USER","ADMIN")
-                .requestMatchers(HttpMethod.GET,"/api/products/{id}").hasRole("ADMIN")
-                .requestMatchers(HttpMethod.GET,"/api/products/{id}/imagen").hasAnyRole("USER","ADMIN")
+                .requestMatchers(HttpMethod.GET,"/api/products").permitAll()
+                .requestMatchers(HttpMethod.GET,"/api/products/{id}").permitAll()
+                .requestMatchers(HttpMethod.GET,"/api/products/{id}/imagen").permitAll()
                 //USER
                 .requestMatchers(HttpMethod.GET,"/api/User").hasRole("ADMIN")
                 .requestMatchers(HttpMethod.GET,"/api/User/{username}").hasAnyRole("ADMIN","USER")
@@ -134,6 +134,8 @@ public class SecurityConfiguration {
                         .requestMatchers("/login").permitAll()
                         .requestMatchers("/AboutUs").permitAll()
                         .requestMatchers("/register").permitAll()
+                        .requestMatchers("/v3/api-docs.yaml").permitAll()
+                        .requestMatchers("/swagger-ui.html").permitAll()
                         // STATIC RESOURCES
                         //.requestMatchers("/css/**", "/js/**", "/images/**").permitAll()
                         .requestMatchers(PathRequest.toStaticResources().atCommonLocations()).permitAll()

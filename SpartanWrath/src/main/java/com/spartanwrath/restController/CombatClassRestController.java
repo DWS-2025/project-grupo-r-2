@@ -18,7 +18,7 @@ public class CombatClassRestController {
 
     @Autowired
     private CombatClassService combatClassService;
-    @JsonView(CombatClassDTO.class)
+
     @GetMapping("/combatclass")
     public ResponseEntity<List<CombatClassDTO>> getAllCombatClassesDTO(){
         List<CombatClassDTO> combatClasses = combatClassService.findAll().stream()
@@ -31,7 +31,7 @@ public class CombatClassRestController {
         return ResponseEntity.ok().body(combatClasses);
     }
 
-    @JsonView(CombatClassDTO.class)
+
     @GetMapping("/combatclass/{id}")
     public ResponseEntity<CombatClassDTO> getCombatClassDTO(@PathVariable long id){
         Optional<CombatClass> combatClassOptional = combatClassService.findById(id);

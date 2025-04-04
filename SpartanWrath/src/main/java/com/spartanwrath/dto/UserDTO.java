@@ -7,14 +7,13 @@ import com.fasterxml.jackson.annotation.JsonView;
 
 import java.util.List;
 
-public record UserDTO(@JsonView(UserDTO.class) Long id,
-                      @JsonView(UserDTO.class) String username,
-                      @JsonView(UserDTO.class) MembershipDTO membership,
-                      @JsonView(UserDTO.class) List<ProductDTO> products,
-                      @JsonView(UserDTO.class) String name,
-                      @JsonView(UserDTO.class) String email,
-                      @JsonView(UserDTO.class) String address,
-                      @JsonView(UserDTO.class) String phone,
-                      @JsonView(UserDTO.class) String dni
-                        ) {}
+public record UserDTO(Long id,
+                      String username,
+                      MembershipDTO membership,
+                      List<ProductDTO> products,
+                      String name,
+                      String email,
+                      String address,
+                      String phone,
+                      String dni) {}
 
