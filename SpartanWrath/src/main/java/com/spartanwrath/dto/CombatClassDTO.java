@@ -8,8 +8,8 @@ import java.util.List;
 
 
 
-public record CombatClassDTO(@JsonView(CombatClassDTO.class)String name,
-                             @JsonView(CombatClassDTO.class)Long id,
-                             @JsonView(CombatClassDTO.class)String description,
-                             @JsonView(CombatClassDTO.class)String turn) implements Serializable {}
+public record CombatClassDTO(@JsonView({CombatClassDTO.class,MembershipDTO.class})String name,
+                             @JsonView({CombatClassDTO.class,MembershipDTO.class})Long id,
+                             @JsonView({CombatClassDTO.class,MembershipDTO.class})String description,
+                             @JsonView({CombatClassDTO.class,MembershipDTO.class})String turn) implements Serializable {}
 
