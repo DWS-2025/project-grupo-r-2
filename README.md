@@ -45,20 +45,21 @@ La aplicación gestiona las siguientes entidades principales:
 ## 💪 Desarrollo Colaborativo
 
 ### Daniel Vallejo Pasamón
+Como partimos de la practica del año pasado me he encargado de añadir los dtos, funcionalidad que habia que implementar de 0.
 
 **Commits más significativos:**
-- [Commit 1](#)
-- [Commit 2](#)
-- [Commit 3](#)
-- [Commit 4](#)
+- [Commit 1](https://github.com/DWS-2025/project-grupo-r-2/commit/df3caa3c295601f0b02dfbd8d083db5164f20344) Este es el 4 commit de dtos desde que los he creado y he ido poco a poco añadiendo las funcinalidades e implementando los mappers.
+- [Commit 2](https://github.com/DWS-2025/project-grupo-r-2/commit/9704381493e11ba6203c8eb51cde36181445efcc) Aqui ya consegui que compilase y ejecutase los dtos.
+- [Commit 3](https://github.com/DWS-2025/project-grupo-r-2/commit/963c144fe769b1f091da8bc1f7a7c19b5815ab4b) Aqui hice que funcionaran las peticiones rest utilizando dtos de users y products, faltaban memberships y combatclass.
+- [Commit 4](https://github.com/DWS-2025/project-grupo-r-2/commit/4f189fbbc6a8b9abd9eaf8cf51e63a46dbf98daf) Aqui arregle las peticiones de postman para las dos entidades que faltaban.
 - [Commit 5](#)
 
 **Ficheros principales modificados:**
-- `fichero1`
-- `fichero2`
-- `fichero3`
-- `fichero4`
-- `fichero5`
+- `Todos los entidadDTO.java`
+- `Todos los entidadmapper.java`
+- `Todos los service de cada entidad`
+- `Todos los rest controllers de cada entidad`
+- `Todos los servicios de cada entidad`
 
 ### Cesar Martín Baños
 Como partimos de la práctica del año pasado me he encargado de arreglar por completo las funcionalidades que fallaban y hacer el nuevo css, a parte he modificado la base de datos para que muestre bien las relaciones y lo inicialice de manera correcta, también he hecho algunos cambios en los json de prueba para rest. 
