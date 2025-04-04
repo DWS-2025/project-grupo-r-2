@@ -14,6 +14,6 @@ public record ProductDTO(@JsonView({ProductDTO.class,UserDTO.class}) String nomb
                          @JsonView(ProductDTO.class) Long id,
                          @JsonView(ProductDTO.class) String descripcion,
                          @JsonView(ProductDTO.class) Integer cantidad,
-                         @JsonView(ProductDTO.class) String categoria
+                         @JsonView(ProductDTO.class) String category
                          ) {}
 
