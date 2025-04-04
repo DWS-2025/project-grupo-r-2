@@ -134,8 +134,7 @@ public class SecurityConfiguration {
                         .requestMatchers("/login").permitAll()
                         .requestMatchers("/AboutUs").permitAll()
                         .requestMatchers("/register").permitAll()
-                        .requestMatchers("/v3/api-docs.yaml").permitAll()
-                        .requestMatchers("/swagger-ui.html").permitAll()
+                        .requestMatchers("/v3/api-docs**", "/swagger-ui/**", "/swagger-ui.html").permitAll()
                         // STATIC RESOURCES
                         //.requestMatchers("/css/**", "/js/**", "/images/**").permitAll()
                         .requestMatchers(PathRequest.toStaticResources().atCommonLocations()).permitAll()

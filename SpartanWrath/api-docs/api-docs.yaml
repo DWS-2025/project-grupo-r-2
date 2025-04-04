@@ -1,0 +1,710 @@
+openapi: 3.1.0
+info:
+  title: OpenAPI definition
+  version: v0
+servers:
+- url: https://localhost:8443
+  description: Generated server url
+paths:
+  /api/products/{id}:
+    get:
+      tags:
+      - product-rest-controller
+      operationId: getProduct
+      parameters:
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: integer
+          format: int64
+      responses:
+        "200":
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: "#/components/schemas/ProductDTO"
+    put:
+      tags:
+      - product-rest-controller
+      operationId: updateProductDTO
+      parameters:
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: integer
+          format: int64
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/ProductDTO"
+        required: true
+      responses:
+        "200":
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: "#/components/schemas/ProductDTO"
+    delete:
+      tags:
+      - product-rest-controller
+      operationId: deleteProduct
+      parameters:
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: integer
+          format: int64
+      responses:
+        "200":
+          description: OK
+  /api/User/{username}:
+    get:
+      tags:
+      - user-rest-controller
+      operationId: getUserDTO
+      parameters:
+      - name: username
+        in: path
+        required: true
+        schema:
+          type: string
+      responses:
+        "200":
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: "#/components/schemas/UserDTO"
+    put:
+      tags:
+      - user-rest-controller
+      operationId: updateUser
+      parameters:
+      - name: username
+        in: path
+        required: true
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/User"
+        required: true
+      responses:
+        "200":
+          description: OK
+          content:
+            '*/*':
+              schema:
+                type: object
+    delete:
+      tags:
+      - user-rest-controller
+      operationId: deleteUser
+      parameters:
+      - name: username
+        in: path
+        required: true
+        schema:
+          type: string
+      responses:
+        "200":
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: "#/components/schemas/UserDTO"
+  /api/products:
+    get:
+      tags:
+      - product-rest-controller
+      operationId: getProducts
+      parameters:
+      - name: from
+        in: query
+        required: false
+        schema:
+          type: integer
+          format: int32
+      - name: to
+        in: query
+        required: false
+        schema:
+          type: integer
+          format: int32
+      - name: category
+        in: query
+        required: false
+        schema:
+          type: string
+      responses:
+        "200":
+          description: OK
+          content:
+            '*/*':
+              schema:
+                type: array
+                items:
+                  $ref: "#/components/schemas/ProductDTO"
+    post:
+      tags:
+      - product-rest-controller
+      operationId: createProductDTO
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/ProductDTO"
+        required: true
+      responses:
+        "200":
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: "#/components/schemas/ProductDTO"
+    delete:
+      tags:
+      - product-rest-controller
+      operationId: deleteAll
+      responses:
+        "200":
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: "#/components/schemas/Product"
+  /api/products/{id}/imagen:
+    get:
+      tags:
+      - product-rest-controller
+      operationId: downloadImage
+      parameters:
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: integer
+          format: int64
+      responses:
+        "200":
+          description: OK
+          content:
+            '*/*':
+              schema:
+                type: string
+                format: byte
+    post:
+      tags:
+      - product-rest-controller
+      operationId: uploadImage
+      parameters:
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: integer
+          format: int64
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                imageFile:
+                  type: string
+                  format: binary
+              required:
+              - imageFile
+      responses:
+        "200":
+          description: OK
+          content:
+            '*/*':
+              schema:
+                type: object
+    delete:
+      tags:
+      - product-rest-controller
+      operationId: deleteImage
+      parameters:
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: integer
+          format: int64
+      responses:
+        "200":
+          description: OK
+          content:
+            '*/*':
+              schema:
+                type: object
+  /api/products/purchase:
+    post:
+      tags:
+      - product-rest-controller
+      operationId: purchaseProducts
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              additionalProperties:
+                type: integer
+                format: int32
+        required: true
+      responses:
+        "200":
+          description: OK
+          content:
+            '*/*':
+              schema:
+                type: string
+  /api/combatclass:
+    get:
+      tags:
+      - combat-class-rest-controller
+      operationId: getAllCombatClassesDTO
+      responses:
+        "200":
+          description: OK
+          content:
+            '*/*':
+              schema:
+                type: array
+                items:
+                  $ref: "#/components/schemas/CombatClassDTO"
+    post:
+      tags:
+      - combat-class-rest-controller
+      operationId: createCombatClassDTO
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/CombatClassDTO"
+        required: true
+      responses:
+        "200":
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: "#/components/schemas/CombatClassDTO"
+  /api/auth/refresh:
+    post:
+      tags:
+      - login-rest-controller
+      operationId: refreshToken
+      parameters:
+      - name: refreshToken
+        in: cookie
+        required: false
+        schema:
+          type: string
+      responses:
+        "200":
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: "#/components/schemas/AuthResponse"
+  /api/auth/logout:
+    post:
+      tags:
+      - login-rest-controller
+      operationId: logOut
+      responses:
+        "200":
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: "#/components/schemas/AuthResponse"
+  /api/auth/login:
+    post:
+      tags:
+      - login-rest-controller
+      operationId: login
+      parameters:
+      - name: accessToken
+        in: cookie
+        required: false
+        schema:
+          type: string
+      - name: refreshToken
+        in: cookie
+        required: false
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/LoginRequest"
+        required: true
+      responses:
+        "200":
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: "#/components/schemas/AuthResponse"
+  /api/User:
+    get:
+      tags:
+      - user-rest-controller
+      operationId: getAllUsersDTO
+      responses:
+        "200":
+          description: OK
+          content:
+            '*/*':
+              schema:
+                type: array
+                items:
+                  $ref: "#/components/schemas/UserDTO"
+    post:
+      tags:
+      - user-rest-controller
+      operationId: newUser
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/User"
+        required: true
+      responses:
+        "200":
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: "#/components/schemas/User"
+  /api/Membership:
+    get:
+      tags:
+      - membership-rest-controller
+      operationId: getAllMembershipDTO
+      responses:
+        "200":
+          description: OK
+          content:
+            '*/*':
+              schema:
+                type: array
+                items:
+                  $ref: "#/components/schemas/MembershipDTO"
+    post:
+      tags:
+      - membership-rest-controller
+      operationId: newMembershipDTO
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/MembershipDTO"
+        required: true
+      responses:
+        "200":
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: "#/components/schemas/MembershipDTO"
+  /api/Membership/{id}:
+    get:
+      tags:
+      - membership-rest-controller
+      operationId: getMembershipDTO
+      parameters:
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: integer
+          format: int64
+      responses:
+        "200":
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: "#/components/schemas/MembershipDTO"
+    post:
+      tags:
+      - membership-rest-controller
+      operationId: subscribeToMembership
+      parameters:
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: integer
+          format: int64
+      responses:
+        "200":
+          description: OK
+          content:
+            '*/*':
+              schema:
+                type: object
+    delete:
+      tags:
+      - membership-rest-controller
+      operationId: deleteMem
+      parameters:
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: integer
+          format: int64
+      responses:
+        "200":
+          description: OK
+          content:
+            '*/*':
+              schema:
+                type: object
+  /api/combatclass/{id}:
+    get:
+      tags:
+      - combat-class-rest-controller
+      operationId: getCombatClassDTO
+      parameters:
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: integer
+          format: int64
+      responses:
+        "200":
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: "#/components/schemas/CombatClassDTO"
+    delete:
+      tags:
+      - combat-class-rest-controller
+      operationId: deleteCombatClassDTO
+      parameters:
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: integer
+          format: int64
+      responses:
+        "200":
+          description: OK
+          content:
+            '*/*':
+              schema:
+                type: object
+components:
+  schemas:
+    ProductDTO:
+      type: object
+      properties:
+        nombre:
+          type: string
+        precio:
+          type: number
+          format: double
+        id:
+          type: integer
+          format: int64
+        descripcion:
+          type: string
+        cantidad:
+          type: integer
+          format: int32
+        category:
+          type: string
+    CombatClass:
+      type: object
+      properties:
+        id:
+          type: integer
+          format: int64
+        name:
+          type: string
+        description:
+          type: string
+        turn:
+          type: string
+        memberships:
+          type: array
+          items:
+            $ref: "#/components/schemas/Membership"
+    Membership:
+      type: object
+      properties:
+        id:
+          type: integer
+          format: int64
+        nombre:
+          type: string
+        descripcion:
+          type: string
+        precio:
+          type: number
+          format: double
+        fechaalta:
+          type: string
+          format: date
+        fechafin:
+          type: string
+          format: date
+        active:
+          type: boolean
+        users:
+          type: array
+          items:
+            $ref: "#/components/schemas/User"
+        combatClass:
+          $ref: "#/components/schemas/CombatClass"
+        user:
+          type: array
+          items:
+            $ref: "#/components/schemas/User"
+    Product:
+      type: object
+      properties:
+        id:
+          type: integer
+          format: int64
+        nombre:
+          type: string
+        descripcion:
+          type: string
+        originalImageName:
+          type: string
+        precio:
+          type: number
+          format: double
+        cantidad:
+          type: integer
+          format: int32
+        category:
+          type: string
+        usuarios:
+          type: array
+          items:
+            $ref: "#/components/schemas/User"
+    User:
+      type: object
+      properties:
+        id:
+          type: integer
+          format: int64
+        name:
+          type: string
+        username:
+          type: string
+        email:
+          type: string
+        address:
+          type: string
+        phone:
+          type: integer
+          format: int64
+        password:
+          type: string
+        birthday:
+          type: string
+          format: date
+        dni:
+          type: string
+        payment:
+          type: string
+        products:
+          type: array
+          items:
+            $ref: "#/components/schemas/Product"
+        membership:
+          $ref: "#/components/schemas/Membership"
+        roles:
+          type: array
+          items:
+            type: string
+    CombatClassDTO:
+      type: object
+      properties:
+        name:
+          type: string
+        id:
+          type: integer
+          format: int64
+        description:
+          type: string
+    AuthResponse:
+      type: object
+      properties:
+        status:
+          type: string
+          enum:
+          - SUCCESS
+          - FAILURE
+        message:
+          type: string
+        error:
+          type: string
+    LoginRequest:
+      type: object
+      properties:
+        username:
+          type: string
+        password:
+          type: string
+    MembershipDTO:
+      type: object
+      properties:
+        nombre:
+          type: string
+        precio:
+          type: number
+          format: double
+        descripcion:
+          type: string
+        id:
+          type: integer
+          format: int64
+        combatClass:
+          $ref: "#/components/schemas/CombatClassDTO"
+    UserDTO:
+      type: object
+      properties:
+        id:
+          type: integer
+          format: int64
+        username:
+          type: string
+        membership:
+          $ref: "#/components/schemas/MembershipDTO"
+        products:
+          type: array
+          items:
+            $ref: "#/components/schemas/ProductDTO"
+        name:
+          type: string
+        email:
+          type: string
+        address:
+          type: string
+        phone:
+          type: string
+        dni:
+          type: string
