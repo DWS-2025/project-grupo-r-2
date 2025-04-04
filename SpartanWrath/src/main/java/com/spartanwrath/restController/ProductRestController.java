@@ -64,17 +64,6 @@ public class ProductRestController {
         }
     }
 
-    @GetMapping("/products/{id}")
-    public ResponseEntity<ProductDTO> getProduct(@PathVariable long id) {
-        Optional<Product> product = productServ.getProductById(id);
-        if (product.isPresent()) {
-            ProductDTO productDTO = productServ.toDTO(product.get());  // Convertir a DTO
-            return ResponseEntity.ok().body(productDTO);
-        }
-        return ResponseEntity.notFound().build();
-    }
-
-
     @PostMapping("/products")
     public ResponseEntity<ProductDTO> createProductDTO(@RequestBody ProductDTO productDTO) throws IOException {
         Product product = productServ.toDomain(productDTO);  // Convertir DTO a entidad
@@ -139,28 +128,7 @@ public class ProductRestController {
             return ResponseEntity.notFound().build();
         }
     }
-
-
-    /*@PutMapping("/products/{id}")
-    public ResponseEntity<Product> updateProduct(@PathVariable long id,@RequestBody Product product){
-        Optional<Product> productOptional = productServ.getProductById(id);
-
-        if (productOptional.isPresent()){
-            Product _product = productOptional.get();
-            _product = productServ.sanitizeProduct(_product);
-            _product.setNombre(product.getNombre());
-            _product.setDescripcion(product.getDescripcion());
-            _product.setPrecio(product.getPrecio());
-            _product.setOriginalImageName(product.getOriginalImageName());
-            _product.setCantidad(product.getCantidad());
-            _product.setCategory(product.getCategory());
-            productServ.updateProduct(_product);
-
-            return ResponseEntity.ok().body(product);
-        } else {
-            return ResponseEntity.notFound().build();
-        }
-    }*/
+    
     @PutMapping("/products/{id}")
     public ResponseEntity<ProductDTO> updateProductDTO(@PathVariable long id, @RequestBody ProductDTO productDTO) {
         Optional<Product> productOptional = productServ.getProductById(id);
