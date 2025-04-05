@@ -52,8 +52,7 @@ Como partimos de la practica del año pasado me he encargado de añadir los dtos
 - [Commit 2](https://github.com/DWS-2025/project-grupo-r-2/commit/9704381493e11ba6203c8eb51cde36181445efcc) Aqui ya consegui que compilase y ejecutase los dtos.
 - [Commit 3](https://github.com/DWS-2025/project-grupo-r-2/commit/963c144fe769b1f091da8bc1f7a7c19b5815ab4b) Aqui hice que funcionaran las peticiones rest utilizando dtos de users y products, faltaban memberships y combatclass.
 - [Commit 4](https://github.com/DWS-2025/project-grupo-r-2/commit/4f189fbbc6a8b9abd9eaf8cf51e63a46dbf98daf) Aqui arregle las peticiones de postman para las dos entidades que faltaban.
-- [Commit 5](#)
-
+- [Commit 5](#) 
 **Ficheros principales modificados:**
 - `Todos los entidadDTO.java`
 - `Todos los entidadmapper.java`
@@ -69,12 +68,13 @@ Como partimos de la práctica del año pasado me he encargado de arreglar por co
 - [Commit 2](https://github.com/DWS-2025/project-grupo-r-2/commit/687b4ed7a1138c2bc9726a0bd0173fd898734e91) Arreglo errores de compatibilidad del css por completo
 - [Commit 3](https://github.com/DWS-2025/project-grupo-r-2/commit/e6e90ec3a57afad03d21e9d250fc1642ab31729f) Ajusto la base de datos y sus relaciones
 - [Commit 4](https://github.com/DWS-2025/project-grupo-r-2/commit/19268b72b115b23373e99f7a50e56a14190b691f) Arreglo errores en los controllers, ahora si distinguen entre admin y user
-- [Commit 5](#)
+- [Commit 5](https://github.com/DWS-2025/project-grupo-r-2/commit/4bce4a820a79b55c849247e6b4aa772ea01d0c63) Aqui implementé la paginación de memberships aunque faltaban cosas que hice más adelante
+
 
 **Ficheros principales modificados:**
 - `styles.css`
 - `MarketController.java`
 - `DatabaseInitializer.java`
-- `login.html`
+- `paginacion.js`
 - `MembershipController.java`
 ---
