@@ -64,7 +64,18 @@ public class ProductRestController {
         }
     }
 
-    @PostMapping("/products/{id}")
+    @GetMapping("/products/{id}")
+    public ResponseEntity<ProductDTO> getProduct(@PathVariable long id) {
+        Optional<Product> product = productServ.getProductById(id);
+        if (product.isPresent()) {
+            ProductDTO productDTO = productServ.toDTO(product.get());  // Convertir a DTO
+            return ResponseEntity.ok().body(productDTO);
+        }
+        return ResponseEntity.notFound().build();
+    }
+
+
+    @PostMapping("/products")
     public ResponseEntity<ProductDTO> createProductDTO(@RequestBody ProductDTO productDTO) throws IOException {
         Product product = productServ.toDomain(productDTO);  // Convertir DTO a entidad
         productServ.createProduct(product);
@@ -83,12 +94,12 @@ public class ProductRestController {
                 byte[] imageData = imageFile.getBytes();
                 product.setImagen(imageData);
                 product.setOriginalImageName(imageServ.sanitizeFileName(imageFile.getOriginalFilename()) );
-            imageServ.saveImage(imageData, imageFile.getOriginalFilename());
-            productServ.updateProduct(product);
+                imageServ.saveImage(imageData, imageFile.getOriginalFilename());
+                productServ.updateProduct(product);
 
-            // Guardar la imagen en la carpeta de recursos estáticos
+                // Guardar la imagen en la carpeta de recursos estáticos
 
-            return ResponseEntity.ok().build();
+                return ResponseEntity.ok().build();
             }else {
                 return ResponseEntity.badRequest().body("No se proporciona imagen");
             }
@@ -128,8 +139,8 @@ public class ProductRestController {
             return ResponseEntity.notFound().build();
         }
     }
-    
-    @PutMapping("/products")
+
+    @PutMapping("/products/{id}")
     public ResponseEntity<ProductDTO> updateProductDTO(@PathVariable long id, @RequestBody ProductDTO productDTO) {
         Optional<Product> productOptional = productServ.getProductById(id);
         if (productOptional.isPresent()) {
