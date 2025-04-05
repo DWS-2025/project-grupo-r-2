@@ -7,6 +7,8 @@ import com.spartanwrath.model.Membership;
 import com.spartanwrath.repository.MembershipRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDate;
@@ -30,6 +32,10 @@ public class MembershipService {
     public MembershipDTO findByIdDTO(long id) throws NoSuchMem {
         Membership membership = memRepo.findById(id).orElseThrow(NoSuchMem::new);
         return toDTO(membership);
+    }
+
+    public Page<Membership> findAllPaginated(Pageable pageable) {
+        return memRepo.findAll(pageable);
     }
 
     public List<Membership> findAll() {

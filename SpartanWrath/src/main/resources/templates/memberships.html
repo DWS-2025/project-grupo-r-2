@@ -4,8 +4,6 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Membership</title>
-    <!--<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
-    <link rel="stylesheet" href="../css/market.css">-->
     <link rel="icon" type="image/x-icon" href="/images/spartan-logo.png">
     <link rel="stylesheet" href="/css/styles.css">
 </head>
@@ -14,13 +12,13 @@
     <a href="/" class="logo">Spartan Wrath</a>
     <ul>
         <li><a href="/">Home</a></li>
-        <li><a href="/Market" >Tienda</a></li>
-        <li><a href="/AboutUs" >About Us</a></li>
+        <li><a href="/Market">Tienda</a></li>
+        <li><a href="/AboutUs">About Us</a></li>
         <li><a href="/login">Login</a></li>
         <li><a href="/Membership">Memberships</a></li>
         {{#logged}}
         {{#isAdmin}}
-        <li><a href="/Admin" class="active">Admin</a></li>
+        <li><a href="/Admin">Admin</a></li>
         {{/isAdmin}}
         {{#isUser}}
         <li><a href="/private">Perfil</a></li>
@@ -28,26 +26,20 @@
         {{/logged}}
     </ul>
 </header>
+
 <div class="sec" id="sec">
-    <h2>Class</h2>
+    <h2>Membership</h2>
 </div>
+
 <!-- Seccion Cards -->
 <section class="producto">
     <div class="container">
-        {{#combatclasses}}
-        <div class="card">
-            <div class="contenido">
-                <h2>{{name}}</h2>
-                <p>Turno: {{turn}}</p>
-                <p class="lead">{{description}}</p>
-                
-                <a href="/Admin/combatclass/{{id}}">Más información</a>
-                <a href="/Admin/combatclass/{{id}}/delete">Borrar</a>
-            </div>
-        </div>
-        {{/combatclasses}}
-        <a id="boton" href="/Admin/combatclass/formcombatclass" >Nueva Clase</a>
     </div>
+    <div id="pagination" class="pagination-controls" style="text-align: center; margin-top: 20px;">
+        <button id="prev-btn">Anterior</button>
+        <button id="next-btn" data-total="3">Siguiente</button>
+    </div>
+
 </section>
 
 <!--Pie de página-->
@@ -58,8 +50,10 @@
     </div>
     <div class="derechos-de-autor">Creado por Grupo R-2 ©</div>
 </footer>
+
 <!-- Scripts -->
 <script src="/js/AboutUs.js" defer></script>
+<script src="/js/paginacion.js" defer></script>
 <script>
     VanillaTilt.init(document.querySelectorAll(".card"), {
         max: 25,

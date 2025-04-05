@@ -3,9 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Membership</title>
-    <!--<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
-    <link rel="stylesheet" href="../css/market.css">-->
+    <title>{{membership.nombre}} - Membership</title>
     <link rel="icon" type="image/x-icon" href="/images/spartan-logo.png">
     <link rel="stylesheet" href="/css/styles.css">
 </head>
@@ -17,50 +15,45 @@
         <li><a href="/Market" >Tienda</a></li>
         <li><a href="/AboutUs">About Us</a></li>
         <li><a href="/login">Login</a></li>
+        <li><a href="/Membership">Memberships</a></li>
         {{#logged}}
         {{#isAdmin}}
         <li><a href="/Admin">Admin</a></li>
         {{/isAdmin}}
         {{#isUser}}
-        <li><a href="/Membership">Memberships</a></li>
         <li><a href="/private">Perfil</a></li>
         {{/isUser}}
         {{/logged}}
     </ul>
 </header>
+
 <div class="sec" id="sec">
-    <h2>Membership</h2>
+    <h2>{{membership.nombre}} - Detalles</h2>
 </div>
-<!-- Seccion Cards -->
-<section class="producto">
+
+<!-- Detalles de la Membresía -->
+<section class="membership-details">
     <div class="container">
-        {{#membership}}
         <div class="card">
             <div class="contenido">
-                <h2>{{nombre}}</h2>
-                <p>Precio: ${{precio}}</p>
-                <p class="lead">{{descripcion}}</p>
-                <p>Fecha de alta: {{fechaalta}}</p>
-                <p>Fecha de fin: {{fechafin}}</p>
-                <a href="/Membership/{{id}}">Más información</a>
-                {{#admin}}
-                <a href="/Membership/{{id}}/delete">Borrar</a>
-                {{/admin}}
-                <form action="/Membership/{{id}}" method="post">
+                <h2>{{membership.nombre}}</h2>
+                <p>Precio: ${{membership.precio}}</p>
+                <p class="lead">{{membership.descripcion}}</p>
+                <p>Fecha de alta: {{membership.fechaalta}}</p>
+                <p>Fecha de fin: {{membership.fechafin}}</p>
+                <form action="/Membership/{{membership.id}}" method="post">
                     <input type="hidden" name="_csrf" value="{{token}}"/>
-
                     <button type="submit" id="boton2">Suscribirse</button>
                 </form>
+                {{#admin}}
+                <a href="/Membership/{{membership.id}}/delete">Borrar</a>
+                {{/admin}}
             </div>
         </div>
-        {{/membership}}
-        {{#admin}}
-        <a id="boton" href="/Membership/formsuscripcion">Nueva Suscripción</a>
-        {{/admin}}
     </div>
 </section>
 
-<!--Pie de página-->
+<!-- Pie de página -->
 <footer class="pie">
     <div class="pie2">
         <img class="footer-logo" src="/images/spartan-logo.png" alt="logo de SW">
@@ -68,8 +61,7 @@
     </div>
     <div class="derechos-de-autor">Creado por Grupo R-2 ©</div>
 </footer>
-<!-- Scripts -->
-<script src="/js/AboutUs.js" defer></script>
+
 <script>
     VanillaTilt.init(document.querySelectorAll(".card"), {
         max: 25,
@@ -80,4 +72,3 @@
 </script>
 </body>
 </html>
-

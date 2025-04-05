@@ -15,6 +15,10 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import com.spartanwrath.dto.MembershipDTO;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.PageRequest;
+
 
 import java.util.List;
 
@@ -29,16 +33,19 @@ public class MembershipRestController {
 
 
     @GetMapping("/Membership")
-    public ResponseEntity<List<MembershipDTO>> getAllMembershipDTO() {
-        List<MembershipDTO> membershipDTOs = membershipService.findAll().stream()
-                .map(membershipService::toDTO)  // Convertir cada Membership a MembershipDTO
-                .toList();
+    public ResponseEntity<Page<MembershipDTO>> getAllMembershipsPaginated(
+            @RequestParam(defaultValue = "0") int page,
+            @RequestParam(defaultValue = "4") int size) {
 
-        if (membershipDTOs.isEmpty()) {
-            return ResponseEntity.notFound().build();
-        }
-        return ResponseEntity.ok().body(membershipDTOs);
+        Pageable pageable = PageRequest.of(page, size);
+        Page<Membership> membershipsPage = membershipService.findAllPaginated(pageable);
+
+        Page<MembershipDTO> dtoPage = membershipsPage.map(membershipService::toDTO);
+
+        return ResponseEntity.ok(dtoPage);
     }
+
+
 
 
     @GetMapping("/Membership/{id}")

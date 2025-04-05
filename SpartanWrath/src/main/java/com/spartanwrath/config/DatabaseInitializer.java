@@ -90,6 +90,7 @@ public class DatabaseInitializer {
             Path vendasImagePath = basePath.resolve("vendas.jpg");
             Path bucalImagePath = basePath.resolve("bucal.jpg");
             Path proteinasImagePath = basePath.resolve("proteinas.jpg");
+            Path kimonoImagePath = basePath.resolve("kimono.jpg");
 
             // Lee los bytes de cada imagen
             byte[] cascoImageBytes = Files.readAllBytes(cascoImagePath);
@@ -98,20 +99,23 @@ public class DatabaseInitializer {
             byte[] vendasImageBytes = Files.readAllBytes(vendasImagePath);
             byte[] bucalImageBytes = Files.readAllBytes(bucalImagePath);
             byte[] proteinasImageBytes = Files.readAllBytes(proteinasImagePath);
+            byte[] kimonoImageBytes = Files.readAllBytes(kimonoImagePath);
 
             // Nuevos productos
-            Product product1 = new Product("Casco", "Casco de proteccion para sparring", cascoImageBytes, 10.00, 20, "Cascos");
+            Product product1 = new Product("Casco", "Casco de proteccion para sparring", cascoImageBytes, 10.00, 20, "Proteccion");
             product1.setOriginalImageName(cascoImageName);
-            Product product2 = new Product("Espinilleras", "Espinilleras de proteccion para Kick Boxing/Muai Thai", espinillerasImageBytes, 12.00, 35, "Espinilleras");
+            Product product2 = new Product("Espinilleras", "Espinilleras de proteccion para Kick Boxing/Muai Thai", espinillerasImageBytes, 12.00, 35, "Proteccion");
             product2.setOriginalImageName(espinillerasImageName);
-            Product product3 = new Product("Guantes", "Guantes de boxeo 16 Oz de piel sintetica", guantesImageBytes, 49.99, 100, "Guantes");
+            Product product3 = new Product("Guantes", "Guantes de boxeo 16 Oz de piel sintetica", guantesImageBytes, 49.99, 100, "Proteccion");
             product3.setOriginalImageName(guantesImageName);
-            Product product4 = new Product("Vendas", "Vendas 4.5 metros", vendasImageBytes, 5.99, 20, "Accesorios");
+            Product product4 = new Product("Vendas", "Vendas 4.5 metros", vendasImageBytes, 5.99, 20, "Proteccion");
             product4.setOriginalImageName(vendasImageName);
-            Product product5 = new Product("Bucal", "Bucal de proteccion para sparring", bucalImageBytes, 3.00, 50, "Accesorios");
+            Product product5 = new Product("Bucal", "Bucal de proteccion para sparring", bucalImageBytes, 3.00, 50, "Proteccion");
             product5.setOriginalImageName(bucalImageName);
             Product product6 = new Product("Proteina", "Whey Protein facilita el proceso", proteinasImageBytes, 24.99, 30, "Suplementos");
             product6.setOriginalImageName(proteinasImageName);
+            Product product7 = new Product("Kimono", "Gi (kimono) para BJJ o Karate", kimonoImageBytes, 37.55, 40, "Uniforme");
+            product7.setOriginalImageName(proteinasImageName);
 
             productService.createProduct(product1);
             productService.createProduct(product2);
@@ -119,62 +123,97 @@ public class DatabaseInitializer {
             productService.createProduct(product4);
             productService.createProduct(product5);
             productService.createProduct(product6);
+            productService.createProduct(product7);
 
-            // Nuevas suscripciones y nuevas clases
-            CombatClass clase1 = new CombatClass("Boxeo", "Clase de boxeo para principiantes, necesario guantes y vendas", "Lunes por la mañana");
-            CombatClass clase2 = new CombatClass("K1", "Clase de K1 para competidores, se requiere experiencia previa, espinilleras necesarias", "Lunes por la tarde");
-            CombatClass clase3 = new CombatClass("Muay Thai", "Clase de Muay thai para principiantes, espinilleras no necesarias", "Martes por la mañana");
+            // Nuevas clases de combate
+            CombatClass karate = new CombatClass("Karate", "Clase de Karate tradicional, se requiere gi (kimono)", "Miércoles por la mañana");
+            CombatClass mma = new CombatClass("MMA", "Clase de MMA para niveles intermedios y avanzados, se requiere experiencia previa", "Jueves por la tarde");
+            CombatClass jjb = new CombatClass("Jiu-Jitsu Brasileño", "Clase de Jiu-Jitsu para principiantes, se recomienda gi(kimono)", "Viernes por la mañana");
+            CombatClass taekwondo = new CombatClass("Taekwondo", "Clase de Taekwondo, se requiere uniforme adecuado", "Sábado por la mañana");
+            CombatClass kickboxing = new CombatClass("Kickboxing", "Clase de Kickboxing para todos los niveles, se requiere guantes y vendas", "Domingo por la tarde");
+            CombatClass boxeo = new CombatClass("Boxeo", "Clase de Boxeo con Topuria, se requiere guantes y casco", "Lunes por la tarde");
 
-            combatClassService.save(clase1);
-            combatClassService.save(clase2);
-            combatClassService.save(clase3);
+            // Guardamos las clases de combate
+            combatClassService.save(karate);
+            combatClassService.save(mma);
+            combatClassService.save(jjb);
+            combatClassService.save(taekwondo);
+            combatClassService.save(kickboxing);
+            combatClassService.save(boxeo);
 
-            Membership membership2 = new Membership("Boxeo", "Acceso a Boxeo durante 1 mes", 25.00, null, null, true);
-            membership2.setCombatClass(clase1);
-            membershipService.save(membership2);
-            user1.setMembership(membership2);
-            user2.setMembership(membership2);
+            // Crear las membresías correspondientes
+            Membership membershipKarate1 = new Membership("Karate", "Acceso a Karate durante 1 mes", 20.00, null, null, true);
+            membershipKarate1.setCombatClass(karate);
+            membershipService.save(membershipKarate1);
+
+            Membership membershipKarate3 = new Membership("Karate-3", "Acceso a Karate durante 3 meses", 50.00, null, null, true);
+            membershipKarate3.setCombatClass(karate);
+            membershipService.save(membershipKarate3);
+
+            Membership membershipMMA1 = new Membership("MMA", "Acceso a MMA durante 1 mes", 30.00, null, null, true);
+            membershipMMA1.setCombatClass(mma);
+            membershipService.save(membershipMMA1);
+
+            Membership membershipMMA3 = new Membership("MMA-3", "Acceso a MMA durante 3 meses", 75.00, null, null, true);
+            membershipMMA3.setCombatClass(mma);
+            membershipService.save(membershipMMA3);
+
+            Membership membershipJJB1 = new Membership("Jiu-Jitsu Brasileño", "Acceso a Jiu-Jitsu Brasileño durante 1 mes", 25.00, null, null, true);
+            membershipJJB1.setCombatClass(jjb);
+            membershipService.save(membershipJJB1);
+
+            Membership membershipJJB3 = new Membership("Jiu-Jitsu Brasileño-3", "Acceso a Jiu-Jitsu Brasileño durante 3 meses", 60.00, null, null, true);
+            membershipJJB3.setCombatClass(jjb);
+            membershipService.save(membershipJJB3);
+
+            Membership membershipTaekwondo1 = new Membership("Taekwondo", "Acceso a Taekwondo durante 1 mes", 20.00, null, null, true);
+            membershipTaekwondo1.setCombatClass(taekwondo);
+            membershipService.save(membershipTaekwondo1);
+
+            Membership membershipTaekwondo3 = new Membership("Taekwondo-3", "Acceso a Taekwondo durante 3 meses", 50.00, null, null, true);
+            membershipTaekwondo3.setCombatClass(taekwondo);
+            membershipService.save(membershipTaekwondo3);
+
+            Membership membershipKickboxing1 = new Membership("Kickboxing", "Acceso a Kickboxing durante 1 mes", 22.00, null, null, true);
+            membershipKickboxing1.setCombatClass(kickboxing);
+            membershipService.save(membershipKickboxing1);
+
+            Membership membershipKickboxing3 = new Membership("Kickboxing-3", "Acceso a Kickboxing durante 3 meses", 55.00, null, null, true);
+            membershipKickboxing3.setCombatClass(kickboxing);
+            membershipService.save(membershipKickboxing3);
+
+            Membership membershipBoxeo = new Membership("Boxeo", "Acceso a Karate durante 1 mes", 20.00, null, null, true);
+            membershipBoxeo.setCombatClass(boxeo);
+            membershipService.save(membershipBoxeo);
+
+            Membership membershipBoxeo3 = new Membership("Boxeo-3", "Acceso a Karate durante 3 meses", 50.00, null, null, true);
+            membershipBoxeo3.setCombatClass(boxeo);
+            membershipService.save(membershipBoxeo3);
+
+            // Asociar membresías a usuarios (Ejemplo: los usuarios 1, 2 y 3 se suscriben a Karate, MMA y Jiu-Jitsu)
+            user1.setMembership(membershipKarate1);
+            user2.setMembership(membershipMMA1);
+            user3.setMembership(membershipJJB1);
             usersService.updateUser(user1.getUsername(), user1);
             usersService.updateUser(user2.getUsername(), user2);
-
-            Membership membership3 = new Membership("K1", "Acceso a K1 durante 1 mes", 25.00, null, null, true);
-            membership3.setCombatClass(clase2);
-            membershipService.save(membership3);
-            user3.setMembership(membership3);
-            user4.setMembership(membership3);
             usersService.updateUser(user3.getUsername(), user3);
-            usersService.updateUser(user4.getUsername(), user4);
 
-            Membership membership4 = new Membership("Muay thai", "Acceso a Muay thai durante 1 mes", 25.00, null, null, true);
-            membership4.setCombatClass(clase3);
-            membershipService.save(membership4);
-            user5.setMembership(membership4);
-            user6.setMembership(membership4);
-            user7.setMembership(membership4);
-            usersService.updateUser(user5.getUsername(), user5);
-            usersService.updateUser(user6.getUsername(), user6);
-            usersService.updateUser(user7.getUsername(), user7);
+            // Actualizar clases de combate con las membresías asociadas
+            karate.setMemberships(List.of(membershipKarate1, membershipKarate3));
+            mma.setMemberships(List.of(membershipMMA1, membershipMMA3));
+            jjb.setMemberships(List.of(membershipJJB1, membershipJJB3));
+            taekwondo.setMemberships(List.of(membershipTaekwondo1, membershipTaekwondo3));
+            kickboxing.setMemberships(List.of(membershipKickboxing1, membershipKickboxing3));
 
-            clase2.setMemberships(List.of(membership2));
-            clase3.setMemberships(List.of(membership4));
+            // Guardamos los cambios en las clases
+            combatClassService.save(karate);
+            combatClassService.save(mma);
+            combatClassService.save(jjb);
+            combatClassService.save(taekwondo);
+            combatClassService.save(kickboxing);
 
-            List<Product> products = new ArrayList<>();
-            products.add(product1);
-            products.add(product2);
-            products.add(product4);
-            user1.setProducts(products);
-            product1.setUsuarios(List.of(user1));
-            productService.updateProduct(product1);
-            usersService.updateUser(user1.getUsername(), user1);
-
-            List<Product> products2 = new ArrayList<>();
-            products2.add(product3);
-            products2.add(product5);
-            user2.setProducts(products2);
-            usersService.updateUser(user2.getUsername(), user2);
-
-        } catch (UserAlreadyRegister | InvalidUser ex) {
-            throw ex;
+        } catch (Exception e) {
+            e.printStackTrace();
         }
     }
 }

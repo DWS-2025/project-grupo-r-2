@@ -530,3 +530,35 @@ footer {
     gap: 20px; /* Espacio entre elementos */
     justify-content: center; /* Centra los elementos */
 }
+
+.pagination-controls {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin-top: 20px;
+}
+
+.pagination-controls button {
+    padding: 8px 14px;
+    background-color: #444;
+    color: white;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: background 0.2s ease;
+}
+
+.pagination-controls button:hover:not(.active):not(:disabled) {
+    background-color: #666;
+}
+
+.pagination-controls button.active {
+    background-color: #f39c12;
+}
+
+.pagination-controls button:disabled {
+    background-color: #888;
+    cursor: default;
+}
+
