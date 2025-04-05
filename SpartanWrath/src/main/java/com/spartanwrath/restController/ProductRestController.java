@@ -64,7 +64,7 @@ public class ProductRestController {
         }
     }
 
-    @PostMapping("/products")
+    @PostMapping("/products/{id}")
     public ResponseEntity<ProductDTO> createProductDTO(@RequestBody ProductDTO productDTO) throws IOException {
         Product product = productServ.toDomain(productDTO);  // Convertir DTO a entidad
         productServ.createProduct(product);
@@ -129,7 +129,7 @@ public class ProductRestController {
         }
     }
     
-    @PutMapping("/products/{id}")
+    @PutMapping("/products")
     public ResponseEntity<ProductDTO> updateProductDTO(@PathVariable long id, @RequestBody ProductDTO productDTO) {
         Optional<Product> productOptional = productServ.getProductById(id);
         if (productOptional.isPresent()) {
