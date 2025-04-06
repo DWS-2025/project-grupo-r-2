@@ -394,16 +394,29 @@ paths:
     get:
       tags:
       - membership-rest-controller
-      operationId: getAllMembershipDTO
+      operationId: getAllMembershipsPaginated
+      parameters:
+      - name: page
+        in: query
+        required: false
+        schema:
+          type: integer
+          format: int32
+          default: 0
+      - name: size
+        in: query
+        required: false
+        schema:
+          type: integer
+          format: int32
+          default: 4
       responses:
         "200":
           description: OK
           content:
             '*/*':
               schema:
-                type: array
-                items:
-                  $ref: "#/components/schemas/MembershipDTO"
+                $ref: "#/components/schemas/PagedModel"
     post:
       tags:
       - membership-rest-controller
@@ -708,3 +721,27 @@ components:
           type: string
         dni:
           type: string
+    PageMetadata:
+      type: object
+      properties:
+        size:
+          type: integer
+          format: int64
+        number:
+          type: integer
+          format: int64
+        totalElements:
+          type: integer
+          format: int64
+        totalPages:
+          type: integer
+          format: int64
+    PagedModel:
+      type: object
+      properties:
+        content:
+          type: array
+          items:
+            type: object
+        page:
+          $ref: "#/components/schemas/PageMetadata"
