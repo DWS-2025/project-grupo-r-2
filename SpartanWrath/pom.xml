@@ -17,7 +17,7 @@
 	<description>SpartanWrath</description>
 
 	<properties>
-		<java.version>17</java.version>
+		<java.version>21</java.version>
 	</properties>
 
 	<dependencies>
@@ -134,10 +134,10 @@
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-compiler-plugin</artifactId>
-				<version>3.8.1</version>
+				<version>3.13.0</version>
 				<configuration>
-					<source>17</source>
-					<target>17</target>
+					<source>21</source>
+					<target>21</target>
 					<annotationProcessorPaths>
 						<path>
 							<groupId>org.projectlombok</groupId>
@@ -159,6 +159,28 @@
 			</plugin>
 
 			<plugin>
+				<groupId>org.springframework.boot</groupId>
+				<artifactId>spring-boot-maven-plugin</artifactId>
+				<configuration>
+					<!-- Change if error with used port-->
+					<jmxPort>9009</jmxPort>
+				</configuration>
+				<executions>
+					<execution>
+						<id>pre-integration-test</id>
+						<goals>
+							<goal>start</goal>
+						</goals>
+					</execution>
+					<execution>
+						<id>post-integration-test</id>
+						<goals>
+							<goal>stop</goal>
+						</goals>
+					</execution>
+				</executions>
+			</plugin>
+			<plugin>
 				<groupId>org.springdoc</groupId>
 				<artifactId>springdoc-openapi-maven-plugin</artifactId>
 				<version>1.4</version>
@@ -173,7 +195,7 @@
 				<configuration>
 					<apiDocsUrl>https://localhost:8443/v3/api-docs.yaml</apiDocsUrl>
 					<outputFileName>api-docs.yaml</outputFileName>
-					<outputDir>${project.basedir}/SpartanWrath/api-docs/api-docs.yam/api-docs/</outputDir>
+					<outputDir>${project.basedir}/api-docs</outputDir>
 				</configuration>
 			</plugin>
 			<plugin>
@@ -182,21 +204,19 @@
 				<version>7.11.0</version>
 				<executions>
 					<execution>
+						<phase>integration-test</phase>
 						<goals>
 							<goal>generate</goal>
 						</goals>
 						<configuration>
+							<generatorName>html2</generatorName>
 							<inputSpec>${project.basedir}/api-docs/api-docs.yaml</inputSpec>
-							<generatorName>spring</generatorName>
-							<configOptions>
-								<generatorName>html2</generatorName>
-								<inputSpec>${project.basedir}/SpartanWrath/api-docs/api-docs.yam/api-docs/api-docs.yaml</inputSpec>
-								<output>${project.basedir}/SpartanWrath/api-docs/api-docs.yam/api-docs/</output>
-							</configOptions>
+							<output>${project.basedir}/api-docs/</output>
 						</configuration>
 					</execution>
 				</executions>
 			</plugin>
+
 			<plugin>
 				<groupId>com.coderplus.maven.plugins</groupId>
 				<artifactId>copy-rename-maven-plugin</artifactId>
@@ -209,8 +229,8 @@
 							<goal>rename</goal>
 						</goals>
 						<configuration>
-							<sourceFile>${project.basedir}/SpartanWrath/api-docs/api-docs.yam/api-docs/api-docs.yaml</sourceFile>
-							<destinationFile>${project.basedir}/api-docs/</destinationFile>
+							<sourceFile>api-docs/index.html</sourceFile>
+							<destinationFile>api-docs/api-docs.html</destinationFile>
 						</configuration>
 					</execution>
 				</executions>
