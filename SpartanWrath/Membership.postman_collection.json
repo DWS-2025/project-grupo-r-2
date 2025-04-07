@@ -11,7 +11,7 @@
 			"request": {
 				"method": "GET",
 				"header": [],
-				"url": "https://localhost:8443/api/Membership"
+				"url": "https://localhost:8443/api/Membership?page=0"
 			},
 			"response": []
 		},
@@ -22,7 +22,7 @@
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "{\r\n    \"nombre\": \"3 meses\",\r\n    \"descripcion\": \"Acceso a K1 durante 3 meses\",\r\n    \"precio\": 50.0,\r\n    \"fechaalta\": \"\",\r\n    \"fechafin\": \"\",\r\n    \"active\": true\r\n}",
+					"raw": "{\r\n    \"nombre\": \"Zumba\",\r\n    \"descripcion\": \"Acceso a Zumba durante 1 mes\",\r\n    \"precio\": 50.0,\r\n    \"fechaalta\": \"\",\r\n    \"fechafin\": \"\",\r\n    \"active\": true\r\n}",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -47,7 +47,7 @@
 			"request": {
 				"method": "DELETE",
 				"header": [],
-				"url": "https://localhost:8443/api/Membership/delete/3"
+				"url": "https://localhost:8443/api/Membership/delete/13"
 			},
 			"response": []
 		},

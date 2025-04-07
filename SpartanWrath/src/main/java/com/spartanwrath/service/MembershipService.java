@@ -29,7 +29,7 @@ public class MembershipService {
     public Membership findById(long id) throws NoSuchMem {
         return memRepo.findById(id).orElseThrow(NoSuchMem::new);
     }
-    
+
 
     public Page<Membership> findAllPaginated(Pageable pageable) {
         return memRepo.findAll(pageable);

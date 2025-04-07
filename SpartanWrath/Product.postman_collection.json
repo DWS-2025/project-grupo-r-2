@@ -57,7 +57,7 @@
 						}
 					]
 				},
-				"url": "https://localhost:8443/api/products/7/imagen"
+				"url": "https://localhost:8443/api/products/8/imagen"
 			},
 			"response": []
 		},
@@ -100,7 +100,7 @@
 			"request": {
 				"method": "GET",
 				"header": [],
-				"url": "https://localhost:8443/api/products/7/imagen"
+				"url": "https://localhost:8443/api/products/8/imagen"
 			},
 			"response": []
 		},
@@ -154,7 +154,7 @@
 			"request": {
 				"method": "DELETE",
 				"header": [],
-				"url": "https://localhost:8443/api/products/7/imagen"
+				"url": "https://localhost:8443/api/products/8/imagen"
 			},
 			"response": []
 		},
