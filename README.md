@@ -52,7 +52,7 @@ Como partimos de la practica del año pasado me he encargado de añadir los dtos
 - [Commit 2](https://github.com/DWS-2025/project-grupo-r-2/commit/9704381493e11ba6203c8eb51cde36181445efcc) Aqui ya consegui que compilase y ejecutase los dtos.
 - [Commit 3](https://github.com/DWS-2025/project-grupo-r-2/commit/963c144fe769b1f091da8bc1f7a7c19b5815ab4b) Aqui hice que funcionaran las peticiones rest utilizando dtos de users y products, faltaban memberships y combatclass.
 - [Commit 4](https://github.com/DWS-2025/project-grupo-r-2/commit/4f189fbbc6a8b9abd9eaf8cf51e63a46dbf98daf) Aqui arregle las peticiones de postman para las dos entidades que faltaban.
-- [Commit 5](#) 
+- [Commit 5](https://github.com/DWS-2025/project-grupo-r-2/commit/8019cfc543694750f7a9a1efc7e83910f8c8b418) Para que guarde la imagen correctamente en el post dentro de la carpeta images del proyecto.
 **Ficheros principales modificados:**
 - `Todos los entidadDTO.java`
 - `Todos los entidadmapper.java`
