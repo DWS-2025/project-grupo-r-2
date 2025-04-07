@@ -49,7 +49,7 @@ public class ProductRestController {
         List<ProductDTO> productDTOs;
         if (category != null || from != null || to != null) {
             productDTOs = productServ.findProductsNormal(from, to, category).stream()
-                    .map(productServ::toDTO)  // Convertir cada Product a ProductDTO
+                    .map(productServ::toDTO)
                     .toList();
             if (!productDTOs.isEmpty()) {
                 return ResponseEntity.ok().body(productDTOs);
@@ -58,7 +58,7 @@ public class ProductRestController {
             }
         } else {
             productDTOs = productServ.getAllProductsNormal().stream()
-                    .map(productServ::toDTO)  // Convertir cada Product a ProductDTO
+                    .map(productServ::toDTO)
                     .toList();
             return ResponseEntity.ok().body(productDTOs);
         }
@@ -68,7 +68,7 @@ public class ProductRestController {
     public ResponseEntity<ProductDTO> getProduct(@PathVariable long id) {
         Optional<Product> product = productServ.getProductById(id);
         if (product.isPresent()) {
-            ProductDTO productDTO = productServ.toDTO(product.get());  // Convertir a DTO
+            ProductDTO productDTO = productServ.toDTO(product.get());
             return ResponseEntity.ok().body(productDTO);
         }
         return ResponseEntity.notFound().build();
@@ -77,11 +77,11 @@ public class ProductRestController {
 
     @PostMapping("/products")
     public ResponseEntity<ProductDTO> createProductDTO(@RequestBody ProductDTO productDTO) throws IOException {
-        Product product = productServ.toDomain(productDTO);  // Convertir DTO a entidad
+        Product product = productServ.toDomain(productDTO);
         productServ.createProduct(product);
         URI location = fromCurrentRequest().path("/{id}").buildAndExpand(product.getId()).toUri();
 
-        ProductDTO createdProductDTO = productServ.toDTO(product);  // Convertir la entidad a DTO
+        ProductDTO createdProductDTO = productServ.toDTO(product);
         return ResponseEntity.created(location).body(createdProductDTO);
     }
 
@@ -96,8 +96,6 @@ public class ProductRestController {
                 product.setOriginalImageName(imageServ.sanitizeFileName(imageFile.getOriginalFilename()) );
                 imageServ.saveImage(imageData, imageFile.getOriginalFilename());
                 productServ.updateProduct(product);
-
-                // Guardar la imagen en la carpeta de recursos estáticos
 
                 return ResponseEntity.ok().build();
             }else {
@@ -120,9 +118,8 @@ public class ProductRestController {
                 return ResponseEntity.notFound().build();
             }
 
-            // Detectar el tipo de contenido basado en el nombre del archivo original
             String filename = product.getOriginalImageName();
-            MediaType mediaType = MediaType.IMAGE_JPEG; // Por defecto JPEG
+            MediaType mediaType = MediaType.IMAGE_JPEG;
 
             if (filename != null) {
                 if (filename.endsWith(".png")) {
@@ -149,8 +146,7 @@ public class ProductRestController {
             product.setPrecio(productDTO.precio());
 
             productServ.updateProduct(product);
-            //linea 43 ccombatclassrestcontroller y linea 2
-            ProductDTO updatedProductDTO = productServ.toDTO(product);  // Convertir la entidad actualizada a DTO
+            ProductDTO updatedProductDTO = productServ.toDTO(product);
             return ResponseEntity.ok().body(updatedProductDTO);
         } else {
             return ResponseEntity.notFound().build();
@@ -227,7 +223,6 @@ public class ProductRestController {
                     product.setCantidad(availableQuantity - quantity);
                     productServ.updateProduct(product);
 
-                    // Agregar el producto a la lista del usuario
                     user.getProducts().add(product);
                 } else {
                     return ResponseEntity.badRequest().body("El producto con ID " + productId + " no se encuentra");

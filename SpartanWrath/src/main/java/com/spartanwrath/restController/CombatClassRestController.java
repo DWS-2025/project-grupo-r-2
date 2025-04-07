@@ -42,11 +42,6 @@ public class CombatClassRestController {
         return ResponseEntity.notFound().build();
     }
 
-    /*@PostMapping("/combatclass")
-    public ResponseEntity<CombatClass> createCombatClass(@RequestBody CombatClass combatClass){
-        CombatClass newCombatClass = combatClassService.save(combatClass);
-        return ResponseEntity.ok().body(newCombatClass);
-    }*/
     @PostMapping("/combatclass")
     public ResponseEntity<CombatClassDTO> createCombatClassDTO(@RequestBody CombatClassDTO combatClassDTO){
         CombatClass combatClass = combatClassService.toDomain(combatClassDTO);  // Convertir DTO a entidad
@@ -55,15 +50,6 @@ public class CombatClassRestController {
         return ResponseEntity.ok().body(newCombatClassDTO);  // Convertir la entidad guardada a DTO
     }
 
-    /*@DeleteMapping("/combatclass/{id}")
-    public ResponseEntity<Object> deleteCombatClass(@PathVariable long id){
-        if(combatClassService.exist(id)) {
-            combatClassService.delete(id);
-            return ResponseEntity.ok().build();
-        } else {
-            return ResponseEntity.notFound().build();
-        }
-    }*/
     @DeleteMapping("/combatclass/{id}")
     public ResponseEntity<Object> deleteCombatClassDTO(@PathVariable long id){
         if(combatClassService.exist(id)) {

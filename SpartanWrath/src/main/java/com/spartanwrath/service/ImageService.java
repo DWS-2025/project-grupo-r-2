@@ -74,18 +74,7 @@ public class ImageService {
         return "DefaultProduct.jpg";
     }
 
-    public ResponseEntity<Resource> createResponseFromImage(String imageName) throws MalformedURLException {
-        Path imagePath = Paths.get(uploadDir).resolve(imageName);
-        Resource resource = new UrlResource(imagePath.toUri());
 
-        if (!resource.exists()) {
-            return ResponseEntity.notFound().build();
-        }
-
-        return ResponseEntity.ok()
-                .contentType(MediaType.IMAGE_JPEG)
-                .body(resource);
-    }
 
     public void deleteImage(String imageName) throws IOException {
        if (!"DefaultProduct.jpg".equals(imageName)){

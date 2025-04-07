@@ -27,10 +27,7 @@ public class CombatClassService {
     public Optional<CombatClass> findById(long id) {
         return ccRepo.findById(id);
     }
-    public CombatClassDTO findByIdDTO(long id) {
-        CombatClass combatClass = ccRepo.findById(id).orElseThrow(() -> new RuntimeException("Class not found"));
-        return toDTO(combatClass);
-    }
+
     public boolean exist(long id) {
         return ccRepo.existsById(id);
     }
@@ -38,10 +35,7 @@ public class CombatClassService {
     public List<CombatClass> findAll() {
         return ccRepo.findAll();
     }
-    public List<CombatClassDTO> findAllDTO() {
-        List<CombatClass> combatClasses = ccRepo.findAll();
-        return toDTOs(combatClasses);
-    }
+
 
     public CombatClass save(CombatClass clase) {
         return ccRepo.save(clase);

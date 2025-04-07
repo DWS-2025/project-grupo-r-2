@@ -59,12 +59,6 @@ public class MembershipRestController {
         }
     }
 
-
-    /*@PostMapping("/Membership")
-    public ResponseEntity<Membership> newMembership(@RequestBody Membership membership){
-        membershipService.save(membership);
-        return ResponseEntity.ok().body(membership);
-    }*/
     @PostMapping("/Membership")
     public ResponseEntity<MembershipDTO> newMembershipDTO(@RequestBody MembershipDTO membershipDTO) {
         Membership membership = membershipService.toDomain(membershipDTO);  // Convertir DTO a entidad

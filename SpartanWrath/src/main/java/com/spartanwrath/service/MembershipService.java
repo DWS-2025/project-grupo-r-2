@@ -29,10 +29,7 @@ public class MembershipService {
     public Membership findById(long id) throws NoSuchMem {
         return memRepo.findById(id).orElseThrow(NoSuchMem::new);
     }
-    public MembershipDTO findByIdDTO(long id) throws NoSuchMem {
-        Membership membership = memRepo.findById(id).orElseThrow(NoSuchMem::new);
-        return toDTO(membership);
-    }
+    
 
     public Page<Membership> findAllPaginated(Pageable pageable) {
         return memRepo.findAll(pageable);
@@ -41,10 +38,7 @@ public class MembershipService {
     public List<Membership> findAll() {
         return memRepo.findAll();
     }
-    public List<MembershipDTO> findAllDTO() {
-        List<Membership> memberships = memRepo.findAll();
-        return toDTOs(memberships);
-    }
+
 
     public Membership save(Membership membership) {
         membership.setFechaalta(LocalDate.now());
@@ -56,20 +50,7 @@ public class MembershipService {
         membership.setActive(true);
         return memRepo.save(membership);
     }
-    public MembershipDTO saveDTO(MembershipDTO membershipDTO) {
-        Membership membership = toDomain(membershipDTO);
-        membership.setFechaalta(LocalDate.now());
 
-        if (membership.getDescripcion().contains("1 mes")) {
-            membership.setFechafin(membership.getFechaalta().plusMonths(1));
-        } else if (membership.getDescripcion().contains("3 meses")) {
-            membership.setFechafin(membership.getFechaalta().plusMonths(3));
-        }
-        membership.setActive(true);
-
-        membership = memRepo.save(membership);
-        return toDTO(membership);
-    }
 
     public void delete(long id) {
         memRepo.deleteById(id);
