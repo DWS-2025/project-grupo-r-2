@@ -162,8 +162,23 @@
 				<groupId>org.springframework.boot</groupId>
 				<artifactId>spring-boot-maven-plugin</artifactId>
 				<configuration>
+					<!-- Change if error with used port-->
 					<jmxPort>9009</jmxPort>
 				</configuration>
+				<executions>
+					<execution>
+						<id>pre-integration-test</id>
+						<goals>
+							<goal>start</goal>
+						</goals>
+					</execution>
+					<execution>
+						<id>post-integration-test</id>
+						<goals>
+							<goal>stop</goal>
+						</goals>
+					</execution>
+				</executions>
 			</plugin>
 			<plugin>
 				<groupId>org.springdoc</groupId>
@@ -197,14 +212,10 @@
 							<generatorName>html2</generatorName>
 							<inputSpec>api-docs/api-docs.yaml</inputSpec>
 							<output>api-docs/</output>
-							<configOptions>
-								<skipValidateSpec>true</skipValidateSpec>
-							</configOptions>
 						</configuration>
 					</execution>
 				</executions>
 			</plugin>
-
 
 			<plugin>
 				<groupId>com.coderplus.maven.plugins</groupId>
@@ -225,7 +236,7 @@
 				</executions>
 			</plugin>
 
-
+			
 		</plugins>
 	</build>
 
