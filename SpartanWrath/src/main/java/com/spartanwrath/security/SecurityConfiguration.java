@@ -128,6 +128,7 @@ public class SecurityConfiguration {
         http
                 .authorizeHttpRequests(authorize -> authorize
                         // PUBLIC PAGES
+                        .requestMatchers(HttpMethod.POST, "/Membership/{id}").hasAnyRole("USER","ADMIN")
                         .requestMatchers("/").permitAll()
                         .requestMatchers("/error").permitAll()
                         .requestMatchers("/Market").permitAll()
@@ -148,7 +149,6 @@ public class SecurityConfiguration {
                         .requestMatchers("/Admin/combatclass/**").hasRole("ADMIN")
                         .requestMatchers("/Mymemberships").hasRole("ADMIN")
                         .requestMatchers("/Membership/formsuscripcion").hasRole("ADMIN")
-                        .requestMatchers(HttpMethod.POST, "/Membership/{id}").hasAnyRole("USER","ADMIN")
                         .requestMatchers("/nuevasuscripcion").hasRole("ADMIN")
                         .requestMatchers("/Membership/{id}/delete").hasRole("ADMIN")
                         .requestMatchers("/Market").hasAnyRole("USER","ADMIN")

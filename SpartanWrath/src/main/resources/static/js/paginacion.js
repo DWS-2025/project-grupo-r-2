@@ -43,7 +43,7 @@ function renderMemberships(memberships) {
         card.classList.add("card");
 
         card.innerHTML = `
-            <div class="contenido"> //si no uso thymeleaf no me va, revisar
+            <div class="contenido">
                 <h2>${m.nombre}</h2> 
                 <p>Precio: $${m.precio}</p>
                 <p class="lead">${m.descripcion}</p>
