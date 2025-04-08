@@ -188,7 +188,7 @@ public class ProductRestController {
             product.setImagen(defaultImage);
             product.setOriginalImageName(imageServ.getDefaultName());
             productServ.updateProduct(product);
-            return ResponseEntity.noContent().build();
+            return ResponseEntity.ok().build();
         } else {
             return ResponseEntity.notFound().build();
         }

@@ -198,6 +198,7 @@ public class DatabaseInitializer {
             usersService.updateUser(user2.getUsername(), user2);
             usersService.updateUser(user3.getUsername(), user3);
 
+
             // Actualizar clases de combate con las membresías asociadas
             karate.setMemberships(List.of(membershipKarate1, membershipKarate3));
             mma.setMemberships(List.of(membershipMMA1, membershipMMA3));
@@ -212,6 +213,20 @@ public class DatabaseInitializer {
             combatClassService.save(taekwondo);
             combatClassService.save(kickboxing);
 
+            List<Product> products = new ArrayList<>();
+            products.add(product1);
+            products.add(product2);
+            products.add(product4);
+            user1.setProducts(products);
+            product1.setUsuarios(List.of(user1));
+            productService.updateProduct(product1);
+            usersService.updateUser(user1.getUsername(), user1);
+
+            List<Product> products2 = new ArrayList<>();
+            products2.add(product3);
+            products2.add(product5);
+            user2.setProducts(products2);
+            usersService.updateUser(user2.getUsername(),user2);
         } catch (Exception e) {
             e.printStackTrace();
         }
