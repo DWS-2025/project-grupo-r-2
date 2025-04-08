@@ -35,6 +35,10 @@
 <section class="producto">
     <div class="container">
     </div>
+    <meta name="_csrf" value="{{token}}">
+    {{#admin}}
+    <a id="boton" href="/Membership/formsuscripcion">Nueva Suscripción</a>
+    {{/admin}}
     <div id="pagination" class="pagination-controls" style="text-align: center; margin-top: 20px;">
         <button id="prev-btn">Anterior</button>
         <button id="next-btn" data-total="3">Siguiente</button>
