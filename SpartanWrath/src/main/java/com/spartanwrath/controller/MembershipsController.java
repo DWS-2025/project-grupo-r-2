@@ -114,4 +114,13 @@ public class MembershipsController {
 
         return "redirect:/Membership";
     }
+
+    @GetMapping("/Mymemberships")
+    public String showMymemberships(){
+        return "mymemberships";
+    }
+    @GetMapping("/Membership/formsuscripcion")
+    public String showFormSuscripcion(){
+        return "formsuscripcion";
+    }
 }
