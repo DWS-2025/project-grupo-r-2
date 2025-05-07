@@ -45,7 +45,7 @@
                 <h2>{{product.nombre}}</h2>
                 <p>Precio: ${{product.precio}}</p>
                 <p>Categoría: {{product.category}}</p>
-                <p>Descripcion: {{product.descripcion}}</p>
+                <p>Descripcion: {{{product.descripcion}}}</p>
                 {{#isAdmin}}
                 <a href="/Market/products/delete/{{product.id}}">Borrar</a>
                 <a href="/Market/products/editarproducto/{{product.id}}">Modificar</a>
