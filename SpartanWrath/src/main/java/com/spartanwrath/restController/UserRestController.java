@@ -30,7 +30,10 @@ public class UserRestController {
 
 
     @GetMapping("/User")
-    public ResponseEntity<List<UserDTO>> getAllUsersDTO() {
+    public ResponseEntity<List<UserDTO>> getAllUsersDTO(HttpServletRequest request) {
+        if (!request.isUserInRole("ADMIN")) {
+            return ResponseEntity.status(HttpStatus.FORBIDDEN).build();
+        }
         try {
             List<UserDTO> users = userServ.toDTOs(userServ.GetAllUsers());
             return ResponseEntity.ok().body(users);
