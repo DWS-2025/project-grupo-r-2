@@ -1,13 +1,10 @@
 package com.spartanwrath.restController;
 
 
-import com.fasterxml.jackson.annotation.JsonView;
 import com.spartanwrath.exceptions.InvalidUser;
 import com.spartanwrath.exceptions.NoUsers;
 import com.spartanwrath.exceptions.UserAlreadyRegister;
 import com.spartanwrath.exceptions.UserNotFound;
-import com.spartanwrath.model.Membership;
-import com.spartanwrath.model.Product;
 import com.spartanwrath.model.User;
 import com.spartanwrath.service.UserService;
 import jakarta.servlet.http.HttpServletRequest;

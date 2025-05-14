@@ -1,8 +1,6 @@
 package com.spartanwrath.restController;
 
-import com.fasterxml.jackson.annotation.JsonView;
 import com.spartanwrath.model.CombatClass;
-import com.spartanwrath.model.Membership;
 import com.spartanwrath.service.CombatClassService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;

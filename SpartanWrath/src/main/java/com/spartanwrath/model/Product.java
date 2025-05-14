@@ -1,14 +1,8 @@
 package com.spartanwrath.model;
 
-
-
-
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.fasterxml.jackson.annotation.JsonSubTypes;
 import com.fasterxml.jackson.annotation.JsonView;
 import jakarta.persistence.*;
-import org.hibernate.annotations.Type;
-import java.sql.Blob;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;

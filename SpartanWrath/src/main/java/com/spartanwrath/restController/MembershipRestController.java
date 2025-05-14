@@ -1,10 +1,7 @@
 package com.spartanwrath.restController;
 
-import com.fasterxml.jackson.annotation.JsonView;
-import com.spartanwrath.exceptions.NoMembership;
 import com.spartanwrath.exceptions.NoSuchMem;
 import com.spartanwrath.exceptions.UserNotFound;
-import com.spartanwrath.model.CombatClass;
 import com.spartanwrath.model.Membership;
 import com.spartanwrath.model.User;
 import com.spartanwrath.service.MembershipService;

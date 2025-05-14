@@ -1,12 +1,8 @@
 package com.spartanwrath.model;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonView;
 import jakarta.persistence.*;
-import jakarta.validation.constraints.*;
-import org.hibernate.annotations.Cascade;
-import org.hibernate.annotations.Columns;
 import org.springframework.format.annotation.DateTimeFormat;
 
 import java.time.LocalDate;

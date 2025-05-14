@@ -1,9 +1,5 @@
 
 package com.spartanwrath.dto;
-import com.spartanwrath.model.Product;
-import com.spartanwrath.dto.MembershipDTO;
-
-import com.fasterxml.jackson.annotation.JsonView;
 
 import java.util.List;
 

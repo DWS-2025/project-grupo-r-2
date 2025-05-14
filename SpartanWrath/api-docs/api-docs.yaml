@@ -617,6 +617,8 @@ components:
           type: array
           items:
             $ref: "#/components/schemas/User"
+        imagePath:
+          type: string
     User:
       type: object
       properties:

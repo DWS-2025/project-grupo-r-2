@@ -1,7 +1,6 @@
 package com.spartanwrath.restController;
 
 
-import com.fasterxml.jackson.annotation.JsonView;
 import com.spartanwrath.exceptions.InvalidUser;
 import com.spartanwrath.exceptions.UserNotFound;
 import com.spartanwrath.model.Product;
@@ -10,13 +9,10 @@ import com.spartanwrath.service.ImageService;
 import com.spartanwrath.service.ProductService;
 import com.spartanwrath.service.UserService;
 import jakarta.servlet.http.HttpServletRequest;
-import netscape.javascript.JSException;
-import netscape.javascript.JSObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
-import org.springframework.security.access.annotation.Secured;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 import com.spartanwrath.dto.ProductDTO;
@@ -26,7 +22,6 @@ import java.net.MalformedURLException;
 import java.net.URI;
 import java.util.*;
 
-//import static com.spartanwrath.service.ImageService.FILES_FOLDER;
 import static org.springframework.web.servlet.support.ServletUriComponentsBuilder.fromCurrentRequest;
 
 @RestController
