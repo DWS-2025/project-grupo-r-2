@@ -82,6 +82,7 @@ public class DatabaseInitializer {
             String vendasImageName = "vendas.jpg";
             String bucalImageName = "bucal.jpg";
             String proteinasImageName = "proteinas.jpg";
+            String kimonoImageName = "kimono.jpg";
 
             // Ruta relativa de cada imagen
             Path cascoImagePath = basePath.resolve("casco.jpeg");
@@ -115,7 +116,7 @@ public class DatabaseInitializer {
             Product product6 = new Product("Proteina", "Whey Protein facilita el proceso", proteinasImageBytes, 24.99, 30, "Suplementos");
             product6.setOriginalImageName(proteinasImageName);
             Product product7 = new Product("Kimono", "Gi (kimono) para BJJ o Karate", kimonoImageBytes, 37.55, 40, "Uniforme");
-            product7.setOriginalImageName(proteinasImageName);
+            product7.setOriginalImageName(kimonoImageName);
 
             productService.createProduct(product1);
             productService.createProduct(product2);

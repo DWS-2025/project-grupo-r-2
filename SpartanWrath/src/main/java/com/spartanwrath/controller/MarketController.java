@@ -11,6 +11,7 @@ import jakarta.servlet.http.HttpServletRequest;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.io.ByteArrayResource;
 import org.springframework.core.io.Resource;
+import org.springframework.core.io.UrlResource;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
@@ -24,6 +25,9 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.security.Principal;
 import java.util.Base64;
 import java.util.List;
@@ -106,18 +110,24 @@ public class MarketController {
     }
 
     @GetMapping("/download/{id}")
-    public ResponseEntity<Resource> downloadImage(@PathVariable("id") Long id){
+    public ResponseEntity<Resource> downloadImage(@PathVariable("id") Long id) {
         Optional<Product> productOptional = productService.getProductById(id);
         if (productOptional.isPresent()) {
-            try{
+            try {
                 Product product = productOptional.get();
-                byte[] imageData = product.getImagen();
-                ByteArrayResource resource = new ByteArrayResource(imageData);
+                String imagePath = product.getImagePath(); // Ej: "/uploads/images/taladro.jpg"
+                Path filePath = Paths.get(imagePath);
+                Resource resource = new UrlResource(filePath.toUri());
 
-                return ResponseEntity.ok().header(HttpHeaders.CONTENT_DISPOSITION, "attachment; filename=\"" + product.getOriginalImageName() + "\"")
-                        .contentType(MediaType.IMAGE_JPEG)
-                        .contentLength(imageData.length)
-                        .body(resource);
+                if (resource.exists() && resource.isReadable()) {
+                    return ResponseEntity.ok()
+                            .header(HttpHeaders.CONTENT_DISPOSITION, "attachment; filename=\"" + filePath.getFileName().toString() + "\"")
+                            .contentType(MediaType.IMAGE_JPEG)
+                            .contentLength(Files.size(filePath))
+                            .body(resource);
+                } else {
+                    return ResponseEntity.status(HttpStatus.NOT_FOUND).build();
+                }
             } catch (Exception e) {
                 return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(null);
             }
@@ -125,6 +135,7 @@ public class MarketController {
             return ResponseEntity.notFound().build();
         }
     }
+
 
     @PostMapping("/nuevoproducto")
     public String newProducto(Product product,Model model, HttpServletRequest request, @RequestParam(required = false) MultipartFile imageFile) throws IOException {

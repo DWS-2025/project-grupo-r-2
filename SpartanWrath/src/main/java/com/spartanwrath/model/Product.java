@@ -144,6 +144,9 @@ public class Product {
         this.usuarios = usuarios;
     }
 
+    public String getImagePath(){
+        return "src/main/resources/static/images/"+getOriginalImageName();
+    }
 
     @Override
     public String toString() {
