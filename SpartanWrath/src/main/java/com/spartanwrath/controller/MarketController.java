@@ -143,6 +143,7 @@ public class MarketController {
             imageServ.saveImage(imageData, imageFile.getOriginalFilename());
         } else {
             product.setImagen(imageServ.getDefault());
+            product.setOriginalImageName(imageServ.getDefaultName());
         }
         Product newProduct = productService.createProduct(product);
         return "redirect:/Market/products/" + newProduct.getId();

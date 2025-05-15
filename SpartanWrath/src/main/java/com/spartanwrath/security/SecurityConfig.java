@@ -118,8 +118,31 @@ public class SecurityConfig{
 	@Bean
 	@Order(2)
 	public SecurityFilterChain webFilterChain(HttpSecurity http) throws Exception {
-		http.headers(headers -> headers.xssProtection(xss -> xss.headerValue(XXssProtectionHeaderWriter.HeaderValue.ENABLED_MODE_BLOCK))
-				.contentSecurityPolicy(cps -> cps.policyDirectives("script-src 'self' 'sha256-7CrbOuHXC5pcX5/WZqrJ1wsaWibsKsVvGKmDbneg1MQ=' 'sha256-BTH2FzjOBXCsNvMS+hWWCHxKtvCcc/Ovg/Shn33kWMY=' 'sha256-C98k/qM+0Xy4tZaAWU/1R9eZfBtncjlwuEau4/pdI8Q=' 'sha256-tua2yQk4cCecxvmQxji+9jVpU6xQcvq3T/Rnbb8XeU4=' 'sha256-XaldY76yZI63NOAG5oCBJ+/Pb4/CgvRAMRc+Fxz7KZE=' https://cdn.jsdelivr.net/npm/quill@2.0.0-rc.2/dist/quill.js https://cdn.jsdelivr.net")));
+		http.headers(headers -> headers
+				.xssProtection(xss -> xss.headerValue(XXssProtectionHeaderWriter.HeaderValue.ENABLED_MODE_BLOCK))
+				.contentSecurityPolicy(cps -> cps.policyDirectives(
+						"default-src 'none'; " +
+								"script-src 'self' " +
+								"'sha256-7CrbOuHXC5pcX5/WZqrJ1wsaWibsKsVvGKmDbneg1MQ=' " +
+								"'sha256-BTH2FzjOBXCsNvMS+hWWCHxKtvCcc/Ovg/Shn33kWMY=' " +
+								"'sha256-C98k/qM+0Xy4tZaAWU/1R9eZfBtncjlwuEau4/pdI8Q=' " +
+								"'sha256-tua2yQk4cCecxvmQxji+9jVpU6xQcvq3T/Rnbb8XeU4=' " +
+								"'sha256-XaldY76yZI63NOAG5oCBJ+/Pb4/CgvRAMRc+Fxz7KZE=' " +
+								"https://cdn.jsdelivr.net/npm/quill@2.0.0-rc.2/dist/quill.js " +
+								"https://cdn.jsdelivr.net; " +
+								"style-src 'self' 'unsafe-inline' https://cdn.jsdelivr.net; " +
+								"font-src 'self' https://cdn.jsdelivr.net; " +
+								"img-src 'self' data:; " +
+								"connect-src 'self'; " +
+								"media-src 'none'; " +
+								"frame-src 'none'; " +
+								"manifest-src 'none'; " +
+								"worker-src 'none'; " +
+								"object-src 'none'; " +
+								"frame-ancestors 'none';"
+				))
+		);
+
 
 		http.authenticationProvider(authenticationProvider());
 
@@ -181,6 +204,7 @@ public class SecurityConfig{
 				.logout(logout -> logout
 						.logoutUrl("/logout")
 						.logoutSuccessUrl("/")
+						.invalidateHttpSession(true)
 						.addLogoutHandler(new HeaderWriterLogoutHandler(new ClearSiteDataHeaderWriter(COOKIES)))
 						.deleteCookies("JSESSIONID")
 						.permitAll()
