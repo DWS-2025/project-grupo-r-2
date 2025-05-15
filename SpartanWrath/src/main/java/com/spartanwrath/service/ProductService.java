@@ -113,7 +113,11 @@ public class ProductService {
     }
 
     public Product sanitizeProduct(Product product){
-        PolicyFactory policy = Sanitizers.FORMATTING.and(Sanitizers.BLOCKS);
+        PolicyFactory policy = Sanitizers.FORMATTING
+                .and(Sanitizers.BLOCKS)
+                .and(Sanitizers.LINKS)
+                .and(Sanitizers.STYLES)
+                .and(Sanitizers.TABLES);
         String nombreSanitized = policy.sanitize(product.getNombre());
         product.setNombre(nombreSanitized);
         String descripcionSanitized = policy.sanitize(product.getDescripcion());
