@@ -1,5 +1,6 @@
 package com.spartanwrath.security.jwt;
 
+import java.nio.charset.StandardCharsets;
 import java.time.LocalDateTime;
 import java.time.ZoneId;
 import java.util.Date;
@@ -47,7 +48,7 @@ public class JwtTokenProvider {
 
     public String getUsername(String token) {
         return Jwts.parser()
-                .verifyWith(Keys.hmacShaKeyFor(jwtSecret.getBytes()))
+                .verifyWith(Keys.hmacShaKeyFor(jwtSecret.getBytes(StandardCharsets.UTF_8)))
                 .build()
                 .parseSignedClaims(token)
                 .getPayload()
@@ -65,7 +66,7 @@ public class JwtTokenProvider {
     public boolean validateToken(String token) {
         try {
             Jwts.parser()
-                    .verifyWith(Keys.hmacShaKeyFor(jwtSecret.getBytes()))
+                    .verifyWith(Keys.hmacShaKeyFor(jwtSecret.getBytes(StandardCharsets.UTF_8)))
                     .build()
                     .parseSignedClaims(token);
             return true;
@@ -95,7 +96,7 @@ public class JwtTokenProvider {
                         .collect(Collectors.toList()))
                 .issuedAt(now)
                 .expiration(expiryDate)
-                .signWith(Keys.hmacShaKeyFor(jwtSecret.getBytes()))
+                .signWith(Keys.hmacShaKeyFor(jwtSecret.getBytes(StandardCharsets.UTF_8)))
                 .compact();
 
         return new Token(Token.TokenType.ACCESS, token, expiryDate.getTime(),
@@ -114,7 +115,7 @@ public class JwtTokenProvider {
                         .collect(Collectors.toList()))
                 .issuedAt(now)
                 .expiration(expiryDate)
-                .signWith(Keys.hmacShaKeyFor(jwtSecret.getBytes()))
+                .signWith(Keys.hmacShaKeyFor(jwtSecret.getBytes(StandardCharsets.UTF_8)))
                 .compact();
 
         return new Token(Token.TokenType.REFRESH, token, expiryDate.getTime(),
