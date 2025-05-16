@@ -42,21 +42,27 @@ public class ImageService {
         String sanitizedFileName = sanitizeFileName(originalFileName);
         String filename = StringUtils.cleanPath(sanitizedFileName);
 
-        Path uploadPath = Paths.get(uploadDir);
+        Path uploadPath = Paths.get(uploadDir).toAbsolutePath().normalize();
         if (!Files.exists(uploadPath)) {
             Files.createDirectories(uploadPath);
         }
 
-        Path imagePath = uploadPath.resolve(filename);
+        Path imagePath = uploadPath.resolve(filename).normalize();
         Files.write(imagePath, sanitizedImageBytes);
+
+        if (!imagePath.startsWith(uploadPath)) {
+            throw new ResponseStatusException(HttpStatus.FORBIDDEN, "Invalid file path");
+        }
 
         return filename;
     }
 
     public byte[] getDefault() throws IOException {
         String ImageName = getDefaultName();
-        Path defaultImagePath = Paths.get(uploadDir).resolve(ImageName);
-        if (!Files.exists(defaultImagePath)) {
+        Path defaultImagePath = Paths.get(uploadDir).toAbsolutePath().normalize();
+        Path target = defaultImagePath.resolve(ImageName).normalize();
+
+        if (!target.startsWith(defaultImagePath) || !Files.exists(defaultImagePath)) {
             throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Default image not found");
         }
         return Files.readAllBytes(defaultImagePath);
@@ -71,8 +77,15 @@ public class ImageService {
 
     public void deleteImage(String imageName) throws IOException {
        if (!"DefaultProduct.jpg".equals(imageName)){
-           Path imagePath = Paths.get(uploadDir).resolve(imageName);
-           Files.deleteIfExists(imagePath);
+           Path uploadPath = Paths.get(uploadDir)
+                   .toAbsolutePath()
+                   .normalize();
+           Path target = uploadPath.resolve(imageName).normalize();
+           if (!target.startsWith(uploadPath)) {
+               throw new ResponseStatusException(HttpStatus.FORBIDDEN, "Invalid file path");
+           }
+
+           Files.deleteIfExists(target);
        }
     }
 
