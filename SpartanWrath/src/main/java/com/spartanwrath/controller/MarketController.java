@@ -9,6 +9,7 @@ import com.spartanwrath.service.ProductService;
 import com.spartanwrath.service.UserService;
 import jakarta.servlet.http.HttpServletRequest;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.core.io.Resource;
 import org.springframework.core.io.UrlResource;
 import org.springframework.http.HttpHeaders;
@@ -43,6 +44,8 @@ public class MarketController {
         this.productService = productService;
     }
 
+    @Value("${image.upload.dir}")
+    private String uploadDir;
 
     @GetMapping("/Market")
     public String showMarket(){
@@ -110,13 +113,17 @@ public class MarketController {
         if (productOptional.isPresent()) {
             try {
                 Product product = productOptional.get();
-                String imagePath = product.getImagePath(); // Ej: "/uploads/images/taladro.jpg"
-                Path filePath = Paths.get(imagePath);
+                Path imageRoot = Paths.get(uploadDir).toAbsolutePath().normalize();
+                String filename = Paths.get(product.getImagePath()).getFileName().toString(); // Ej: "/uploads/images/taladro.jpg"
+                Path filePath = imageRoot.resolve(filename).normalize();
+                if (!filePath.startsWith(imageRoot)) {
+                    return ResponseEntity.status(HttpStatus.FORBIDDEN).build();
+                }
                 Resource resource = new UrlResource(filePath.toUri());
 
                 if (resource.exists() && resource.isReadable()) {
                     return ResponseEntity.ok()
-                            .header(HttpHeaders.CONTENT_DISPOSITION, "attachment; filename=\"" + filePath.getFileName().toString() + "\"")
+                            .header(HttpHeaders.CONTENT_DISPOSITION, "attachment; filename=\"" + filename + "\"")
                             .contentType(MediaType.IMAGE_JPEG)
                             .contentLength(Files.size(filePath))
                             .body(resource);
