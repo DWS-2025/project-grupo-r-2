@@ -16,6 +16,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.crypto.password.PasswordEncoder;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import org.springframework.stereotype.Service;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
@@ -27,6 +30,7 @@ import java.util.List;
 @Configuration
 public class DatabaseInitializer {
 
+    private static final Logger log = LoggerFactory.getLogger(DatabaseInitializer.class);
     @Autowired
     private PasswordEncoder passwordEncoder;
     @Autowired
@@ -229,7 +233,8 @@ public class DatabaseInitializer {
             user2.setProducts(products2);
             usersService.updateUser(user2.getUsername(),user2);
         } catch (Exception e) {
-            e.printStackTrace();
+            log.error("Error al iniciar la base de datos.",e);
+            throw e;
         }
     }
 }

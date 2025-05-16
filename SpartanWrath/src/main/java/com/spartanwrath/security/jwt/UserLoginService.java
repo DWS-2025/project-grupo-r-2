@@ -109,9 +109,8 @@ public class UserLoginService {
 
     public String logout(HttpServletRequest request, HttpServletResponse response) {
 
-        HttpSession session = request.getSession(false);
         SecurityContextHolder.clearContext();
-        session = request.getSession(false);
+        HttpSession session = request.getSession(false);
         if (session != null) {
             session.invalidate();
         }
