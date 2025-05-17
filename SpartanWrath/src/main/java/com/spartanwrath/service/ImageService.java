@@ -58,17 +58,17 @@ public class ImageService {
     }
 
     public byte[] getDefault() throws IOException {
-        String ImageName = getDefaultName();
+        String imageName = getDefaultName();
         Path defaultImagePath = Paths.get(uploadDir).toAbsolutePath().normalize();
-        Path target = defaultImagePath.resolve(ImageName).normalize();
+        Path target = defaultImagePath.resolve(imageName).normalize();
 
-        if (!target.startsWith(defaultImagePath) || !Files.exists(defaultImagePath)) {
+        if (!target.startsWith(defaultImagePath) || !Files.exists(target)) {
             throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Default image not found");
         }
-        return Files.readAllBytes(defaultImagePath);
 
-
+        return Files.readAllBytes(target);
     }
+
     public String getDefaultName() {
         return "DefaultProduct.jpg";
     }
