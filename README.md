@@ -61,20 +61,20 @@ Como partimos de la practica del año pasado me he encargado de añadir los dtos
 - `Todos los servicios de cada entidad`
 
 ### Cesar Martín Baños
-Como partimos de la práctica del año pasado me he encargado de arreglar por completo las funcionalidades que fallaban y hacer el nuevo css, a parte he modificado la base de datos para que muestre bien las relaciones y lo inicialice de manera correcta, también he hecho algunos cambios en los json de prueba para rest. 
+En esta fase, al tenerlo casi todo del año pasado y al ir actualizando esta fase conforme avanzabamos en las anteriores, hemos revisado posibles vulnerabilidades, pero hemos hecho pocos cambios.
 
 **Commits más significativos:**
-- [Commit 1](https://github.com/DWS-2025/project-grupo-r-2/commit/31c5fa0db010a4fbf08dbc791ca1f933c18dfa62) Nuevo css, aun con fallos, pero es la base
-- [Commit 2](https://github.com/DWS-2025/project-grupo-r-2/commit/687b4ed7a1138c2bc9726a0bd0173fd898734e91) Arreglo errores de compatibilidad del css por completo
-- [Commit 3](https://github.com/DWS-2025/project-grupo-r-2/commit/e6e90ec3a57afad03d21e9d250fc1642ab31729f) Ajusto la base de datos y sus relaciones
-- [Commit 4](https://github.com/DWS-2025/project-grupo-r-2/commit/19268b72b115b23373e99f7a50e56a14190b691f) Arreglo errores en los controllers, ahora si distinguen entre admin y user
-- [Commit 5](https://github.com/DWS-2025/project-grupo-r-2/commit/4bce4a820a79b55c849247e6b4aa772ea01d0c63) Aqui implementé la paginación de memberships aunque faltaban cosas que hice más adelante
+- [Commit 1](https://github.com/DWS-2025/project-grupo-r-2/commit/49a3170211ded55107200c9d642112161a67411f) Descargar imagen de disco
+- [Commit 2](https://github.com/DWS-2025/project-grupo-r-2/commit/4bcf9b034a6047faf52fd0bd92be3aebace6b774) Actualizo nueva carpeta Security
+- [Commit 3](https://github.com/DWS-2025/project-grupo-r-2/commit/d609c5c1a3f53d801b329d4e1e5e41c5514a9d95) Quito librerias no utilizadas y configuro el control de acceso
+- [Commit 4](https://github.com/DWS-2025/project-grupo-r-2/commit/bdde66ec8b9950b43be93edc1047809112a10a84) Añado los iconos para obtenerlos del disco y no hacer conexiones a otras páginas web
+- [Commit 5](https://github.com/DWS-2025/project-grupo-r-2/commit/5f5c8da6535590fe890cb61c842ea3309b785aed) Añado mas configuración que tapa pequeñas vulnerabilidades
 
 
 **Ficheros principales modificados:**
-- `styles.css`
+- `SecurityConfig.java`
 - `MarketController.java`
 - `DatabaseInitializer.java`
-- `paginacion.js`
-- `MembershipController.java`
+- `/bootstrap-icons-1.11.3`
+- `application.properties`
 ---
