@@ -170,7 +170,7 @@ public class MarketController {
 
             if (imageFile != null && !imageFile.isEmpty()) {
                 byte[] imageData = imageFile.getBytes();
-                _product.setImagen(imageData);
+                    _product.setImagen(imageData);
                 _product.setOriginalImageName(imageFile.getOriginalFilename());
                 imageServ.saveImage(imageData, imageFile.getOriginalFilename());
             }
