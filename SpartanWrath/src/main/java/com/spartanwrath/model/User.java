@@ -226,24 +226,22 @@ public class User {
                 '}';
     }
 
-    public static boolean valid (User user){
-        if (user.name.length()>60){
-            return false;
-        } else if (user.dni.length()>9) {
-            return false;
-       // } else if (user.address.length()>40) {
-         //   return false;
-        } else if (user.phone>999999999) {
-            return false;
-        } else if (user.username!=null && user.username.length()>20) {
-            return false;
-        } else if (!user.getPassword().startsWith("$2a$") && user.getPassword().length() == 60 && user.password.length()>20) {
-            return false;
-        } else if (user.birthday != null && user.birthday.isAfter(LocalDate.now())){
-            return false;
-        } else if (user.payment.length()>15) {
-            return false;
-        }else return user.email.length() <= 30;
+    public static boolean valid(User user) {
+        if (user == null) return false;
+        if (user.name == null || user.name.length() > 60) return false;
+        if (user.dni != null && user.dni.length() > 9) return false;
+        // if (user.address != null && user.address.length() > 40) return false; // opcional
+        if (user.phone > 999999999L || user.phone < 0) return false;
+        if (user.username != null && user.username.length() > 20) return false;
+        if (user.password == null) return false;
+        if (!user.password.startsWith("$2a$")) {
+            if (user.password.length() > 20) return false;
+        }
+        if (user.birthday != null && user.birthday.isAfter(LocalDate.now())) return false;
+        if (user.payment != null && user.payment.length() > 15) return false;
+        if (user.email == null || user.email.length() > 30) return false;
+
+        return true;
     }
 
 }
