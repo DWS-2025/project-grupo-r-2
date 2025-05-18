@@ -68,8 +68,7 @@ En esta fase, al tenerlo casi todo del año pasado y al ir actualizando esta fas
 - [Commit 2](https://github.com/DWS-2025/project-grupo-r-2/commit/4bcf9b034a6047faf52fd0bd92be3aebace6b774) Actualizo nueva carpeta Security
 - [Commit 3](https://github.com/DWS-2025/project-grupo-r-2/commit/d609c5c1a3f53d801b329d4e1e5e41c5514a9d95) Quito librerias no utilizadas y configuro el control de acceso
 - [Commit 4](https://github.com/DWS-2025/project-grupo-r-2/commit/bdde66ec8b9950b43be93edc1047809112a10a84) Añado los iconos para obtenerlos del disco y no hacer conexiones a otras páginas web
-- [Commit 5](https://github.com/DWS-2025/project-grupo-r-2/commit/5f5c8da6535590fe890cb61c842ea3309b785aed) Añado mas configuración que tapa pequeñas vulnerabilidades
-
+- [Commit 5](https://github.com/DWS-2025/project-grupo-r-2/commit/1d0d66cd645041f7eef817a818b8729765edd26b) Sanitizo la clase User
 
 **Ficheros principales modificados:**
 - `SecurityConfig.java`
