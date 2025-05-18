@@ -18,41 +18,40 @@ public class User {
     public interface Products {}
     public interface Memberships {}
 
-    @JsonView(Basico.class)
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    @JsonView(Basico.class)
+
     @Column(name = "name")
     private String name;
-    @JsonView(Basico.class)
+
     @Column(name = "username", unique = true)
     private String username;
-    @JsonView(Basico.class)
+
     @Column(name = "email")
     private String email;
-    @JsonView(Basico.class)
+
     @Column(name = "address")
     private String address;
-    @JsonView(Basico.class)
+
     @Column(name = "phone")
     private long phone;
-    @JsonView(Basico.class)
+
     @Column(name = "password")
     private String password;
-    @JsonView(Basico.class)
+
     @Column(name = "birthday")
     @DateTimeFormat(pattern = "dd-MM-yyyy")
-    @JsonFormat(pattern = "dd-MM-yyyy")
+
     private LocalDate birthday;
-    @JsonView(Basico.class)
+
     @Column(name = "dni")
     private String dni;
-    @JsonView(Basico.class)
+
     @Column(name = "payment")
     private String payment;
 
-    @JsonView(Products.class)
+
     @ManyToMany
     @JoinTable(
             name = "user_product",
@@ -61,11 +60,11 @@ public class User {
     )
     private List<Product> products;
 
-    @JsonView(Memberships.class)
+
     @ManyToOne
     @JoinColumn(name = "membership_id")
     private Membership membership;
-    @JsonView(Basico.class)
+
     @ElementCollection(fetch = FetchType.EAGER)
     //Quitar tabla por ocultacion de acceso y JSONview
     @CollectionTable(name = "user_roles", joinColumns = @JoinColumn(name = "user_id"))
