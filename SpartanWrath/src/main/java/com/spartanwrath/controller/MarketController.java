@@ -114,7 +114,7 @@ public class MarketController {
             try {
                 Product product = productOptional.get();
                 Path imageRoot = Paths.get(uploadDir).toAbsolutePath().normalize();
-                String filename = Paths.get(product.getImagePath()).getFileName().toString(); // Ej: "/uploads/images/taladro.jpg"
+                String filename = Paths.get(product.getImagePath()).getFileName().toString();
                 Path filePath = imageRoot.resolve(filename).normalize();
                 if (!filePath.startsWith(imageRoot)) {
                     return ResponseEntity.status(HttpStatus.FORBIDDEN).build();
@@ -233,7 +233,6 @@ public class MarketController {
                     product.setCantidad(availableQuantity - quantity);
                     productService.updateProduct(product);
 
-                    // Agregar el producto a la lista del usuario
                     user.getProducts().add(product);
                 } else {
                     model.addAttribute("error", "El producto con ID " + productId + " no se encuentra");

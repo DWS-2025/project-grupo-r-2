@@ -53,7 +53,7 @@ public class CombatClassService {
         return mapper.toDTO(combatClass);
     }
 
-    public List<CombatClassDTO> toDTOs(List<CombatClass> combatclasses){
+    public List<CombatClassDTO> s(List<CombatClass> combatclasses){
         return mapper.toDTOs(combatclasses);
     }
 
