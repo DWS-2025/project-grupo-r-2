@@ -1,9 +1,9 @@
 {
 	"info": {
-		"_postman_id": "7135a4e0-6f40-4bee-a856-3124ef1b16d3",
+		"_postman_id": "a9d35925-2a5d-459d-9790-330a8de103d4",
 		"name": "CombatClass",
-		"schema": "https://schema.getpostman.com/json/collection/v2.0.0/collection.json",
-		"_exporter_id": "33504904"
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "33634888"
 	},
 	"item": [
 		{
@@ -11,7 +11,18 @@
 			"request": {
 				"method": "GET",
 				"header": [],
-				"url": "https://localhost:8443/api/combatclass"
+				"url": {
+					"raw": "https://localhost:8443/api/combatclass",
+					"protocol": "https",
+					"host": [
+						"localhost"
+					],
+					"port": "8443",
+					"path": [
+						"api",
+						"combatclass"
+					]
+				}
 			},
 			"response": []
 		},
@@ -29,7 +40,18 @@
 						}
 					}
 				},
-				"url": "https://localhost:8443/api/combatclass"
+				"url": {
+					"raw": "https://localhost:8443/api/combatclass",
+					"protocol": "https",
+					"host": [
+						"localhost"
+					],
+					"port": "8443",
+					"path": [
+						"api",
+						"combatclass"
+					]
+				}
 			},
 			"response": []
 		},
@@ -38,7 +60,19 @@
 			"request": {
 				"method": "GET",
 				"header": [],
-				"url": "https://localhost:8443/api/combatclass/3"
+				"url": {
+					"raw": "https://localhost:8443/api/combatclass/3",
+					"protocol": "https",
+					"host": [
+						"localhost"
+					],
+					"port": "8443",
+					"path": [
+						"api",
+						"combatclass",
+						"3"
+					]
+				}
 			},
 			"response": []
 		},
@@ -47,7 +81,19 @@
 			"request": {
 				"method": "DELETE",
 				"header": [],
-				"url": "https://localhost:8443/api/combatclass/4"
+				"url": {
+					"raw": "https://localhost:8443/api/combatclass/4",
+					"protocol": "https",
+					"host": [
+						"localhost"
+					],
+					"port": "8443",
+					"path": [
+						"api",
+						"combatclass",
+						"4"
+					]
+				}
 			},
 			"response": []
 		}

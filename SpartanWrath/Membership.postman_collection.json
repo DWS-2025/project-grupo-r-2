@@ -1,9 +1,9 @@
 {
 	"info": {
-		"_postman_id": "bb1ca419-87ea-4adc-9a6e-ab8fdbef51e1",
+		"_postman_id": "a3bd56bb-2a5f-4921-b3f5-7fb159b943dd",
 		"name": "Membership",
-		"schema": "https://schema.getpostman.com/json/collection/v2.0.0/collection.json",
-		"_exporter_id": "33504904"
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "33634888"
 	},
 	"item": [
 		{
@@ -11,7 +11,24 @@
 			"request": {
 				"method": "GET",
 				"header": [],
-				"url": "https://localhost:8443/api/Membership?page=0"
+				"url": {
+					"raw": "https://localhost:8443/api/Membership?page=0",
+					"protocol": "https",
+					"host": [
+						"localhost"
+					],
+					"port": "8443",
+					"path": [
+						"api",
+						"Membership"
+					],
+					"query": [
+						{
+							"key": "page",
+							"value": "0"
+						}
+					]
+				}
 			},
 			"response": []
 		},
@@ -29,7 +46,18 @@
 						}
 					}
 				},
-				"url": "https://localhost:8443/api/Membership"
+				"url": {
+					"raw": "https://localhost:8443/api/Membership",
+					"protocol": "https",
+					"host": [
+						"localhost"
+					],
+					"port": "8443",
+					"path": [
+						"api",
+						"Membership"
+					]
+				}
 			},
 			"response": []
 		},
@@ -38,7 +66,19 @@
 			"request": {
 				"method": "GET",
 				"header": [],
-				"url": "https://localhost:8443/api/Membership/1"
+				"url": {
+					"raw": "https://localhost:8443/api/Membership/1",
+					"protocol": "https",
+					"host": [
+						"localhost"
+					],
+					"port": "8443",
+					"path": [
+						"api",
+						"Membership",
+						"1"
+					]
+				}
 			},
 			"response": []
 		},
@@ -47,7 +87,19 @@
 			"request": {
 				"method": "DELETE",
 				"header": [],
-				"url": "https://localhost:8443/api/Membership/delete/13"
+				"url": {
+					"raw": "https://localhost:8443/api/Membership/13",
+					"protocol": "https",
+					"host": [
+						"localhost"
+					],
+					"port": "8443",
+					"path": [
+						"api",
+						"Membership",
+						"13"
+					]
+				}
 			},
 			"response": []
 		},
@@ -56,7 +108,19 @@
 			"request": {
 				"method": "POST",
 				"header": [],
-				"url": "https://localhost:8443/api/Membership/2"
+				"url": {
+					"raw": "https://localhost:8443/api/Membership/2",
+					"protocol": "https",
+					"host": [
+						"localhost"
+					],
+					"port": "8443",
+					"path": [
+						"api",
+						"Membership",
+						"2"
+					]
+				}
 			},
 			"response": []
 		}

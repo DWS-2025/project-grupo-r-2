@@ -1,9 +1,9 @@
 {
 	"info": {
-		"_postman_id": "cc0f2c55-c7a3-4621-9b7d-ce7743c6a60b",
+		"_postman_id": "0c7babc1-6187-4ddf-99f3-6c03ba3185d0",
 		"name": "Product",
-		"schema": "https://schema.getpostman.com/json/collection/v2.0.0/collection.json",
-		"_exporter_id": "33504904"
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "33634888"
 	},
 	"item": [
 		{
@@ -11,7 +11,18 @@
 			"request": {
 				"method": "GET",
 				"header": [],
-				"url": "https://localhost:8443/api/products"
+				"url": {
+					"raw": "https://localhost:8443/api/products",
+					"protocol": "https",
+					"host": [
+						"localhost"
+					],
+					"port": "8443",
+					"path": [
+						"api",
+						"products"
+					]
+				}
 			},
 			"response": []
 		},
@@ -20,7 +31,19 @@
 			"request": {
 				"method": "GET",
 				"header": [],
-				"url": "https://localhost:8443/api/products/5"
+				"url": {
+					"raw": "https://localhost:8443/api/products/5",
+					"protocol": "https",
+					"host": [
+						"localhost"
+					],
+					"port": "8443",
+					"path": [
+						"api",
+						"products",
+						"5"
+					]
+				}
 			},
 			"response": []
 		},
@@ -38,7 +61,18 @@
 						}
 					}
 				},
-				"url": "https://localhost:8443/api/products"
+				"url": {
+					"raw": "https://localhost:8443/api/products",
+					"protocol": "https",
+					"host": [
+						"localhost"
+					],
+					"port": "8443",
+					"path": [
+						"api",
+						"products"
+					]
+				}
 			},
 			"response": []
 		},
@@ -52,12 +86,25 @@
 					"formdata": [
 						{
 							"key": "imageFile",
-							"type": "file",
-							"src": ""
+							"value": "",
+							"type": "file"
 						}
 					]
 				},
-				"url": "https://localhost:8443/api/products/8/imagen"
+				"url": {
+					"raw": "https://localhost:8443/api/products/8/imagen",
+					"protocol": "https",
+					"host": [
+						"localhost"
+					],
+					"port": "8443",
+					"path": [
+						"api",
+						"products",
+						"8",
+						"imagen"
+					]
+				}
 			},
 			"response": []
 		},
@@ -100,7 +147,20 @@
 			"request": {
 				"method": "GET",
 				"header": [],
-				"url": "https://localhost:8443/api/products/8/imagen"
+				"url": {
+					"raw": "https://localhost:8443/api/products/8/imagen",
+					"protocol": "https",
+					"host": [
+						"localhost"
+					],
+					"port": "8443",
+					"path": [
+						"api",
+						"products",
+						"8",
+						"imagen"
+					]
+				}
 			},
 			"response": []
 		},
@@ -118,7 +178,19 @@
 						}
 					}
 				},
-				"url": "https://localhost:8443/api/products/2"
+				"url": {
+					"raw": "https://localhost:8443/api/products/2",
+					"protocol": "https",
+					"host": [
+						"localhost"
+					],
+					"port": "8443",
+					"path": [
+						"api",
+						"products",
+						"2"
+					]
+				}
 			},
 			"response": []
 		},
@@ -136,7 +208,19 @@
 						}
 					}
 				},
-				"url": "https://localhost:8443/api/products/2"
+				"url": {
+					"raw": "https://localhost:8443/api/products/2",
+					"protocol": "https",
+					"host": [
+						"localhost"
+					],
+					"port": "8443",
+					"path": [
+						"api",
+						"products",
+						"2"
+					]
+				}
 			},
 			"response": []
 		},
@@ -145,7 +229,18 @@
 			"request": {
 				"method": "DELETE",
 				"header": [],
-				"url": "https://localhost:8443/api/products"
+				"url": {
+					"raw": "https://localhost:8443/api/products",
+					"protocol": "https",
+					"host": [
+						"localhost"
+					],
+					"port": "8443",
+					"path": [
+						"api",
+						"products"
+					]
+				}
 			},
 			"response": []
 		},
@@ -154,7 +249,20 @@
 			"request": {
 				"method": "DELETE",
 				"header": [],
-				"url": "https://localhost:8443/api/products/8/imagen"
+				"url": {
+					"raw": "https://localhost:8443/api/products/8/imagen",
+					"protocol": "https",
+					"host": [
+						"localhost"
+					],
+					"port": "8443",
+					"path": [
+						"api",
+						"products",
+						"8",
+						"imagen"
+					]
+				}
 			},
 			"response": []
 		},
@@ -172,7 +280,19 @@
 						}
 					}
 				},
-				"url": "https://localhost:8443/api/products/purchase"
+				"url": {
+					"raw": "https://localhost:8443/api/products/purchase",
+					"protocol": "https",
+					"host": [
+						"localhost"
+					],
+					"port": "8443",
+					"path": [
+						"api",
+						"products",
+						"purchase"
+					]
+				}
 			},
 			"response": []
 		}

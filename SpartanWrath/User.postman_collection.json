@@ -1,9 +1,9 @@
 {
 	"info": {
-		"_postman_id": "39fd4297-35ba-4a63-9843-c20c55f9eabf",
+		"_postman_id": "f1961852-4652-4caf-9a77-96b5afdc3e52",
 		"name": "User",
-		"schema": "https://schema.getpostman.com/json/collection/v2.0.0/collection.json",
-		"_exporter_id": "33504904"
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "33634888"
 	},
 	"item": [
 		{
@@ -11,7 +11,18 @@
 			"request": {
 				"method": "GET",
 				"header": [],
-				"url": "https://localhost:8443/api/User"
+				"url": {
+					"raw": "https://localhost:8443/api/User",
+					"protocol": "https",
+					"host": [
+						"localhost"
+					],
+					"port": "8443",
+					"path": [
+						"api",
+						"User"
+					]
+				}
 			},
 			"response": []
 		},
@@ -22,14 +33,25 @@
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "{\r\n    \"name\": \"Juan\",\r\n    \"username\": \"Juanito\",\r\n    \"email\": \"juan_juanito@hotmail.com\",\r\n    \"address\": \"<img onerror='alert(1)' src=x>\",\r\n    \"phone\": 123123123,\r\n    \"password\": \"pass\",\r\n    \"birthday\": \"25-05-1999\",\r\n    \"dni\": \"41441441F\",\r\n    \"payment\": \"pago2\"\r\n}",
+					"raw": "{\r\n    \"name\": \"Juan\",\r\n    \"username\": \"Juanito\",\r\n    \"email\": \"juan_juanito@hotmail.com\",\r\n    \"address\": \"fdgdfgdfg\",\r\n    \"phone\": 123123123,\r\n    \"password\": \"pass\",\r\n    \"birthday\": \"1999-05-19\",\r\n    \"dni\": \"41441441F\",\r\n    \"payment\": \"pago2\"\r\n}",
 					"options": {
 						"raw": {
 							"language": "json"
 						}
 					}
 				},
-				"url": "https://localhost:8443/api/User"
+				"url": {
+					"raw": "https://localhost:8443/api/User",
+					"protocol": "https",
+					"host": [
+						"localhost"
+					],
+					"port": "8443",
+					"path": [
+						"api",
+						"User"
+					]
+				}
 			},
 			"response": []
 		},
@@ -38,7 +60,19 @@
 			"request": {
 				"method": "GET",
 				"header": [],
-				"url": "https://localhost:8443/api/User/usuario1"
+				"url": {
+					"raw": "https://localhost:8443/api/User/usuario1",
+					"protocol": "https",
+					"host": [
+						"localhost"
+					],
+					"port": "8443",
+					"path": [
+						"api",
+						"User",
+						"usuario1"
+					]
+				}
 			},
 			"response": []
 		},
@@ -56,7 +90,19 @@
 						}
 					}
 				},
-				"url": "https://localhost:8443/api/User/Juanito"
+				"url": {
+					"raw": "https://localhost:8443/api/User/Juanito",
+					"protocol": "https",
+					"host": [
+						"localhost"
+					],
+					"port": "8443",
+					"path": [
+						"api",
+						"User",
+						"Juanito"
+					]
+				}
 			},
 			"response": []
 		},
@@ -65,7 +111,19 @@
 			"request": {
 				"method": "DELETE",
 				"header": [],
-				"url": "https://localhost:8443/api/User/Juanito"
+				"url": {
+					"raw": "https://localhost:8443/api/User/Juanito",
+					"protocol": "https",
+					"host": [
+						"localhost"
+					],
+					"port": "8443",
+					"path": [
+						"api",
+						"User",
+						"Juanito"
+					]
+				}
 			},
 			"response": []
 		},
@@ -83,7 +141,19 @@
 						}
 					}
 				},
-				"url": "https://localhost:8443/api/auth/login"
+				"url": {
+					"raw": "https://localhost:8443/api/auth/login",
+					"protocol": "https",
+					"host": [
+						"localhost"
+					],
+					"port": "8443",
+					"path": [
+						"api",
+						"auth",
+						"login"
+					]
+				}
 			},
 			"response": []
 		},
@@ -101,7 +171,19 @@
 						}
 					}
 				},
-				"url": "https://localhost:8443/api/auth/login"
+				"url": {
+					"raw": "https://localhost:8443/api/auth/login",
+					"protocol": "https",
+					"host": [
+						"localhost"
+					],
+					"port": "8443",
+					"path": [
+						"api",
+						"auth",
+						"login"
+					]
+				}
 			},
 			"response": []
 		},
@@ -110,7 +192,19 @@
 			"request": {
 				"method": "POST",
 				"header": [],
-				"url": "https://localhost:8443/api/auth/logout"
+				"url": {
+					"raw": "https://localhost:8443/api/auth/logout",
+					"protocol": "https",
+					"host": [
+						"localhost"
+					],
+					"port": "8443",
+					"path": [
+						"api",
+						"auth",
+						"logout"
+					]
+				}
 			},
 			"response": []
 		}
