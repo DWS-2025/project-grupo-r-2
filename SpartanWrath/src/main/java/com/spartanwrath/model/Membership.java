@@ -15,40 +15,31 @@ public class Membership {
     public interface CombatClasses {}
     public interface Users {}
 
-    @JsonView(Basico.class)
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
 
-    @JsonView(Basico.class)
     @Column(name = "nombre")
     private String nombre;
 
-    @JsonView(Basico.class)
     @Column(name = "descripcion")
     private String descripcion;
 
-    @JsonView(Basico.class)
     @Column(name = "precio")
     private double precio;
 
-    @JsonView(Basico.class)
     @Column(name = "fechaalta")
     private LocalDate fechaalta;
 
-    @JsonView(Basico.class)
     @Column(name = "fechafin")
     private LocalDate fechafin;
 
-    @JsonView(Basico.class)
     @Column(name = "active")
     private boolean active;
 
-    @JsonView(Users.class)
     @OneToMany(mappedBy = "membership", cascade = {CascadeType.PERSIST, CascadeType.MERGE}, fetch = FetchType.LAZY)
     private List<User> users = new ArrayList<>();
 
-    @JsonView(CombatClasses.class)
     @ManyToOne
     @JoinColumn(name = "combatclass_id")
     private CombatClass combatClass;

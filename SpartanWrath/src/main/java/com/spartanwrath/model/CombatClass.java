@@ -13,24 +13,19 @@ public class CombatClass {
     public interface Basico {}
     public interface Memberships {}
 
-    @JsonView(Basico.class)
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
 
-    @JsonView(Basico.class)
     @Column(name = "name")
     private String name;
 
-    @JsonView(Basico.class)
     @Column(name = "description")
     private String description;
 
-    @JsonView(Basico.class)
     @Column(name = "turn")
     private String turn;
 
-    @JsonView(Memberships.class)
     @OneToMany(mappedBy = "combatClass", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     private List<Membership> memberships = new ArrayList<>();
 
