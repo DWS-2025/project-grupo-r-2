@@ -587,6 +587,7 @@ components:
           type: array
           items:
             $ref: "#/components/schemas/User"
+          writeOnly: true
         combatClass:
           $ref: "#/components/schemas/CombatClass"
         user:
