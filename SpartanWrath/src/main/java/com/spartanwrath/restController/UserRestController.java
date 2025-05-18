@@ -93,9 +93,14 @@ public class UserRestController {
     }
 
     @DeleteMapping("/User/{username}")
-    public ResponseEntity<UserDTO> deleteUser(@PathVariable String username,HttpServletRequest request) {
+    public ResponseEntity<UserDTO> deleteUser(@PathVariable String username, HttpServletRequest request) {
         String authenticatedUsername = request.getUserPrincipal().getName();
         boolean isAdmin = request.isUserInRole("ADMIN");
+
+
+        if (username.equalsIgnoreCase("admin")) {
+            return ResponseEntity.status(HttpStatus.FORBIDDEN).build();
+        }
 
         if (!isAdmin && !authenticatedUsername.equals(username)) {
             return ResponseEntity.status(HttpStatus.FORBIDDEN).build();
@@ -105,8 +110,9 @@ public class UserRestController {
             UserDTO userDTO = userServ.toDTO(userServ.getUserbyUsername(username));
             userServ.delete(username);
             return ResponseEntity.ok().body(userDTO);
-        } catch (UserNotFound e){
+        } catch (UserNotFound e) {
             return ResponseEntity.notFound().build();
         }
     }
+
 }

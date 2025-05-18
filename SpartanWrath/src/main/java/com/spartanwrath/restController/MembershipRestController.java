@@ -97,16 +97,14 @@ public class MembershipRestController {
     @DeleteMapping("/Membership/{id}")
     public ResponseEntity<?> deleteMem(@PathVariable long id) {
         try {
-            // catch membership
+
             Membership membership = membershipService.findById(id);
 
-            // Unlink users from membership
             for (User user : membership.getUser()) {
                 user.setMembership(null);
                 userService.updateUser(user.getUsername(), user);
             }
 
-            // delete membership
             membershipService.delete(id);
             return ResponseEntity.ok().body("Membresía eliminada correctamente.");
 

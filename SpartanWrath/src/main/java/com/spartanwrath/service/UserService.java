@@ -86,7 +86,6 @@ public class UserService {
         validuser.setEmail(user.getEmail());
         validuser.setUsername(user.getUsername());
         validuser.setAddress(user.getAddress());
-        // phone no sanitizamos
         validuser.setPhone(user.getPhone());
         validuser.setDni(user.getDni());
         validuser.setPayment(user.getPayment());
