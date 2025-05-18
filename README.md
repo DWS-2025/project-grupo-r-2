@@ -45,20 +45,20 @@ La aplicación gestiona las siguientes entidades principales:
 ## 💪 Desarrollo Colaborativo
 
 ### Daniel Vallejo Pasamón
-Como partimos de la practica del año pasado me he encargado de añadir los dtos, funcionalidad que habia que implementar de 0.
+Como partimos de la practica del año pasado nos hemos dedicado a comprobar vulnerabilidad por vulnerabilidad si estaba mitigada o faltaba algo.
 
 **Commits más significativos:**
-- [Commit 1](https://github.com/DWS-2025/project-grupo-r-2/commit/df3caa3c295601f0b02dfbd8d083db5164f20344) Este es el 4 commit de dtos desde que los he creado y he ido poco a poco añadiendo las funcinalidades e implementando los mappers.
-- [Commit 2](https://github.com/DWS-2025/project-grupo-r-2/commit/9704381493e11ba6203c8eb51cde36181445efcc) Aqui ya consegui que compilase y ejecutase los dtos.
-- [Commit 3](https://github.com/DWS-2025/project-grupo-r-2/commit/963c144fe769b1f091da8bc1f7a7c19b5815ab4b) Aqui hice que funcionaran las peticiones rest utilizando dtos de users y products, faltaban memberships y combatclass.
-- [Commit 4](https://github.com/DWS-2025/project-grupo-r-2/commit/4f189fbbc6a8b9abd9eaf8cf51e63a46dbf98daf) Aqui arregle las peticiones de postman para las dos entidades que faltaban.
-- [Commit 5](https://github.com/DWS-2025/project-grupo-r-2/commit/8019cfc543694750f7a9a1efc7e83910f8c8b418) Para que guarde la imagen correctamente en el post dentro de la carpeta images del proyecto.
+- [Commit 1](https://github.com/DWS-2025/project-grupo-r-2/commit/16bd8f5ef89168522d7c6f1111c5616ec4035b8f) Catchear excepcion que antes haciamos de manera vulnerable y no especifica.
+- [Commit 2](https://github.com/DWS-2025/project-grupo-r-2/commit/fb9bf03c8821392361af5fa9420c4d39def85959) Sanitizar ruta de fichero externo que no se hacia.
+- [Commit 3](https://github.com/DWS-2025/project-grupo-r-2/commit/2641400946afde1b9dbcac56f3de98ab85b341dd) Igual que el anterior commit, sanitizar rutas.
+- [Commit 4](https://github.com/DWS-2025/project-grupo-r-2/commit/8ac9c1f2ebf027992333cfda6bee308315cc44ba) Especificar el default enconding.
+- [Commit 5](https://github.com/DWS-2025/project-grupo-r-2/commit/d227adaeddcf7572c295cbbf0df0e7ca0bb2b630) Solo admin puede listar todos los usuarios.
 **Ficheros principales modificados:**
-- `Todos los entidadDTO.java`
-- `Todos los entidadmapper.java`
-- `Todos los service de cada entidad`
-- `Todos los rest controllers de cada entidad`
-- `Todos los servicios de cada entidad`
+- `UserRestController.java`
+- `ImageService.java`
+- `MarketControlelr.java`
+- `DataBaseInitializer.java`
+- `JwtTokenProvider.java`
 
 ### Cesar Martín Baños
 En esta fase, al tenerlo casi todo del año pasado y al ir actualizando esta fase conforme avanzabamos en las anteriores, hemos revisado posibles vulnerabilidades, pero hemos hecho pocos cambios.
